@@ -1,3 +1,9 @@
+'''
+Created on Mar 28, 2015
+
+@author: Andrea Martire
+'''
+
 from gmpy import mpz
 
 class BitBoard(object):
