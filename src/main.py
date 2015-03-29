@@ -22,3 +22,9 @@ print blackPawnMoves
 whitePawnMoves = Moves.whitePawnMoves()
 print whitePawnMoves
 
+bitshopMoves = Moves.bitshopMoves()
+print bitshopMoves
+
+rookMoves = Moves.rookMoves()
+print rookMoves
+
