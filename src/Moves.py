@@ -122,6 +122,10 @@ def calculateWhitePawnMoves():
         whitePawnMoves[cellIndex] = []
         
         if(row > 1):
+            #   A
+            #  /
+            if(row < 8 and col < 8):
+                whitePawnMoves[cellIndex] = whitePawnMoves[cellIndex] + [9]
             #  A
             #  i
             if(row < 8):
@@ -130,10 +134,6 @@ def calculateWhitePawnMoves():
             #   \
             if(row < 8 and col > 1):
                 whitePawnMoves[cellIndex] = whitePawnMoves[cellIndex] + [7]
-            #   A
-            #  /
-            if(row < 8 and col < 8):
-                whitePawnMoves[cellIndex] = whitePawnMoves[cellIndex] + [9]
         
     return whitePawnMoves
 
@@ -150,6 +150,10 @@ def calculateBlackPawnMoves():
         blackPawnMoves[cellIndex] = []
         
         if(row < 8):
+            #   /
+            #  V
+            if(row > 1 and col > 1):
+                blackPawnMoves[cellIndex] = blackPawnMoves[cellIndex] + [-9]
             #  I
             #  V
             if(row > 1):
@@ -158,14 +162,10 @@ def calculateBlackPawnMoves():
             #   V
             if(row > 1 and col < 8):
                 blackPawnMoves[cellIndex] = blackPawnMoves[cellIndex] + [-7]
-            #   /
-            #  V
-            if(row > 1 and col > 1):
-                blackPawnMoves[cellIndex] = blackPawnMoves[cellIndex] + [-9]
         
     return blackPawnMoves
 
-#Precalculate bitshop pseudolegal moves for each cell
+#Calculate antidiagonal distance for bitshop moves
 def antidiagonalDistance(col, row):
     if(row == 1 or col == 8):
         return 0
