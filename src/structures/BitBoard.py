@@ -162,7 +162,7 @@ class BitBoard(object):
             self.blackRooksIndexes += [i]
         if(pieceType == 'k'):
             self.blackKing = self.blackKing.setbit(i)
-            self.blackKnightIndexes = [i]
+            self.blackKingIndex = i
         if(pieceType == 'p'):
             self.blackPawns = self.blackPawns.setbit(i)
             self.blackPawnsIndexes += [i]
@@ -183,7 +183,7 @@ class BitBoard(object):
             self.whiteQueenIndexes += [i]
         if(pieceType == 'K'):
             self.whiteKing = self.whiteKing.setbit(i)
-            self.whiteKingIndex = [i]
+            self.whiteKingIndex = i
         if(pieceType == 'P'):
             self.whitePawns = self.whitePawns.setbit(i)
             self.whitePawnsIndexes += [i]
@@ -197,42 +197,88 @@ class BitBoard(object):
             self.setCellbyId(i, stringConfig[i])
         return
     
-    def showBoard(self):
+    def showBoard(self, type):
         #get ordered cells indexes for gui
         cells = Utils.getCellIndexesForGui()
         
         output = ""
-        for i in cells:
-            if(i % 8 == 0):
-                output += "\n"
-            if(self.blackPieces.getbit(i) == 1):
-                if(self.blackRooks.getbit(i) == 1):
-                    output += "r"
-                elif(self.blackKnight.getbit(i) == 1):
-                    output += "n"
-                elif(self.blackBitshops.getbit(i) == 1):
-                    output += "b"
-                elif(self.blackPawns.getbit(i) == 1):
-                    output += "p"
-                elif(self.blackQueen.getbit(i) == 1):
-                    output += "q"
-                elif(self.blackKing.getbit(i) == 1):
-                    output += "k"
-            elif(self.whitePieces.getbit(i) == 1):
-                if(self.whiteRooks.getbit(i) == 1):
-                    output += "R"
-                elif(self.whiteKnight.getbit(i) == 1):
-                    output += "N"
-                elif(self.whiteBitshops.getbit(i) == 1):
-                    output += "B"
-                elif(self.whitePawns.getbit(i) == 1):
-                    output += "P"
-                elif(self.whiteQueen.getbit(i) == 1):
-                    output += "Q"
-                elif(self.whiteKing.getbit(i) == 1):
-                    output += "K"
-            else:
-                output += "-" 
+        #complete
+        if(type == 1):
+            for i in cells:
+                if(i % 8 == 0):
+                    output += "\n ---- ---- ---- ---- ---- ---- ---- ---- \n"
+                    if(i < 8):
+                        output = output + "|   0|   1|   2|   3|   4|   5|   6|   7|\n"
+                    elif(i < 16):
+                        output = output + "|   8|   9|  10|  11|  12|  13|  14|  15|\n"
+                    else:
+                        for j in range(i,i+8):
+                            output = output + "|  "+str(j)
+                        output += "|\n"
+                if(self.blackPieces.getbit(i) == 1):
+                    if(self.blackRooks.getbit(i) == 1):
+                        output += "|r   "
+                    elif(self.blackKnight.getbit(i) == 1):
+                        output += "|n   "
+                    elif(self.blackBitshops.getbit(i) == 1):
+                        output += "|b   "
+                    elif(self.blackPawns.getbit(i) == 1):
+                        output += "|p   "
+                    elif(self.blackQueen.getbit(i) == 1):
+                        output += "|q   "
+                    elif(self.blackKing.getbit(i) == 1):
+                        output += "|k   "
+                elif(self.whitePieces.getbit(i) == 1):
+                    if(self.whiteRooks.getbit(i) == 1):
+                        output += "|R   "
+                    elif(self.whiteKnight.getbit(i) == 1):
+                        output += "|N   "
+                    elif(self.whiteBitshops.getbit(i) == 1):
+                        output += "|B   "
+                    elif(self.whitePawns.getbit(i) == 1):
+                        output += "|P   "
+                    elif(self.whiteQueen.getbit(i) == 1):
+                        output += "|Q   "
+                    elif(self.whiteKing.getbit(i) == 1):
+                        output += "|K   "
+                else:
+                    output += "|    "
+                if(i % 8 == 7): 
+                    output += "|"
+            output += "\n ---- ---- ---- ---- ---- ---- ---- ---- \n"
+        #only piece
+        elif(type == 0):
+            for i in cells:
+                if(i % 8 == 0):
+                    output += "\n"
+                if(self.blackPieces.getbit(i) == 1):
+                    if(self.blackRooks.getbit(i) == 1):
+                        output += "r"
+                    elif(self.blackKnight.getbit(i) == 1):
+                        output += "n"
+                    elif(self.blackBitshops.getbit(i) == 1):
+                        output += "b"
+                    elif(self.blackPawns.getbit(i) == 1):
+                        output += "p"
+                    elif(self.blackQueen.getbit(i) == 1):
+                        output += "q"
+                    elif(self.blackKing.getbit(i) == 1):
+                        output += "k"
+                elif(self.whitePieces.getbit(i) == 1):
+                    if(self.whiteRooks.getbit(i) == 1):
+                        output += "R"
+                    elif(self.whiteKnight.getbit(i) == 1):
+                        output += "N"
+                    elif(self.whiteBitshops.getbit(i) == 1):
+                        output += "B"
+                    elif(self.whitePawns.getbit(i) == 1):
+                        output += "P"
+                    elif(self.whiteQueen.getbit(i) == 1):
+                        output += "Q"
+                    elif(self.whiteKing.getbit(i) == 1):
+                        output += "K"
+                else:
+                    output += "-" 
         print output
         return 
     
@@ -263,11 +309,11 @@ class BitBoard(object):
                         #if black piece occupies dest cell
                         if((self.blackPieces & destCell) == destCell):
                             #black piece. add capture move
-                            print "Capture Move: " + str(startPos) + "-" + str(destPos)
+                            #print "Capture Move: " + str(startPos) + "-" + str(destPos)
                             movesList.append(Move.Move(startPos, destPos, Move.CAPTURE))
                     else:
                         #add quiet move
-                        print "Quiet Move: " + str(startPos) + "-" + str(destPos)
+                        #print "Quiet Move: " + str(startPos) + "-" + str(destPos)
                         movesList.append(Move.Move(startPos, destPos, Move.QUIET))
         elif(color == Constants.BLACK):
             #Black Knights
@@ -283,11 +329,11 @@ class BitBoard(object):
                         #if white piece occupies dest cell
                         if((self.whitePieces & destCell) == destCell):
                             #white piece. add capture move
-                            print "Capture Move: " + str(startPos) + "-" + str(destPos)
+                            #print "Capture Move: " + str(startPos) + "-" + str(destPos)
                             movesList.append(Move.Move(startPos, destPos, Move.CAPTURE))
                     else:
                         #add quiet move
-                        print "Quiet Move: " + str(startPos) + "-" + str(destPos)
+                        #print "Quiet Move: " + str(startPos) + "-" + str(destPos)
                         movesList.append(Move.Move(startPos, destPos, Move.QUIET))
         
         for move in movesList:
