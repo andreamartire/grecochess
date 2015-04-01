@@ -46,6 +46,20 @@ _cellIndexes = calculateCellIndexesForGui()
 def getCellIndexesForGui():
     return _cellIndexes
 
+def showCellIndexes():
+    #get ordered cells indexes for gui
+    cells = getCellIndexesForGui()
+    
+    output = ""
+    for i in cells:
+        if(i % 8 == 0):
+            output = output + "\n"
+        if(i < 10):
+            output += " "
+        output += `i` + " "
+    print output
+    return
+
 #create bit array with an element for each board's cell
 def initCellBitArray():
     _cells = {}
@@ -57,6 +71,9 @@ _cells = initCellBitArray();
 
 def getCellsBitArray():
     return _cells
+
+def getCellBitArrayById(cellId):
+    return _cells[cellId]
 
 #create a single bit array with all moves
 def movesToBitArray(moves):

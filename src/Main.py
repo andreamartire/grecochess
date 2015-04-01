@@ -8,10 +8,9 @@ Created on Mar 28, 2015
 #TODO pieces' index array converted in linked list
 #TODO position type from integer 32 bit to 6 bit mpz?
 
-from structures import BitBoard, Move
+from structures import BitBoard
 from pieces import Knight, King, Pawn, Bitshop, Rook, Queen
-import Utils
-from gmpy import mpz
+import Utils, Constants
 
 knightMoves = Knight.knightMoves()
 print "Knight: " + str(knightMoves)
@@ -75,6 +74,18 @@ Utils.showBitArray(currMoves)
 
 board = BitBoard.BitBoard()
 board.showBoard()
+board.clean()
+
+board.setCellbyId(21, 'N')
+board.setCellbyId(15, 'k')
+board.setCellbyId(31, 'K')
+board.setCellbyId(6, 'Q')
+board.setCellbyId(4, 'B')
+
+board.getAllPseudoLegalMoves(Constants.WHITE)
+
+board.showBoard()
+Utils.showCellIndexes()
 
 # for i in range(1,6) + range(8,16):
 #     move = Move.Move(1,1,i)
@@ -84,3 +95,8 @@ board.showBoard()
 # v = mpz(0).setbit(3)
 # z = mpz(0).setbit(0)
 # print bin(v | z)
+
+print " -- -- -- "
+print "|12|12|12|"
+print "| X|  |  |"
+print " -- -- -- " 

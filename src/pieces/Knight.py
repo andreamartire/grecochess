@@ -5,6 +5,7 @@ Created on Mar 30, 2015
 '''
 
 import Utils
+import structures.BitBoard
 
 #Precalculate knight's pseudolegal moves for each cell
 def calculateMoves():
@@ -72,7 +73,3 @@ def knightMoves():
 
 def getMovesArray(cellId):
     return _knightMoves[cellId]
-
-def getLegalMoves(bitBoard):
-    
-    return

@@ -5,20 +5,22 @@ Created on Mar 28, 2015
 '''
 
 from gmpy import mpz
-import Utils
+import Utils, Constants, Move
+from pieces import Knight
 
 class BitBoard(object):
+    busyCells = mpz(0)
+    
     #white bitboard
-    whitePieces = 0
-    whitePawns = 0
-    whiteKnight = 0
-    whiteBitshops = 0
-    whiteRooks = 0
-    whiteQueen = 0
-    whiteKing = 0
+    whitePieces = mpz(0)
+    whitePawns = mpz(0)
+    whiteKnight = mpz(0)
+    whiteBitshops = mpz(0)
+    whiteRooks = mpz(0)
+    whiteQueen = mpz(0)
+    whiteKing = mpz(0)
     
     #white indexes
-    whitePiecesIndexes = []
     whitePawnsIndexes = []
     whiteKnightIndexes = []
     whiteBitshopsIndexes = []
@@ -27,16 +29,15 @@ class BitBoard(object):
     whiteKingIndex = 0
     
     #black bitboard
-    blackPieces = 0
-    blackPawns = 0
-    blackKnight = 0
-    blackBitshops = 0
-    blackRooks = 0
-    blackQueen = 0
-    blackKing = 0
+    blackPieces = mpz(0)
+    blackPawns = mpz(0)
+    blackKnight = mpz(0)
+    blackBitshops = mpz(0)
+    blackRooks = mpz(0)
+    blackQueen = mpz(0)
+    blackKing = mpz(0)
     
     #black indexes
-    blackPiecesIndexes = []
     blackPawnsIndexes = []
     blackKnightIndexes = []
     blackBitshopsIndexes = []
@@ -49,7 +50,6 @@ class BitBoard(object):
         self.whitePieces = mpz(0)
         for num in range(0,16):
             self.whitePieces = self.whitePieces.setbit(num)
-            self.whitePiecesIndexes.append(num)
         #print 'White Pieces=' + bin(self.whitePieces)
         
         self.whitePawns = mpz(0)
@@ -82,7 +82,6 @@ class BitBoard(object):
         self.blackPieces = mpz(0)
         for num in range(48,64):
             self.blackPieces = self.blackPieces.setbit(num)
-            self.blackPiecesIndexes.append(num)
         #print 'Black Pieces\t' + bin(blackPieces)
         
         self.blackPawns = mpz(0)
@@ -110,7 +109,94 @@ class BitBoard(object):
         self.blackKing = mpz(0).setbit(60)
         self.blackKingIndex = 60
         #print 'Black King\t' + bin(self.blackKing)
-
+        
+    def clean(self):
+        self.whitePieces = mpz(0)
+        self.whitePawns = mpz(0)
+        self.whiteKnight = mpz(0)
+        self.whiteBitshops = mpz(0)
+        self.whiteRooks = mpz(0)
+        self.whiteQueen = mpz(0)
+        self.whiteKing = mpz(0)
+        
+        #white indexes
+        self.whitePawnsIndexes = []
+        self.whiteKnightIndexes = []
+        self.whiteBitshopsIndexes = []
+        self.whiteRooksIndexes = []
+        self.whiteQueenIndexes = []
+        self.whiteKingIndex = 0
+        
+        #black bitboard
+        self.blackPieces = mpz(0)
+        self.blackPawns = mpz(0)
+        self.blackKnight = mpz(0)
+        self.blackBitshops = mpz(0)
+        self.blackRooks = mpz(0)
+        self.blackQueen = mpz(0)
+        self.blackKing = mpz(0)
+        
+        #black indexes
+        self.blackPawnsIndexes = []
+        self.blackKnightIndexes = []
+        self.blackBitshopsIndexes = []
+        self.blackRooksIndexes = []
+        self.blackQueenIndexes = []
+        self.blackKingIndex = 0
+        return
+    
+    def setCellbyId(self, i, pieceType):
+        if(set("rnbqkp") & set(pieceType)):
+            self.blackPieces = self.blackPieces.setbit(i)
+        if(pieceType == 'r'):
+            self.blackRooks = self.blackRooks.setbit(i)
+            self.blackRooksIndexes += [i]
+        if(pieceType == 'n'):
+            self.blackKnight = self.blackKnight.setbit(i)
+            self.blackKnightIndexes += [i]
+        if(pieceType == 'b'):
+            self.blackBitshops = self.blackBitshops.setbit(i)
+            self.blackBitshopsIndexes += [i]
+        if(pieceType == 'q'):
+            self.blackQueen = self.blackQueen.setbit(i)
+            self.blackRooksIndexes += [i]
+        if(pieceType == 'k'):
+            self.blackKing = self.blackKing.setbit(i)
+            self.blackKnightIndexes = [i]
+        if(pieceType == 'p'):
+            self.blackPawns = self.blackPawns.setbit(i)
+            self.blackPawnsIndexes += [i]
+        
+        if(set('RNBQKP') & set(pieceType)):
+            self.whitePieces = self.whitePieces.setbit(i)
+        if(pieceType == 'R'):
+            self.whiteRooks = self.whiteRooks.setbit(i)
+            self.whiteRooksIndexes += [i]
+        if(pieceType == 'N'):
+            self.whiteKnight = self.whiteKnight.setbit(i)
+            self.whiteKnightIndexes += [i]
+        if(pieceType == 'B'):
+            self.whiteBitshops = self.whiteBitshops.setbit(i)
+            self.whiteBitshopsIndexes += [i]
+        if(pieceType == 'Q'):
+            self.whiteQueen = self.whiteQueen.setbit(i)
+            self.whiteQueenIndexes += [i]
+        if(pieceType == 'K'):
+            self.whiteKing = self.whiteKing.setbit(i)
+            self.whiteKingIndex = [i]
+        if(pieceType == 'P'):
+            self.whitePawns = self.whitePawns.setbit(i)
+            self.whitePawnsIndexes += [i]
+        return
+        
+    def setManualConfiguration(self, stringConfig):
+        #reset the board
+        self.clean()
+        
+        for i in range(1,64):
+            self.setCellbyId(i, stringConfig[i])
+        return
+    
     def showBoard(self):
         #get ordered cells indexes for gui
         cells = Utils.getCellIndexesForGui()
@@ -150,9 +236,59 @@ class BitBoard(object):
         print output
         return 
     
-    def getAllLegalMoves(self):
-        #for each piece
-            #get pseudo legal moves
-            #remove illegal moves
-            #add to move list
+    def getAllPseudoLegalMoves(self, color):
+        
+        #detect busy cells
+        self.busyCells = self.whitePieces | self.blackPieces
+        
+        knightMoves = self.getKnightMoves(color)
+        
+        print knightMoves
+        
         return
+    
+    def getKnightMoves(self, color):
+        movesList = []
+        if(color == Constants.WHITE):
+            #White Knights
+            for startPos in self.whiteKnightIndexes:
+                #get all moves
+                allMoves = Knight.getMovesArray(startPos)
+                #for each move
+                for destPos in allMoves:
+                    #get bit array for dest cell
+                    destCell = Utils.getCellBitArrayById(destPos)
+                    #if dest cell is busy
+                    if((self.busyCells & destCell) == destCell):
+                        #if black piece occupies dest cell
+                        if((self.blackPieces & destCell) == destCell):
+                            #black piece. add capture move
+                            print "Capture Move: " + str(startPos) + "-" + str(destPos)
+                            movesList.append(Move.Move(startPos, destPos, Move.CAPTURE))
+                    else:
+                        #add quiet move
+                        print "Quiet Move: " + str(startPos) + "-" + str(destPos)
+                        movesList.append(Move.Move(startPos, destPos, Move.QUIET))
+        elif(color == Constants.BLACK):
+            #Black Knights
+            for startPos in self.blackKnightIndexes:
+                #get all moves
+                allMoves = Knight.getMovesArray(startPos)
+                #for each move
+                for destPos in allMoves:
+                    #get bit array for dest cell
+                    destCell = Utils.getCellBitArrayById(destPos)
+                    #if dest cell is busy
+                    if((self.busyCells & destCell) == destCell):
+                        #if white piece occupies dest cell
+                        if((self.whitePieces & destCell) == destCell):
+                            #white piece. add capture move
+                            print "Capture Move: " + str(startPos) + "-" + str(destPos)
+                            movesList.append(Move.Move(startPos, destPos, Move.CAPTURE))
+                    else:
+                        #add quiet move
+                        print "Quiet Move: " + str(startPos) + "-" + str(destPos)
+                        movesList.append(Move.Move(startPos, destPos, Move.QUIET))
+        
+        for move in movesList:
+            print move

@@ -42,7 +42,7 @@ def createTypeMap():
 typeMap = createTypeMap()
 
 class Move(object):
-    type = 0
+    type = mpz(0)
     start = -1
     end = -1
 
@@ -51,4 +51,7 @@ class Move(object):
         self.end = end
         self.type = typeMap[moveType]
         return
+    
+    def __str__(self):
+        return "(" + str(self.start) + "," + str(self.end) + "," + bin(self.type) + ")"
     
