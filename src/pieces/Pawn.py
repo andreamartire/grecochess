@@ -4,12 +4,7 @@ Created on Mar 30, 2015
 @author: Andrea Martire
 '''
 
-import Utils
-
-#directions
-LEFT = 0;
-UP = 1;
-RIGHT = 2;
+import Utils, Constants
 
 #Precalculate white pawn's pseudolegal moves for each cell
 def calculateWhitePawnMoves():
@@ -22,28 +17,28 @@ def calculateWhitePawnMoves():
         
         #init cell array
         whitePawnMoves[cellIndex] = {}
-        whitePawnMoves[cellIndex][RIGHT] = []
-        whitePawnMoves[cellIndex][UP] = []
-        whitePawnMoves[cellIndex][LEFT] = []
-        
+        whitePawnMoves[cellIndex][Constants.RIGHT_UP] = []
+        whitePawnMoves[cellIndex][Constants.UP] = []
+        whitePawnMoves[cellIndex][Constants.LEFT_UP] = []
+    
         if(row > 1):
             #  A
             #   \
             if(row < 8 and col > 1):
-                whitePawnMoves[cellIndex][LEFT] = whitePawnMoves[cellIndex][LEFT] + [7]
+                whitePawnMoves[cellIndex][Constants.LEFT_UP] +=[cellIndex + 7]
             #  A
             #  i
             if(row < 8):
-                whitePawnMoves[cellIndex][UP] = whitePawnMoves[cellIndex][UP] + [8]
+                whitePawnMoves[cellIndex][Constants.UP] += [cellIndex + 8]
             #  A
             #  i
             #  i
             if(row == 2):
-                whitePawnMoves[cellIndex][UP] = whitePawnMoves[cellIndex][UP] + [8*2]    
+                whitePawnMoves[cellIndex][Constants.UP] += [cellIndex + 8*2]    
             #   A
             #  /
             if(row < 8 and col < 8):
-                whitePawnMoves[cellIndex][RIGHT] = whitePawnMoves[cellIndex][RIGHT] + [9]
+                whitePawnMoves[cellIndex][Constants.RIGHT_UP] += [cellIndex + 9]
         
     return whitePawnMoves
 
@@ -58,28 +53,28 @@ def calculateBlackPawnMoves():
         
         #init cell array
         blackPawnMoves[cellIndex] = {}
-        blackPawnMoves[cellIndex][RIGHT] = []
-        blackPawnMoves[cellIndex][UP] = []
-        blackPawnMoves[cellIndex][LEFT] = []
+        blackPawnMoves[cellIndex][Constants.RIGHT_UP] = []
+        blackPawnMoves[cellIndex][Constants.UP] = []
+        blackPawnMoves[cellIndex][Constants.LEFT_UP] = []
         
         if(row < 8):
             #  \
             #   V
             if(row > 1 and col < 8):
-                blackPawnMoves[cellIndex][LEFT] = blackPawnMoves[cellIndex][LEFT] + [-7]
+                blackPawnMoves[cellIndex][Constants.LEFT_UP].append(cellIndex - 7)
             #  I
             #  V
             if(row > 1):
-                blackPawnMoves[cellIndex][UP] = blackPawnMoves[cellIndex][UP] + [-8]
+                blackPawnMoves[cellIndex][Constants.UP].append(cellIndex - 8)
             #  l
             #  l
             #  V
             if(row == 7):
-                blackPawnMoves[cellIndex][UP] = blackPawnMoves[cellIndex][UP] + [-8*2]  
+                blackPawnMoves[cellIndex][Constants.UP].append(cellIndex - 8*2)  
             #   /
             #  V
             if(row > 1 and col > 1):
-                blackPawnMoves[cellIndex][RIGHT] = blackPawnMoves[cellIndex][RIGHT] + [-9]
+                blackPawnMoves[cellIndex][Constants.RIGHT_UP].append(cellIndex - 9)
     
     return blackPawnMoves
 
@@ -92,3 +87,15 @@ def whitePawnMoves():
 
 def blackPawnMoves():
     return _blackPawnMoves
+
+def getWhiteMovesArray(cellId):
+    movesArray = _whitePawnMoves[cellId][Constants.RIGHT_UP]
+    movesArray += _whitePawnMoves[cellId][Constants.UP]
+    movesArray += _whitePawnMoves[cellId][Constants.LEFT_UP]
+    return movesArray
+
+def getBlackMovesArray(cellId):
+    movesArray = _blackPawnMoves[cellId][Constants.RIGHT_UP]
+    movesArray += _blackPawnMoves[cellId][Constants.UP]
+    movesArray += _blackPawnMoves[cellId][Constants.LEFT_UP]
+    return movesArray

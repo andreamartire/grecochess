@@ -4,7 +4,7 @@ Created on Mar 30, 2015
 @author: Andrea Martire
 '''
 
-import Utils
+import Utils, Constants
 
 #Calculate anti-diagonal distance for bitshop's moves
 def antidiagonalDistance(col, row):
@@ -35,24 +35,28 @@ def calculateMoves():
         col = Utils.getColumn(cellIndex)
         
         #init cell array
-        bitshopMoves[cellIndex] = []
+        bitshopMoves[cellIndex] = {}
+        bitshopMoves[cellIndex][Constants.RIGHT_UP] = []
+        bitshopMoves[cellIndex][Constants.LEFT_UP] = []
+        bitshopMoves[cellIndex][Constants.LEFT_DOWN] = []
+        bitshopMoves[cellIndex][Constants.RIGHT_DOWN] = []
         
         #   A
         #  /
         for i in range(1,8-max(row,col)+1):
-            bitshopMoves[cellIndex] = bitshopMoves[cellIndex] + [9*i]
+            bitshopMoves[cellIndex][Constants.RIGHT_UP].append(cellIndex + 9*i)
         #  A
         #   \
         for i in range(1,antidiagonalDistance(row,col)+1):
-            bitshopMoves[cellIndex] = bitshopMoves[cellIndex] + [7*i]
+            bitshopMoves[cellIndex][Constants.LEFT_UP].append(cellIndex + 7*i)
         #   /
         #  V
         for i in range(1,min(row,col)):
-            bitshopMoves[cellIndex] = bitshopMoves[cellIndex] + [-9*i]
+            bitshopMoves[cellIndex][Constants.LEFT_DOWN].append(cellIndex - 9*i)
         #  \
         #   V
         for i in range(1,antidiagonalDistance(col,row)+1):
-            bitshopMoves[cellIndex] = bitshopMoves[cellIndex] + [-7*i]
+            bitshopMoves[cellIndex][Constants.RIGHT_DOWN].append(cellIndex - 7*i)
         
     return bitshopMoves
 
@@ -61,3 +65,10 @@ _bitshopMoves = calculateMoves()
 
 def bitshopMoves():
     return _bitshopMoves
+
+def getMovesArray(cellId):
+    movesArray = _bitshopMoves[cellId][Constants.RIGHT_UP]
+    movesArray += _bitshopMoves[cellId][Constants.LEFT_UP]
+    movesArray += _bitshopMoves[cellId][Constants.LEFT_DOWN]
+    movesArray += _bitshopMoves[cellId][Constants.RIGHT_DOWN]
+    return movesArray

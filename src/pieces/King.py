@@ -20,34 +20,34 @@ def calculateMoves():
         
         # -->
         if(col < 8):
-            kingMoves[cellIndex] = kingMoves[cellIndex] + [1]
+            kingMoves[cellIndex].append(cellIndex + 1)
         # <--
         if(col > 1):
-            kingMoves[cellIndex] = kingMoves[cellIndex] + [-1]
+            kingMoves[cellIndex].append(cellIndex - 1)
         #  A
         #  i
         if(row < 8):
-            kingMoves[cellIndex] = kingMoves[cellIndex] + [8]
+            kingMoves[cellIndex].append(cellIndex + 8)
         #  I
         #  V
         if(row > 1):
-            kingMoves[cellIndex] = kingMoves[cellIndex] + [-8]
+            kingMoves[cellIndex].append(cellIndex - 8)
         #  \
         #   V
         if(row > 1 and col < 8):
-            kingMoves[cellIndex] = kingMoves[cellIndex] + [-7]
+            kingMoves[cellIndex].append(cellIndex - 7)
         #   /
         #  V
         if(row > 1 and col > 1):
-            kingMoves[cellIndex] = kingMoves[cellIndex] + [-9]
+            kingMoves[cellIndex].append(cellIndex - 9)
         #  A
         #   \
         if(row < 8 and col > 1):
-            kingMoves[cellIndex] = kingMoves[cellIndex] + [7]
+            kingMoves[cellIndex].append(cellIndex + 7)
         #   A
         #  /
         if(row < 8 and col < 8):
-            kingMoves[cellIndex] = kingMoves[cellIndex] + [9]
+            kingMoves[cellIndex].append(cellIndex + 9)
           
     return kingMoves
 
@@ -56,3 +56,6 @@ _kingMoves = calculateMoves()
 
 def kingMoves():
     return _kingMoves
+
+def getMovesArray(cellId):
+    return _kingMoves[cellId]
