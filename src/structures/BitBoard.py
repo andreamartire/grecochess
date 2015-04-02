@@ -299,10 +299,7 @@ class BitBoard(object):
         return 
     
     def getAllPseudoLegalMoves(self, color):
-        
-        #detect busy cells
-        self.busyCells = self.whitePieces | self.blackPieces
-        
+                
         knightMoves = self.getKnightMoves(color)
         kingMoves = self.getKingMoves(color)
         bitshopMoves = self.getBitshopMoves(color)
@@ -310,8 +307,8 @@ class BitBoard(object):
         queenMoves = self.getQueenMoves(color)
         pawnMoves = self.getPawnMoves(color)
         
-        for move in pawnMoves:
-            print move
+        '''for move in pawnMoves:
+            print move'''
         
         return
     
@@ -495,6 +492,7 @@ class BitBoard(object):
     
     def getPawnMoves(self, color):
         movesList = []
+        emptyCells = ~(self.blackPieces | self.whitePieces)
         if(color == Constants.WHITE):
             #set Black enemies
             enemyCells = self.blackPieces
@@ -528,13 +526,26 @@ class BitBoard(object):
                     #enemy piece. add capture move
                     #print "Capture Move: " + str(startPos) + "-" + str(destPos)
                     movesList.append(Move.Move(startPos, destPos, Move.CAPTURE))
-            #move up - 1
-            '''destPos = allMoves[Constants.UP]
-            #get bit array for dest cell
-            destCell = Utils.getCellBitArrayById(destPos)
-            #if enemy piece occupies dest cell
-            if((enemyCells & destCell) == destCell):
-                #enemy piece. add capture move
-                #print "Capture Move: " + str(startPos) + "-" + str(destPos)
-                movesList.append(Move.Move(startPos, destPos, Move.CAPTURE))'''
+            #move up. 1
+            if Constants.UP in allMoves:
+                destPos = allMoves[Constants.UP]
+                #get bit array for dest cell
+                destCell = Utils.getCellBitArrayById(destPos)
+                #if dest cell is empty
+                if((emptyCells & destCell) == destCell):
+                    #enemy piece. add capture move
+                    #print "Capture Move: " + str(startPos) + "-" + str(destPos)
+                    movesList.append(Move.Move(startPos, destPos, Move.QUIET))
+            #move up. 2
+            if Constants.DOUBLE_UP in allMoves:
+                destPosUp = allMoves[Constants.UP]
+                destPosDoubleUp = allMoves[Constants.DOUBLE_UP]
+                #get bit array for dest cell
+                destCellUp = Utils.getCellBitArrayById(destPosUp)
+                destCellDoubleUp = Utils.getCellBitArrayById(destPosDoubleUp)
+                #if cell UP and cell DOUBLE_UP are empty
+                if((emptyCells & destCellUp) == destCellUp and (emptyCells & destCellDoubleUp) == destCellDoubleUp):
+                    #enemy piece. add capture move
+                    #print "Capture Move: " + str(startPos) + "-" + str(destPos)
+                    movesList.append(Move.Move(startPos, destPosDoubleUp, Move.QUIET))
         return movesList

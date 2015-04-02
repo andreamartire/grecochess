@@ -26,3 +26,5 @@ LEFT_DOWN = 5
 DOWN = 6
 RIGHT_DOWN = 7
 
+#only for pawns
+DOUBLE_UP = 8

@@ -17,7 +17,6 @@ def calculateWhitePawnMoves():
         
         #init cell array
         whitePawnMoves[cellIndex] = {}
-        whitePawnMoves[cellIndex][Constants.UP] = []
     
         if(row > 1):
             #  A
@@ -27,12 +26,12 @@ def calculateWhitePawnMoves():
             #  A
             #  i
             if(row < 8):
-                whitePawnMoves[cellIndex][Constants.UP] += [cellIndex + 8]
+                whitePawnMoves[cellIndex][Constants.UP] = cellIndex + 8
             #  A
             #  i
             #  i
             if(row == 2):
-                whitePawnMoves[cellIndex][Constants.UP] += [cellIndex + 8*2]    
+                whitePawnMoves[cellIndex][Constants.DOUBLE_UP] = cellIndex + 8*2    
             #   A
             #  /
             if(row < 8 and col < 8):
@@ -51,7 +50,6 @@ def calculateBlackPawnMoves():
         
         #init cell array
         blackPawnMoves[cellIndex] = {}
-        blackPawnMoves[cellIndex][Constants.UP] = []
         
         if(row < 8):
             #  \
@@ -61,12 +59,12 @@ def calculateBlackPawnMoves():
             #  I
             #  V
             if(row > 1):
-                blackPawnMoves[cellIndex][Constants.UP].append(cellIndex - 8)
+                blackPawnMoves[cellIndex][Constants.UP] = cellIndex - 8
             #  l
             #  l
             #  V
             if(row == 7):
-                blackPawnMoves[cellIndex][Constants.UP].append(cellIndex - 8*2)  
+                blackPawnMoves[cellIndex][Constants.DOUBLE_UP] = cellIndex - 8*2  
             #   /
             #  V
             if(row > 1 and col > 1):
