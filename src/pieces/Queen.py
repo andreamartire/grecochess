@@ -5,7 +5,6 @@ Created on Mar 30, 2015
 '''
 
 from pieces import Rook, Bitshop
-import Constants
 
 #calculate pieces' moves only once
 _diagonalMoves = Bitshop.bitshopMoves()
@@ -31,12 +30,4 @@ def queenMoves():
     return _queenMoves
 
 def getMovesArray(cellId):
-    movesArray = _queenMoves[cellId][Constants.RIGHT]
-    movesArray += _queenMoves[cellId][Constants.RIGHT_UP]
-    movesArray += _queenMoves[cellId][Constants.UP]
-    movesArray += _queenMoves[cellId][Constants.LEFT_UP]
-    movesArray += _queenMoves[cellId][Constants.LEFT]
-    movesArray += _queenMoves[cellId][Constants.LEFT_DOWN]
-    movesArray += _queenMoves[cellId][Constants.DOWN]
-    movesArray += _queenMoves[cellId][Constants.RIGHT_DOWN]
-    return movesArray
+    return _queenMoves[cellId]

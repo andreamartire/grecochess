@@ -17,15 +17,13 @@ def calculateWhitePawnMoves():
         
         #init cell array
         whitePawnMoves[cellIndex] = {}
-        whitePawnMoves[cellIndex][Constants.RIGHT_UP] = []
         whitePawnMoves[cellIndex][Constants.UP] = []
-        whitePawnMoves[cellIndex][Constants.LEFT_UP] = []
     
         if(row > 1):
             #  A
             #   \
             if(row < 8 and col > 1):
-                whitePawnMoves[cellIndex][Constants.LEFT_UP] +=[cellIndex + 7]
+                whitePawnMoves[cellIndex][Constants.LEFT_UP] = cellIndex + 7
             #  A
             #  i
             if(row < 8):
@@ -38,7 +36,7 @@ def calculateWhitePawnMoves():
             #   A
             #  /
             if(row < 8 and col < 8):
-                whitePawnMoves[cellIndex][Constants.RIGHT_UP] += [cellIndex + 9]
+                whitePawnMoves[cellIndex][Constants.RIGHT_UP] = cellIndex + 9
         
     return whitePawnMoves
 
@@ -53,15 +51,13 @@ def calculateBlackPawnMoves():
         
         #init cell array
         blackPawnMoves[cellIndex] = {}
-        blackPawnMoves[cellIndex][Constants.RIGHT_UP] = []
         blackPawnMoves[cellIndex][Constants.UP] = []
-        blackPawnMoves[cellIndex][Constants.LEFT_UP] = []
         
         if(row < 8):
             #  \
             #   V
             if(row > 1 and col < 8):
-                blackPawnMoves[cellIndex][Constants.LEFT_UP].append(cellIndex - 7)
+                blackPawnMoves[cellIndex][Constants.LEFT_UP] = cellIndex - 7
             #  I
             #  V
             if(row > 1):
@@ -74,7 +70,7 @@ def calculateBlackPawnMoves():
             #   /
             #  V
             if(row > 1 and col > 1):
-                blackPawnMoves[cellIndex][Constants.RIGHT_UP].append(cellIndex - 9)
+                blackPawnMoves[cellIndex][Constants.RIGHT_UP] = cellIndex - 9
     
     return blackPawnMoves
 
@@ -88,14 +84,7 @@ def whitePawnMoves():
 def blackPawnMoves():
     return _blackPawnMoves
 
-def getWhiteMovesArray(cellId):
-    movesArray = _whitePawnMoves[cellId][Constants.RIGHT_UP]
-    movesArray += _whitePawnMoves[cellId][Constants.UP]
-    movesArray += _whitePawnMoves[cellId][Constants.LEFT_UP]
-    return movesArray
-
-def getBlackMovesArray(cellId):
-    movesArray = _blackPawnMoves[cellId][Constants.RIGHT_UP]
-    movesArray += _blackPawnMoves[cellId][Constants.UP]
-    movesArray += _blackPawnMoves[cellId][Constants.LEFT_UP]
-    return movesArray
+def getMovesArray(cellId, color):
+    if(color == Constants.WHITE):
+        return _whitePawnMoves[cellId]
+    return _blackPawnMoves[cellId]

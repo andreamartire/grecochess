@@ -6,7 +6,7 @@ Created on Mar 28, 2015
 
 from gmpy import mpz
 import Utils, Constants, Move
-from pieces import Knight
+from pieces import Knight, King, Bitshop, Rook, Queen, Pawn
 
 class BitBoard(object):
     busyCells = mpz(0)
@@ -146,6 +146,22 @@ class BitBoard(object):
         return
     
     def setCellbyId(self, i, pieceType):
+        self.blackPieces = self.blackPieces.setbit(i,0)
+        self.blackRooks = self.blackRooks.setbit(i,0)
+        self.blackKnight = self.blackKnight.setbit(i,0)
+        self.blackBitshops = self.blackBitshops.setbit(i,0)
+        self.blackQueen = self.blackQueen.setbit(i,0)
+        self.blackKing = self.blackKing.setbit(i,0)
+        self.blackPawns = self.blackPawns.setbit(i,0)
+        
+        self.whitePieces = self.whitePieces.setbit(i,0)
+        self.whiteRooks = self.whiteRooks.setbit(i,0)
+        self.whiteKnight = self.whiteKnight.setbit(i,0)
+        self.whiteBitshops = self.whiteBitshops.setbit(i,0)
+        self.whiteQueen = self.whiteQueen.setbit(i,0)
+        self.whiteKing = self.whiteKing.setbit(i,0)
+        self.whitePawns = self.whitePawns.setbit(i,0)
+        
         if(set("rnbqkp") & set(pieceType)):
             self.blackPieces = self.blackPieces.setbit(i)
         if(pieceType == 'r'):
@@ -197,57 +213,57 @@ class BitBoard(object):
             self.setCellbyId(i, stringConfig[i])
         return
     
-    def showBoard(self, type):
+    def showBoard(self, view):
         #get ordered cells indexes for gui
         cells = Utils.getCellIndexesForGui()
         
         output = ""
         #complete
-        if(type == 1):
+        if(view == 1):
             for i in cells:
                 if(i % 8 == 0):
-                    output += "\n ---- ---- ---- ---- ---- ---- ---- ---- \n"
+                    output += "\n+-----+-----+-----+-----+-----+-----+-----+-----+\n"
                     if(i < 8):
-                        output = output + "|   0|   1|   2|   3|   4|   5|   6|   7|\n"
+                        output = output + "|    0|    1|    2|    3|    4|    5|    6|    7|\n"
                     elif(i < 16):
-                        output = output + "|   8|   9|  10|  11|  12|  13|  14|  15|\n"
+                        output = output + "|    8|    9|   10|   11|   12|   13|   14|   15|\n"
                     else:
                         for j in range(i,i+8):
-                            output = output + "|  "+str(j)
+                            output = output + "|   "+str(j)
                         output += "|\n"
                 if(self.blackPieces.getbit(i) == 1):
                     if(self.blackRooks.getbit(i) == 1):
-                        output += "|r   "
+                        output += "| r   "
                     elif(self.blackKnight.getbit(i) == 1):
-                        output += "|n   "
+                        output += "| n   "
                     elif(self.blackBitshops.getbit(i) == 1):
-                        output += "|b   "
+                        output += "| b   "
                     elif(self.blackPawns.getbit(i) == 1):
-                        output += "|p   "
+                        output += "| p   "
                     elif(self.blackQueen.getbit(i) == 1):
-                        output += "|q   "
+                        output += "| q   "
                     elif(self.blackKing.getbit(i) == 1):
-                        output += "|k   "
+                        output += "| k   "
                 elif(self.whitePieces.getbit(i) == 1):
                     if(self.whiteRooks.getbit(i) == 1):
-                        output += "|R   "
+                        output += "| R   "
                     elif(self.whiteKnight.getbit(i) == 1):
-                        output += "|N   "
+                        output += "| N   "
                     elif(self.whiteBitshops.getbit(i) == 1):
-                        output += "|B   "
+                        output += "| B   "
                     elif(self.whitePawns.getbit(i) == 1):
-                        output += "|P   "
+                        output += "| P   "
                     elif(self.whiteQueen.getbit(i) == 1):
-                        output += "|Q   "
+                        output += "| Q   "
                     elif(self.whiteKing.getbit(i) == 1):
-                        output += "|K   "
+                        output += "| K   "
                 else:
-                    output += "|    "
+                    output += "|     "
                 if(i % 8 == 7): 
                     output += "|"
-            output += "\n ---- ---- ---- ---- ---- ---- ---- ---- \n"
+            output += "\n+-----+-----+-----+-----+-----+-----+-----+-----+\n"
         #only piece
-        elif(type == 0):
+        else:
             for i in cells:
                 if(i % 8 == 0):
                     output += "\n"
@@ -288,53 +304,237 @@ class BitBoard(object):
         self.busyCells = self.whitePieces | self.blackPieces
         
         knightMoves = self.getKnightMoves(color)
+        kingMoves = self.getKingMoves(color)
+        bitshopMoves = self.getBitshopMoves(color)
+        rookMoves = self.getRookMoves(color)
+        queenMoves = self.getQueenMoves(color)
+        pawnMoves = self.getPawnMoves(color)
         
-        print knightMoves
+        for move in pawnMoves:
+            print move
         
         return
     
     def getKnightMoves(self, color):
         movesList = []
         if(color == Constants.WHITE):
+            #set Black enemies
+            enemyCells = self.blackPieces
             #White Knights
-            for startPos in self.whiteKnightIndexes:
-                #get all moves
-                allMoves = Knight.getMovesArray(startPos)
-                #for each move
-                for destPos in allMoves:
-                    #get bit array for dest cell
-                    destCell = Utils.getCellBitArrayById(destPos)
-                    #if dest cell is busy
-                    if((self.busyCells & destCell) == destCell):
-                        #if black piece occupies dest cell
-                        if((self.blackPieces & destCell) == destCell):
-                            #black piece. add capture move
-                            #print "Capture Move: " + str(startPos) + "-" + str(destPos)
-                            movesList.append(Move.Move(startPos, destPos, Move.CAPTURE))
-                    else:
-                        #add quiet move
-                        #print "Quiet Move: " + str(startPos) + "-" + str(destPos)
-                        movesList.append(Move.Move(startPos, destPos, Move.QUIET))
+            knightIndexes = self.whiteKnightIndexes
         elif(color == Constants.BLACK):
+            #set White enemies
+            enemyCells = self.whitePieces
             #Black Knights
-            for startPos in self.blackKnightIndexes:
-                #get all moves
-                allMoves = Knight.getMovesArray(startPos)
+            knightIndexes = self.whiteKnightIndexes
+        #White Knights
+        for startPos in knightIndexes:
+            #get all moves
+            allMoves = Knight.getMovesArray(startPos)
+            #for each move
+            for destPos in allMoves:
+                #get bit array for dest cell
+                destCell = Utils.getCellBitArrayById(destPos)
+                #if dest cell is busy
+                if((self.busyCells & destCell) == destCell):
+                    #if enemy piece occupies dest cell
+                    if((enemyCells & destCell) == destCell):
+                        #enemy piece. add capture move
+                        #print "Capture Move: " + str(startPos) + "-" + str(destPos)
+                        movesList.append(Move.Move(startPos, destPos, Move.CAPTURE))
+                else:
+                    #add quiet move
+                    #print "Quiet Move: " + str(startPos) + "-" + str(destPos)
+                    movesList.append(Move.Move(startPos, destPos, Move.QUIET))
+        return movesList
+    
+    def getKingMoves(self, color):
+        movesList = []
+        if(color == Constants.WHITE):
+            #set Black enemies
+            enemyCells = self.blackPieces
+            #White King
+            startPos = self.whiteKingIndex
+        elif(color == Constants.BLACK):
+            #set White enemies
+            enemyCells = self.whitePieces
+            #Black King
+            startPos = self.blackKingIndex
+        #get all moves
+        allMoves = King.getMovesArray(startPos)
+        #for each move
+        for destPos in allMoves:
+            #get bit array for dest cell
+            destCell = Utils.getCellBitArrayById(destPos)
+            #if dest cell is busy
+            if((self.busyCells & destCell) == destCell):
+                #if enemy piece occupies dest cell
+                if((enemyCells & destCell) == destCell):
+                    #enemy piece. add capture move
+                    #print "Capture Move: " + str(startPos) + "-" + str(destPos)
+                    movesList.append(Move.Move(startPos, destPos, Move.CAPTURE))
+            else:
+                #add quiet move
+                #print "Quiet Move: " + str(startPos) + "-" + str(destPos)
+                movesList.append(Move.Move(startPos, destPos, Move.QUIET))
+        return movesList
+    
+    def getBitshopMoves(self, color):
+        movesList = []
+        if(color == Constants.WHITE):
+            #set Black enemies
+            enemyCells = self.blackPieces
+            #set white bitshops
+            bitshopIndexes = self.whiteBitshopsIndexes
+        elif(color == Constants.BLACK):
+            #set White enemies
+            enemyCells = self.whitePieces
+            #set black bitshops
+            bitshopIndexes = self.blackBitshopsIndexes
+        for startPos in bitshopIndexes:
+            #get all moves
+            allMoves = Bitshop.getMovesArray(startPos)
+            for direction in (Constants.RIGHT_UP, Constants.LEFT_UP, Constants.LEFT_DOWN, Constants.RIGHT_DOWN):
                 #for each move
-                for destPos in allMoves:
+                i = 0
+                while i < len(allMoves[direction]):
+                    destPos = allMoves[direction][i]
                     #get bit array for dest cell
                     destCell = Utils.getCellBitArrayById(destPos)
                     #if dest cell is busy
                     if((self.busyCells & destCell) == destCell):
-                        #if white piece occupies dest cell
-                        if((self.whitePieces & destCell) == destCell):
-                            #white piece. add capture move
+                        #stop loop
+                        i = 99
+                        #if enemy piece occupies dest cell
+                        if((enemyCells & destCell) == destCell):
+                            #enemy piece. add capture move
                             #print "Capture Move: " + str(startPos) + "-" + str(destPos)
                             movesList.append(Move.Move(startPos, destPos, Move.CAPTURE))
                     else:
                         #add quiet move
                         #print "Quiet Move: " + str(startPos) + "-" + str(destPos)
                         movesList.append(Move.Move(startPos, destPos, Move.QUIET))
-        
-        for move in movesList:
-            print move
+                    i += 1
+        return movesList
+    
+    def getRookMoves(self, color):
+        movesList = []
+        if(color == Constants.WHITE):
+            #set Black enemies
+            enemyCells = self.blackPieces
+            #set white rooks
+            rookIndexes = self.whiteRooksIndexes
+        elif(color == Constants.BLACK):
+            #set White enemies
+            enemyCells = self.whitePieces
+            #set black bitshops
+            rookIndexes = self.blackRooksIndexes
+        for startPos in rookIndexes:
+            #get all moves
+            allMoves = Rook.getMovesArray(startPos)
+            for direction in (Constants.RIGHT, Constants.UP, Constants.LEFT, Constants.DOWN):
+                #for each move
+                i = 0
+                while i < len(allMoves[direction]):
+                    destPos = allMoves[direction][i]
+                    #get bit array for dest cell
+                    destCell = Utils.getCellBitArrayById(destPos)
+                    #if dest cell is busy
+                    if((self.busyCells & destCell) == destCell):
+                        #stop loop
+                        i = 99
+                        #if enemy piece occupies dest cell
+                        if((enemyCells & destCell) == destCell):
+                            #enemy piece. add capture move
+                            #print "Capture Move: " + str(startPos) + "-" + str(destPos)
+                            movesList.append(Move.Move(startPos, destPos, Move.CAPTURE))
+                    else:
+                        #add quiet move
+                        #print "Quiet Move: " + str(startPos) + "-" + str(destPos)
+                        movesList.append(Move.Move(startPos, destPos, Move.QUIET))
+                    i += 1
+        return movesList
+    
+    def getQueenMoves(self, color):
+        movesList = []
+        if(color == Constants.WHITE):
+            #set Black enemies
+            enemyCells = self.blackPieces
+            #set white queen
+            queenIndexes = self.whiteQueenIndexes
+        elif(color == Constants.BLACK):
+            #set White enemies
+            enemyCells = self.whitePieces
+            #set black queen
+            queenIndexes = self.blackQueenIndexes
+        for startPos in queenIndexes:
+            #get all moves
+            allMoves = Queen.getMovesArray(startPos)
+            for direction in (Constants.RIGHT, Constants.RIGHT_UP, Constants.UP, Constants.LEFT_UP, Constants.LEFT, Constants.LEFT_DOWN, Constants.DOWN, Constants.RIGHT_DOWN):
+                #for each move
+                i = 0
+                while i < len(allMoves[direction]):
+                    destPos = allMoves[direction][i]
+                    #get bit array for dest cell
+                    destCell = Utils.getCellBitArrayById(destPos)
+                    #if dest cell is busy
+                    if((self.busyCells & destCell) == destCell):
+                        #stop loop
+                        i = 99
+                        #if enemy piece occupies dest cell
+                        if((enemyCells & destCell) == destCell):
+                            #enemy piece. add capture move
+                            #print "Capture Move: " + str(startPos) + "-" + str(destPos)
+                            movesList.append(Move.Move(startPos, destPos, Move.CAPTURE))
+                    else:
+                        #add quiet move
+                        #print "Quiet Move: " + str(startPos) + "-" + str(destPos)
+                        movesList.append(Move.Move(startPos, destPos, Move.QUIET))
+                    i += 1
+        return movesList
+    
+    def getPawnMoves(self, color):
+        movesList = []
+        if(color == Constants.WHITE):
+            #set Black enemies
+            enemyCells = self.blackPieces
+            #set white pawns
+            pawnIndexes = self.whitePawnsIndexes
+        elif(color == Constants.BLACK):
+            #set White enemies
+            enemyCells = self.whitePieces
+            #set black pawns
+            pawnIndexes = self.blackPawnsIndexes
+        for startPos in pawnIndexes:
+            #get all moves
+            allMoves = Pawn.getMovesArray(startPos, color)
+            #move left up
+            if Constants.LEFT_UP in allMoves:
+                destPos = allMoves[Constants.LEFT_UP]
+                #get bit array for dest cell
+                destCell = Utils.getCellBitArrayById(destPos)
+                #if enemy piece occupies dest cell
+                if((enemyCells & destCell) == destCell):
+                    #enemy piece. add capture move
+                    #print "Capture Move: " + str(startPos) + "-" + str(destPos)
+                    movesList.append(Move.Move(startPos, destPos, Move.CAPTURE))
+            #move right up
+            if Constants.RIGHT_UP in allMoves:
+                destPos = allMoves[Constants.RIGHT_UP]
+                #get bit array for dest cell
+                destCell = Utils.getCellBitArrayById(destPos)
+                #if enemy piece occupies dest cell
+                if((enemyCells & destCell) == destCell):
+                    #enemy piece. add capture move
+                    #print "Capture Move: " + str(startPos) + "-" + str(destPos)
+                    movesList.append(Move.Move(startPos, destPos, Move.CAPTURE))
+            #move up - 1
+            '''destPos = allMoves[Constants.UP]
+            #get bit array for dest cell
+            destCell = Utils.getCellBitArrayById(destPos)
+            #if enemy piece occupies dest cell
+            if((enemyCells & destCell) == destCell):
+                #enemy piece. add capture move
+                #print "Capture Move: " + str(startPos) + "-" + str(destPos)
+                movesList.append(Move.Move(startPos, destPos, Move.CAPTURE))'''
+        return movesList

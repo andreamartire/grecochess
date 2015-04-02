@@ -48,8 +48,4 @@ def rookMoves():
     return _rookMoves
 
 def getMovesArray(cellId):
-    movesArray = _rookMoves[cellId][Constants.RIGHT]
-    movesArray += _rookMoves[cellId][Constants.UP]
-    movesArray += _rookMoves[cellId][Constants.LEFT]
-    movesArray += _rookMoves[cellId][Constants.DOWN]
-    return movesArray
+    return _rookMoves[cellId]

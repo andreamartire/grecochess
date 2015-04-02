@@ -67,8 +67,4 @@ def bitshopMoves():
     return _bitshopMoves
 
 def getMovesArray(cellId):
-    movesArray = _bitshopMoves[cellId][Constants.RIGHT_UP]
-    movesArray += _bitshopMoves[cellId][Constants.LEFT_UP]
-    movesArray += _bitshopMoves[cellId][Constants.LEFT_DOWN]
-    movesArray += _bitshopMoves[cellId][Constants.RIGHT_DOWN]
-    return movesArray
+    return _bitshopMoves[cellId]
