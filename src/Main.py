@@ -19,9 +19,3 @@ for i in range(0,100000):
     board.getAllPseudoLegalMoves(Constants.BLACK)
 end = time.clock()
 print end - start
-
-board = BitBoard.BitBoard()
-board.clean()
-board.setCellbyId(9, 'b')
-
-board.getAllPseudoLegalMoves(Constants.WHITE)

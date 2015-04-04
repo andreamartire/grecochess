@@ -193,7 +193,9 @@ class BitBoard(object):
             self.whiteKnightIndexes += [Utils.getCellBitArrayById(i)]
         if(pieceType == 'B'):
             self.whiteBitshops = self.whiteBitshops.setbit(i)
+            print "Set bishop"
             self.whiteBitshopsIndexes += [Utils.getCellBitArrayById(i)]
+            print self.whiteBitshopsIndexes
         if(pieceType == 'Q'):
             self.whiteQueen = self.whiteQueen.setbit(i)
             self.whiteQueenIndexes += [Utils.getCellBitArrayById(i)]
@@ -299,7 +301,9 @@ class BitBoard(object):
         return 
     
     def getAllPseudoLegalMoves(self, color):
-                
+        
+        self.busyCells = self.blackPieces | self.whitePieces
+        
         knightMoves = self.getKnightMoves(color)
         kingMoves = self.getKingMoves(color)
         bitshopMoves = self.getBitshopMoves(color)
@@ -307,8 +311,8 @@ class BitBoard(object):
         queenMoves = self.getQueenMoves(color)
         pawnMoves = self.getPawnMoves(color)
         
-        '''for move in pawnMoves:
-            print move'''
+        for move in bitshopMoves:
+            print move
         
         return
     
