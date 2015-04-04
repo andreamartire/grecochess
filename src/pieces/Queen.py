@@ -5,6 +5,7 @@ Created on Mar 30, 2015
 '''
 
 from pieces import Rook, Bitshop
+import Utils
 
 #calculate pieces' moves only once
 _diagonalMoves = Bitshop.bitshopMoves()
@@ -16,12 +17,14 @@ def diagonalMoves():
 def orthogonalMoves():
     return _orthogonalMoves
 
+_queenMoves = {}
+    
 def calculateMoves():
-    _queenMoves = {}
     #merge two dictionaries of dictionaries
     for cellId in range(0,64):
-        _queenMoves[cellId] = _diagonalMoves[cellId].copy()
-        _queenMoves[cellId].update(_orthogonalMoves[cellId])
+        cellBitBoard = Utils.getCellBitArrayById(cellId)
+        _queenMoves[cellBitBoard] = _diagonalMoves[cellBitBoard].copy()
+        _queenMoves[cellBitBoard].update(_orthogonalMoves[cellBitBoard])
     return _queenMoves
 
 _queenMoves = calculateMoves()

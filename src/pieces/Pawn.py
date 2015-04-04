@@ -6,71 +6,83 @@ Created on Mar 30, 2015
 
 import Utils, Constants
 
+_whitePawnMoves = {}
+_blackPawnMoves = {}
+    
 #Precalculate white pawn's pseudolegal moves for each cell
 def calculateWhitePawnMoves():
-    
-    whitePawnMoves = {}
     
     for cellIndex in range(0,64):
         row = Utils.getRow(cellIndex)
         col = Utils.getColumn(cellIndex)
         
+        startCellBitBoard = Utils.getCellBitArrayById(cellIndex)
+        
         #init cell array
-        whitePawnMoves[cellIndex] = {}
+        _whitePawnMoves[startCellBitBoard] = {}
     
         if(row > 1):
             #  A
             #   \
             if(row < 8 and col > 1):
-                whitePawnMoves[cellIndex][Constants.LEFT_UP] = cellIndex + 7
+                endCellBitBoard = Utils.getCellBitArrayById(cellIndex + 7)
+                _whitePawnMoves[startCellBitBoard][Constants.LEFT_UP] = endCellBitBoard
             #  A
             #  i
             if(row < 8):
-                whitePawnMoves[cellIndex][Constants.UP] = cellIndex + 8
+                endCellBitBoard = Utils.getCellBitArrayById(cellIndex + 8)
+                _whitePawnMoves[startCellBitBoard][Constants.UP] = endCellBitBoard 
             #  A
             #  i
             #  i
             if(row == 2):
-                whitePawnMoves[cellIndex][Constants.DOUBLE_UP] = cellIndex + 8*2    
+                endCellBitBoard = Utils.getCellBitArrayById(cellIndex + 8*2)
+                _whitePawnMoves[startCellBitBoard][Constants.DOUBLE_UP] = endCellBitBoard   
             #   A
             #  /
             if(row < 8 and col < 8):
-                whitePawnMoves[cellIndex][Constants.RIGHT_UP] = cellIndex + 9
+                endCellBitBoard = Utils.getCellBitArrayById(cellIndex + 9)
+                _whitePawnMoves[startCellBitBoard][Constants.RIGHT_UP] = endCellBitBoard
         
-    return whitePawnMoves
+    return _whitePawnMoves
 
 #Precalculate black pawn's pseudolegal moves for each cell
 def calculateBlackPawnMoves():
     
-    blackPawnMoves = {}
     
     for cellIndex in range(0,64):
         row = Utils.getRow(cellIndex)
         col = Utils.getColumn(cellIndex)
         
+        startCellBitBoard = Utils.getCellBitArrayById(cellIndex)
+        
         #init cell array
-        blackPawnMoves[cellIndex] = {}
+        _blackPawnMoves[startCellBitBoard] = {}
         
         if(row < 8):
             #  \
             #   V
             if(row > 1 and col < 8):
-                blackPawnMoves[cellIndex][Constants.LEFT_UP] = cellIndex - 7
+                endCellBitBoard = Utils.getCellBitArrayById(cellIndex - 7)
+                _blackPawnMoves[startCellBitBoard][Constants.LEFT_UP] = endCellBitBoard
             #  I
             #  V
             if(row > 1):
-                blackPawnMoves[cellIndex][Constants.UP] = cellIndex - 8
+                endCellBitBoard = Utils.getCellBitArrayById(cellIndex - 8)
+                _blackPawnMoves[startCellBitBoard][Constants.UP] = endCellBitBoard
             #  l
             #  l
             #  V
             if(row == 7):
-                blackPawnMoves[cellIndex][Constants.DOUBLE_UP] = cellIndex - 8*2  
+                endCellBitBoard = Utils.getCellBitArrayById(cellIndex - 8*2)
+                _blackPawnMoves[startCellBitBoard][Constants.DOUBLE_UP] = endCellBitBoard
             #   /
             #  V
             if(row > 1 and col > 1):
-                blackPawnMoves[cellIndex][Constants.RIGHT_UP] = cellIndex - 9
+                endCellBitBoard = Utils.getCellBitArrayById(cellIndex - 9)
+                _blackPawnMoves[startCellBitBoard][Constants.RIGHT_UP] = endCellBitBoard
     
-    return blackPawnMoves
+    return _blackPawnMoves
 
 #calculate pieces' moves only once
 _whitePawnMoves = calculateWhitePawnMoves()

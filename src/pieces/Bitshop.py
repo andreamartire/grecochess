@@ -24,41 +24,47 @@ def antidiagonalDistance(col, row):
         return 6
     else:
         return 7
+    
+_bitshopMoves = {}
 
 #Precalculate bitshop pseudolegal moves for each cell
 def calculateMoves():
-    
-    bitshopMoves = {}
     
     for cellIndex in range(0,64):
         row = Utils.getRow(cellIndex)
         col = Utils.getColumn(cellIndex)
         
+        startCellBitBoard = Utils.getCellBitArrayById(cellIndex)
+        
         #init cell array
-        bitshopMoves[cellIndex] = {}
-        bitshopMoves[cellIndex][Constants.RIGHT_UP] = []
-        bitshopMoves[cellIndex][Constants.LEFT_UP] = []
-        bitshopMoves[cellIndex][Constants.LEFT_DOWN] = []
-        bitshopMoves[cellIndex][Constants.RIGHT_DOWN] = []
+        _bitshopMoves[startCellBitBoard] = {}
+        _bitshopMoves[startCellBitBoard][Constants.RIGHT_UP] = []
+        _bitshopMoves[startCellBitBoard][Constants.LEFT_UP] = []
+        _bitshopMoves[startCellBitBoard][Constants.LEFT_DOWN] = []
+        _bitshopMoves[startCellBitBoard][Constants.RIGHT_DOWN] = []
         
         #   A
         #  /
         for i in range(1,8-max(row,col)+1):
-            bitshopMoves[cellIndex][Constants.RIGHT_UP].append(cellIndex + 9*i)
+            endCellBitBoard = Utils.getCellBitArrayById(cellIndex + 9*i)
+            _bitshopMoves[startCellBitBoard][Constants.RIGHT_UP].append(endCellBitBoard)
         #  A
         #   \
         for i in range(1,antidiagonalDistance(row,col)+1):
-            bitshopMoves[cellIndex][Constants.LEFT_UP].append(cellIndex + 7*i)
+            endCellBitBoard = Utils.getCellBitArrayById(cellIndex + 7*i)
+            _bitshopMoves[startCellBitBoard][Constants.LEFT_UP].append(endCellBitBoard)
         #   /
         #  V
         for i in range(1,min(row,col)):
-            bitshopMoves[cellIndex][Constants.LEFT_DOWN].append(cellIndex - 9*i)
+            endCellBitBoard = Utils.getCellBitArrayById(cellIndex - 9*i)
+            _bitshopMoves[startCellBitBoard][Constants.LEFT_DOWN].append(endCellBitBoard)
         #  \
         #   V
         for i in range(1,antidiagonalDistance(col,row)+1):
-            bitshopMoves[cellIndex][Constants.RIGHT_DOWN].append(cellIndex - 7*i)
+            endCellBitBoard = Utils.getCellBitArrayById(cellIndex - 7*i)
+            _bitshopMoves[startCellBitBoard][Constants.RIGHT_DOWN].append(endCellBitBoard)
         
-    return bitshopMoves
+    return _bitshopMoves
 
 #calculate pieces' moves only once
 _bitshopMoves = calculateMoves()

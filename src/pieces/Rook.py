@@ -5,43 +5,48 @@ Created on Mar 30, 2015
 '''
 
 import Utils, Constants
-
+    
 #Precalculate rook's pseudolegal moves for each cell
 def calculateMoves():
     
-    rookMoves = {}
+    _rookMoves = {}
     
     for cellIndex in range(0,64):
         row = Utils.getRow(cellIndex)
         col = Utils.getColumn(cellIndex)
         
+        startCellBitBoard = Utils.getCellBitArrayById(cellIndex)
+        
         #init cell array
-        rookMoves[cellIndex] = {}
-        rookMoves[cellIndex][Constants.RIGHT] = []
-        rookMoves[cellIndex][Constants.UP] = []
-        rookMoves[cellIndex][Constants.LEFT] = []
-        rookMoves[cellIndex][Constants.DOWN] = []     
+        _rookMoves[startCellBitBoard] = {}
+        _rookMoves[startCellBitBoard][Constants.RIGHT] = []
+        _rookMoves[startCellBitBoard][Constants.UP] = []
+        _rookMoves[startCellBitBoard][Constants.LEFT] = []
+        _rookMoves[startCellBitBoard][Constants.DOWN] = []     
         
         #   
         #  -->
         for i in range(1,8-col+1):
-            rookMoves[cellIndex][Constants.RIGHT].append(cellIndex + i)
+            endCellBitBoard = Utils.getCellBitArrayById(cellIndex + i)
+            _rookMoves[startCellBitBoard][Constants.RIGHT].append(endCellBitBoard)
         #   A
         #   I
         for i in range(1,8-row+1):
-            rookMoves[cellIndex][Constants.UP].append(cellIndex + 8*i)
+            endCellBitBoard = Utils.getCellBitArrayById(cellIndex + 8*i)
+            _rookMoves[startCellBitBoard][Constants.UP].append(endCellBitBoard)
         #  
         #  <--
         for i in range(1,col):
-            rookMoves[cellIndex][Constants.LEFT].append(cellIndex - i)
+            endCellBitBoard = Utils.getCellBitArrayById(cellIndex - i)
+            _rookMoves[startCellBitBoard][Constants.LEFT].append(endCellBitBoard)
         #   I
         #   V
         for i in range(1,row):
-            rookMoves[cellIndex][Constants.DOWN].append(cellIndex - 8*i)
+            endCellBitBoard = Utils.getCellBitArrayById(cellIndex - 8*i)
+            _rookMoves[startCellBitBoard][Constants.DOWN].append(endCellBitBoard)
         
-    return rookMoves
+    return _rookMoves
 
-#calculate pieces' moves only once
 _rookMoves = calculateMoves()
 
 def rookMoves():

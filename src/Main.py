@@ -14,12 +14,12 @@ import Constants
 from pieces import Bitshop
 import time
 
-'''board = BitBoard.BitBoard()
+board = BitBoard.BitBoard()
 start = time.clock()
 for i in range(0,100000):
     board.getAllPseudoLegalMoves(Constants.BLACK)
 end = time.clock()
-print end - start'''
+print end - start
 
 board = BitBoard.BitBoard()
 board.getAllPseudoLegalMoves(Constants.BLACK)
