@@ -77,8 +77,5 @@ def calculateMoves():
 #calculate pieces' moves only once
 _knightMoves = calculateMoves()
 
-def knightMoves():
-    return _knightMoves
-
 def getMovesArray(cellId):
     return _knightMoves[cellId]

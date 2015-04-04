@@ -69,11 +69,20 @@ def initCellBitArray():
 
 _cells = initCellBitArray();
 
-def getCellsBitArray():
-    return _cells
-
 def getCellBitArrayById(cellId):
     return _cells[cellId]
+
+#create bit array with an element for each board's cell
+def initCellPositions():
+    _positions = {}
+    for i in range(0,64):
+        _positions[mpz(0).setbit(i)] = i
+    return _positions
+
+_positions = initCellPositions();
+
+def getPositionByCellBitArray(cellBitBoard):
+    return _positions[cellBitBoard]
 
 #create a single bit array with all moves
 def movesToBitArray(moves):

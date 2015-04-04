@@ -125,7 +125,7 @@ class BitBoard(object):
         self.whiteBitshopsIndexes = []
         self.whiteRooksIndexes = []
         self.whiteQueenIndexes = []
-        self.whiteKingIndex = 0
+        self.whiteKingIndex = mpz(0).setbit(0)
         
         #black bitboard
         self.blackPieces = mpz(0)
@@ -142,7 +142,7 @@ class BitBoard(object):
         self.blackBitshopsIndexes = []
         self.blackRooksIndexes = []
         self.blackQueenIndexes = []
-        self.blackKingIndex = 0
+        self.blackKingIndex = mpz(0).setbit(0)
         return
     
     def setCellbyId(self, i, pieceType):

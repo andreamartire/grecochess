@@ -4,6 +4,7 @@ Created on 31/mar/2015
 @author: Andrea Martire
 '''
 from gmpy import mpz
+import Utils
 
 #move types
 QUIET = 0
@@ -53,5 +54,5 @@ class Move(object):
         return
     
     def __str__(self):
-        return "(" + str(self.start) + "," + str(self.end) + "," + bin(self.type) + ")"
+        return "(" + str(Utils.getPositionByCellBitArray(self.start)) + "," + str(Utils.getPositionByCellBitArray(self.end)) + "," + bin(self.type) + ")"
     

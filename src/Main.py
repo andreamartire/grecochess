@@ -11,7 +11,6 @@ Created on Mar 28, 2015
 
 from structures import BitBoard
 import Constants
-from pieces import Bitshop
 import time
 
 board = BitBoard.BitBoard()
@@ -22,4 +21,7 @@ end = time.clock()
 print end - start
 
 board = BitBoard.BitBoard()
-board.getAllPseudoLegalMoves(Constants.BLACK)
+board.clean()
+board.setCellbyId(9, 'b')
+
+board.getAllPseudoLegalMoves(Constants.WHITE)
