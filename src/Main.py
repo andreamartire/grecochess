@@ -23,6 +23,6 @@ print end - start'''
 bbFrom = Utils.getCellBitArrayById(0)
 bbTo = Utils.getCellBitArrayById(27)
 
-board.move(bbFrom, bbTo)
+board.moveQuiet(bbFrom, bbTo)
 
 board.showBoard(0)

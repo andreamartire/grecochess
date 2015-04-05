@@ -526,7 +526,7 @@ class QuadBitBoard(object):
                     movesList.append(Move.Move(startPos, destCellDoubleUp, Move.QUIET))
         return movesList
     
-    def move(self, bbFrom, bbTo):
+    def moveQuiet(self, bbFrom, bbTo):
         #get move bb
         moveBB = bbFrom | bbTo
         #if it is one among Rook, Queen, King
