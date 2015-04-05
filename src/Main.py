@@ -6,7 +6,6 @@ Created on Mar 28, 2015
 
 #TODO add castles
 #TODO add en passant
-#TODO precalculate bitboard and not only the dest cell
 #TODO position type from integer 32 bit to 6 bit mpz?
 
 from structures import BitBoard
@@ -19,3 +18,9 @@ for i in range(0,100000):
     board.getAllPseudoLegalMoves(Constants.BLACK)
 end = time.clock()
 print end - start
+
+board = BitBoard.BitBoard()
+board.clean()
+board.setCellbyId(9, 'b')
+
+board.getAllPseudoLegalMoves(Constants.WHITE)
