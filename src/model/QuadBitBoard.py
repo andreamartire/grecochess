@@ -6,7 +6,6 @@ Created on Mar 28, 2015
 
 from gmpy import mpz
 import Utils, Constants
-from pieces import Knight, King, Bitshop, Rook, Queen, Pawn
 from model import Move
 
 class QuadBitBoard(object):
@@ -19,50 +18,53 @@ class QuadBitBoard(object):
     black = mpz(0)
     
     #white indexes
-    whitePawnsIndexes = []
-    whiteKnightIndexes = []
-    whiteBitshopsIndexes = []
-    whiteRooksIndexes = []
-    whiteQueenIndexes = []
-    whiteKingIndex = 0
+    whitePawnsIndexes = {}
+    whiteKnightIndexes = {}
+    whiteBitshopsIndexes = {}
+    whiteRooksIndexes = {}
+    whiteQueenIndexes = {}
+    whiteKingIndex = {}
     
     #black indexes
-    blackPawnsIndexes = []
-    blackKnightIndexes = []
-    blackBitshopsIndexes = []
-    blackRooksIndexes = []
-    blackQueenIndexes = []
-    blackKingIndex = 0
+    blackPawnsIndexes = {}
+    blackKnightIndexes = {}
+    blackBitshopsIndexes = {}
+    blackRooksIndexes = {}
+    blackQueenIndexes = {}
+    blackKingIndex = {}
     
     def __init__(self):
         
         #white pawns
         for num in range(8,16):
             self.pbq = self.pbq.setbit(num)
-            self.whitePawnsIndexes.append(Utils.getCellBitArrayById(num))
+            self.whitePawnsIndexes[Utils.getCellBitArrayById(num)] = num
         
         #white knights
         self.nbk = self.nbk.setbit(1).setbit(6)
-        self.whiteKnightIndexes = [Utils.getCellBitArrayById(1), Utils.getCellBitArrayById(6)]
+        self.whiteKnightIndexes[Utils.getCellBitArrayById(1)] = 1
+        self.whiteKnightIndexes[Utils.getCellBitArrayById(6)] = 6
         
         #white bitshops
         self.nbk = self.nbk.setbit(2).setbit(5)
         self.pbq = self.pbq.setbit(2).setbit(5)
-        self.whiteBitshopsIndexes = [Utils.getCellBitArrayById(2), Utils.getCellBitArrayById(5)]
+        self.whiteBitshopsIndexes[Utils.getCellBitArrayById(2)] = 2
+        self.whiteBitshopsIndexes[Utils.getCellBitArrayById(5)] = 5
         
         #white rooks
         self.rqk = self.rqk.setbit(0).setbit(7)
-        self.whiteRooksIndexes = [Utils.getCellBitArrayById(0), Utils.getCellBitArrayById(7)]
+        self.whiteRooksIndexes[Utils.getCellBitArrayById(0)] = 0
+        self.whiteRooksIndexes[Utils.getCellBitArrayById(7)] = 7
         
         #white queen
         self.rqk = self.rqk.setbit(3)
         self.pbq = self.pbq.setbit(3)
-        self.whiteQueenIndexes.append(Utils.getCellBitArrayById(3))
+        self.whiteQueenIndexes[Utils.getCellBitArrayById(3)] = 3
         
         #white king
         self.nbk = self.nbk.setbit(4)
         self.rqk = self.rqk.setbit(4)
-        self.whiteKingIndex = Utils.getCellBitArrayById(4)
+        self.whiteKingIndex[Utils.getCellBitArrayById(4)] = 4
         
         #black
         for num in range(48,64):
@@ -71,30 +73,33 @@ class QuadBitBoard(object):
         #black pawns
         for num in range(48,56):
             self.pbq = self.pbq.setbit(num)
-            self.blackPawnsIndexes.append(Utils.getCellBitArrayById(num))
+            self.blackPawnsIndexes[Utils.getCellBitArrayById(num)] = num
         
         #black knights
         self.nbk = self.nbk.setbit(57).setbit(62)
-        self.blackKnightIndexes = [Utils.getCellBitArrayById(57), Utils.getCellBitArrayById(62)]
+        self.blackKnightIndexes[Utils.getCellBitArrayById(57)] = 57
+        self.blackKnightIndexes[Utils.getCellBitArrayById(62)] = 62
         
         #black bitshops
         self.nbk = self.nbk.setbit(58).setbit(61)
         self.pbq = self.pbq.setbit(58).setbit(61)
-        self.blackBitshopsIndexes = [Utils.getCellBitArrayById(58), Utils.getCellBitArrayById(61)]
+        self.blackBitshopsIndexes[Utils.getCellBitArrayById(58)] = 58
+        self.blackBitshopsIndexes[Utils.getCellBitArrayById(61)] = 61
 
         #black rooks
         self.rqk = self.rqk.setbit(56).setbit(63)
-        self.blackRooksIndexes = [Utils.getCellBitArrayById(56), Utils.getCellBitArrayById(63)]
+        self.blackRooksIndexes[Utils.getCellBitArrayById(56)] = 56
+        self.blackRooksIndexes[Utils.getCellBitArrayById(63)] = 63
         
         #black queen
         self.rqk = self.rqk.setbit(59)
         self.pbq = self.pbq.setbit(59)
-        self.blackQueenIndexes.append(Utils.getCellBitArrayById(59))
+        self.blackQueenIndexes[Utils.getCellBitArrayById(59)] = 59
         
         #black king
         self.nbk = self.nbk.setbit(60)
         self.rqk = self.rqk.setbit(60)
-        self.blackKingIndex = Utils.getCellBitArrayById(60)
+        self.blackKingIndex[Utils.getCellBitArrayById(60)] = 60
         
     def clean(self):
         self.rqk = mpz(0)
@@ -103,19 +108,19 @@ class QuadBitBoard(object):
         self.black = mpz(0)
         
         #white indexes
-        self.whitePawnsIndexes = []
-        self.whiteKnightIndexes = []
-        self.whiteBitshopsIndexes = []
-        self.whiteRooksIndexes = []
-        self.whiteQueenIndexes = []
+        self.whitePawnsIndexes = {}
+        self.whiteKnightIndexes = {}
+        self.whiteBitshopsIndexes = {}
+        self.whiteRooksIndexes = {}
+        self.whiteQueenIndexes = {}
         self.whiteKingIndex = mpz(0).setbit(0)
         
         #black indexes
-        self.blackPawnsIndexes = []
-        self.blackKnightIndexes = []
-        self.blackBitshopsIndexes = []
-        self.blackRooksIndexes = []
-        self.blackQueenIndexes = []
+        self.blackPawnsIndexes = {}
+        self.blackKnightIndexes = {}
+        self.blackBitshopsIndexes = {}
+        self.blackRooksIndexes = {}
+        self.blackQueenIndexes = {}
         self.blackKingIndex = mpz(0).setbit(0)
         return
     
@@ -129,47 +134,47 @@ class QuadBitBoard(object):
             self.black = self.black.setbit(i)
         if(pieceType == 'r'):
             self.rqk = self.rqk.setbit(i)
-            self.blackRooksIndexes += [Utils.getCellBitArrayById(i)]
+            self.blackRooksIndexes[Utils.getCellBitArrayById(i)] = i
         if(pieceType == 'n'):
             self.nbk = self.nbk.setbit(i)
-            self.blackKnightIndexes += [Utils.getCellBitArrayById(i)]
+            self.blackKnightIndexes[Utils.getCellBitArrayById(i)] = i
         if(pieceType == 'b'):
             self.pbq = self.pbq.setbit(i)
             self.nbk = self.nbk.setbit(i)
-            self.blackBitshopsIndexes += [Utils.getCellBitArrayById(i)]
+            self.blackBitshopsIndexes[Utils.getCellBitArrayById(i)] = i
         if(pieceType == 'q'):
             self.rqk = self.rqk.setbit(i)
             self.pbq = self.pbq.setbit(i)
-            self.blackRooksIndexes += [Utils.getCellBitArrayById(i)]
+            self.blackRooksIndexes[Utils.getCellBitArrayById(i)] = i
         if(pieceType == 'k'):
             self.rqk = self.rqk.setbit(i)
             self.nbk = self.nbk.setbit(i)
-            self.blackKingIndex = Utils.getCellBitArrayById(i)
+            self.blackKingIndex[Utils.getCellBitArrayById(i)] = i
         if(pieceType == 'p'):
             self.pbq = self.pbq.setbit(i)
-            self.blackPawnsIndexes += [Utils.getCellBitArrayById(i)]
+            self.blackPawnsIndexes[Utils.getCellBitArrayById(i)] = i
         
         if(pieceType == 'R'):
             self.rqk = self.rqk.setbit(i)
-            self.whiteRooksIndexes += [Utils.getCellBitArrayById(i)]
+            self.whiteRooksIndexes[Utils.getCellBitArrayById(i)] = i
         if(pieceType == 'N'):
             self.nbk = self.nbk.setbit(i)
-            self.whiteKnightIndexes += [Utils.getCellBitArrayById(i)]
+            self.whiteKnightIndexes[Utils.getCellBitArrayById(i)] = i
         if(pieceType == 'B'):
             self.pbq = self.pbq.setbit(i)
             self.nbk = self.nbk.setbit(i)
-            self.whiteBitshopsIndexes += [Utils.getCellBitArrayById(i)]
+            self.whiteBitshopsIndexes[Utils.getCellBitArrayById(i)] = i
         if(pieceType == 'Q'):
             self.rqk = self.rqk.setbit(i)
             self.pbq = self.pbq.setbit(i)
-            self.whiteQueenIndexes += [Utils.getCellBitArrayById(i)]
+            self.whiteQueenIndexes[Utils.getCellBitArrayById(i)] = i
         if(pieceType == 'K'):
             self.rqk = self.rqk.setbit(i)
             self.nbk = self.nbk.setbit(i)
-            self.whiteKingIndex = Utils.getCellBitArrayById(i)
+            self.whiteKingIndex[Utils.getCellBitArrayById(i)] = i
         if(pieceType == 'P'):
             self.pbq = self.pbq.setbit(i)
-            self.whitePawnsIndexes += [Utils.getCellBitArrayById(i)]
+            self.whitePawnsIndexes[Utils.getCellBitArrayById(i)] = i
         return
         
     def setManualConfiguration(self, stringConfig):
@@ -178,6 +183,13 @@ class QuadBitBoard(object):
         
         for i in range(1,64):
             self.setCellbyId(i, stringConfig[i])
+        return
+    
+    def showQuadBoard(self):
+        Utils.showBitArray(self.rqk)
+        Utils.showBitArray(self.pbq)
+        Utils.showBitArray(self.nbk)
+        Utils.showBitArray(self.black)
         return
     
     def showBoard(self, view):
@@ -212,7 +224,7 @@ class QuadBitBoard(object):
         
         output = ""
         #complete
-        if(view == 1):
+        if(view >= 1):
             for i in cells:
                 if(i % 8 == 0):
                     output += "\n+-----+-----+-----+-----+-----+-----+-----+-----+\n"
@@ -289,24 +301,124 @@ class QuadBitBoard(object):
                 else:
                     output += "-"
         print output
+        
+        #show indexes
+        if(view == 2):
+            print "White"
+            output = "\tPawn: \t "
+            for index in self.whitePawnsIndexes:
+                output += str(Utils.getPositionByCellBitArray(index)) + "  "
+            print output
+            output = "\tKnight:  "
+            for index in self.whiteKnightIndexes:
+                output += str(Utils.getPositionByCellBitArray(index)) + "  "
+            print output
+            output = "\tBitshop: "
+            for index in self.whiteBitshopsIndexes:
+                output += str(Utils.getPositionByCellBitArray(index)) + "  "
+            print output
+            output = "\tRook: \t "
+            for index in self.whiteRooksIndexes:
+                output += str(Utils.getPositionByCellBitArray(index)) + "  "
+            print output
+            output = "\tQueen: \t "
+            for index in self.whiteQueenIndexes:
+                output += str(Utils.getPositionByCellBitArray(index)) + "  "
+            print output
+            output = "\tKing: \t "
+            for index in self.whiteKingIndex:
+                output += str(Utils.getPositionByCellBitArray(index)) + "  "
+            print output
+            
+            print "\nBlack"
+            output = "\tPawn: \t "
+            for index in self.blackPawnsIndexes:
+                output += str(Utils.getPositionByCellBitArray(index)) + "  "
+            print output
+            output = "\tKnight:  "
+            for index in self.blackKnightIndexes:
+                output += str(Utils.getPositionByCellBitArray(index)) + "  "
+            print output
+            output = "\tBitshop: "
+            for index in self.blackBitshopsIndexes:
+                output += str(Utils.getPositionByCellBitArray(index)) + "  "
+            print output
+            output = "\tRook: \t "
+            for index in self.blackRooksIndexes:
+                output += str(Utils.getPositionByCellBitArray(index)) + "  "
+            print output
+            output = "\tQueen: \t "
+            for index in self.blackQueenIndexes:
+                output += str(Utils.getPositionByCellBitArray(index)) + "  "
+            print output
+            output = "\tKing: \t "
+            for index in self.blackKingIndex:
+                output += str(Utils.getPositionByCellBitArray(index)) + "  "
+            print output
         return 
     
-    def moveQuiet(self, bbFrom, bbTo):
+    def executeMove(self, move):
         #get move bb
-        moveBB = bbFrom | bbTo
-        #if it is one among Rook, Queen, King
-        if(self.rqk & bbFrom == bbFrom):
-            self.rqk    = self.rqk ^ moveBB
-
-        #if it is one among Pawn, Bitshop, Queen
-        if(self.pbq & bbFrom == bbFrom):
-            self.pbq    = self.pbq ^ moveBB
-
-        #if it is one among Knight, Bitshop, King
-        if(self.nbk & bbFrom == bbFrom):
-            self.nbk    = self.nbk ^ moveBB
-
-        #if it is Black
-        if(self.black & bbFrom == bbFrom):
-            self.black  = self.black ^ moveBB
+        moveBB = move.start | move.end
+        
+        if(move.type == Move.QUIET):
+            #if it is one among Rook, Queen, King
+            if(self.rqk & move.start == move.start):
+                self.rqk    = self.rqk ^ moveBB
+    
+            #if it is one among Pawn, Bitshop, Queen
+            if(self.pbq & move.start == move.start):
+                self.pbq    = self.pbq ^ moveBB
+    
+            #if it is one among Knight, Bitshop, King
+            if(self.nbk & move.start == move.start):
+                self.nbk    = self.nbk ^ moveBB
+    
+            #if it is Black
+            if(self.black & move.start == move.start):
+                self.black  = self.black ^ moveBB
+        elif(move.type == Move.CAPTURE):
+            #clean start/end position
+            cleanBB = ~moveBB
+            self.rqk    = self.rqk & cleanBB
+            self.pbq    = self.pbq & cleanBB
+            self.nbk    = self.nbk & cleanBB
+            self.black  = self.black & cleanBB
+            
+            '''del self.whitePawnsIndexes.pop[move.end]
+            del self.whiteKnightIndexes[move.end]
+            del self.whiteBitshopsIndexes[move.end]
+            self.whiteRooksIndexes.pop(move.end)
+            del self.whiteQueenIndexes[move.end]
+            del self.whiteKingIndex[move.end]
+            
+            del self.blackPawnsIndexes[move.end]
+            del self.blackKnightIndexes[move.end]
+            del self.blackBitshopsIndexes[move.end]
+            del self.blackRooksIndexes[move.end]
+            del self.blackQueenIndexes[move.end]
+            del self.blackKingIndex[move.end]'''
+            
+            #set end position
+            #Pawn
+            if(move.pieceStart == Constants.PAWN_CODE):
+                self.pbq    = self.pbq | move.end
+            #Bitshop
+            elif(move.pieceStart == Constants.BITSHOP_CODE):
+                self.pbq    = self.pbq | move.end
+                self.nbk    = self.nbk | move.end
+            #Knight
+            elif(move.pieceStart == Constants.KNIGHT_CODE):
+                self.nbk    = self.nbk | move.end
+            #Rook
+            elif(move.pieceStart == Constants.ROOK_CODE):
+                self.rqk    = self.rqk | move.end
+            #Queen
+            elif(move.pieceStart == Constants.QUEEN_CODE):
+                self.pbq    = self.pbq | move.end
+                self.rqk    = self.rqk | move.end
+            #King
+            else:
+                self.rqk    = self.rqk | move.end
+                self.nbk    = self.nbk | move.end
         return

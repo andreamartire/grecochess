@@ -4,6 +4,7 @@ Created on Mar 28, 2015
 @author: Andrea Martire
 '''
 from gmpy import mpz
+import Constants
 
 def memoize(f):
     """ Memoization decorator for functions taking one or more arguments. """
@@ -105,3 +106,18 @@ def showBitArray(bitArray):
             output += "-"
     print output
     return 
+
+def initPiecesCode():
+    _piecesCode = {}
+    _piecesCode[Constants.PAWN_CODE] = "Pawn"
+    _piecesCode[Constants.KNIGHT_CODE] = "Knight"
+    _piecesCode[Constants.BITSHOP_CODE] = "Bitshop"
+    _piecesCode[Constants.ROOK_CODE] = "Rook"
+    _piecesCode[Constants.QUEEN_CODE] = "Queen"
+    _piecesCode[Constants.KING_CODE] = "King"
+    return _piecesCode
+
+_piecesCode = initPiecesCode();
+
+def getPieceByCode(pieceCode):
+    return _piecesCode[pieceCode]

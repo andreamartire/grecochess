@@ -5,7 +5,24 @@ Created on 31/mar/2015
 '''
 from gmpy import mpz
 import Utils
+from Constants import PAWN_CODE, NO_PIECE_CODE
 
+class Move(object):
+    type = mpz(0)
+    start = -1
+    end = -1
+    pieceStart = NO_PIECE_CODE
+    
+    def __init__(self, start, end, pieceStart, moveType):
+        self.start = start
+        self.end = end
+        self.pieceStart = pieceStart
+        self.type = typeMap[moveType]
+        return
+    
+    def __str__(self):
+        return "(" + str(Utils.getPieceByCode(self.pieceStart)) + "," + str(Utils.getPositionByCellBitArray(self.start)) + "," + str(Utils.getPositionByCellBitArray(self.end)) + "," + bin(self.type) + ")"
+    
 #move types
 QUIET = 0
 DOUBLE_PAWN = 1
@@ -42,17 +59,3 @@ def createTypeMap():
 
 typeMap = createTypeMap()
 
-class Move(object):
-    type = mpz(0)
-    start = -1
-    end = -1
-
-    def __init__(self, start, end, moveType):
-        self.start = start
-        self.end = end
-        self.type = typeMap[moveType]
-        return
-    
-    def __str__(self):
-        return "(" + str(Utils.getPositionByCellBitArray(self.start)) + "," + str(Utils.getPositionByCellBitArray(self.end)) + "," + bin(self.type) + ")"
-    

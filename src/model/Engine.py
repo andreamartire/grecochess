@@ -31,7 +31,7 @@ def getAllPseudoLegalMoves(bb, color):
         rookIndexes = bb.blackRooksIndexes
         queenIndexes = bb.blackQueenIndexes
         pawnIndexes = bb.blackPawnsIndexes
-        
+    
     knightMoves = getKnightMoves(bb, enemyCells, knightIndexes)
     kingMoves = getKingMoves(bb, enemyCells, kingIndex)
     bitshopMoves = getBitshopMoves(bb, enemyCells, bitshopIndexes)
@@ -39,7 +39,7 @@ def getAllPseudoLegalMoves(bb, color):
     queenMoves = getQueenMoves(bb, enemyCells, queenIndexes)
     pawnMoves = getPawnMoves(bb, enemyCells, pawnIndexes, color)
     
-    return
+    return knightMoves + kingMoves + bitshopMoves + rookMoves + queenMoves + pawnMoves
 
 def getKnightMoves(bb, enemyCells, knightIndexes):
     movesList = []
@@ -55,11 +55,11 @@ def getKnightMoves(bb, enemyCells, knightIndexes):
                 if((enemyCells & destCell) == destCell):
                     #enemy piece. add capture move
                     #print "Capture Move: " + str(startPos) + "-" + str(destCell)
-                    movesList.append(Move.Move(startPos, destCell, Move.CAPTURE))
+                    movesList.append(Move.Move(startPos, destCell, Constants.KNIGHT_CODE, Move.CAPTURE))
             else:
                 #add quiet move
                 #print "Quiet Move: " + str(startPos) + "-" + str(destCell)
-                movesList.append(Move.Move(startPos, destCell, Move.QUIET))
+                movesList.append(Move.Move(startPos, destCell, Constants.KNIGHT_CODE, Move.QUIET))
     return movesList
 
 def getKingMoves(bb, enemyCells, kingIndex):
@@ -74,11 +74,11 @@ def getKingMoves(bb, enemyCells, kingIndex):
             if((enemyCells & destCell) == destCell):
                 #enemy piece. add capture move
                 #print "Capture Move: " + str(kingIndex) + "-" + str(destCell)
-                movesList.append(Move.Move(kingIndex, destCell, Move.CAPTURE))
+                movesList.append(Move.Move(kingIndex, destCell, Constants.KING_CODE, Move.CAPTURE))
         else:
             #add quiet move
             #print "Quiet Move: " + str(kingIndex) + "-" + str(destCell)
-            movesList.append(Move.Move(kingIndex, destCell, Move.QUIET))
+            movesList.append(Move.Move(kingIndex, destCell, Constants.KING_CODE, Move.QUIET))
     return movesList
 
 def getBitshopMoves(bb, enemyCells, bitshopIndexes):
@@ -99,11 +99,11 @@ def getBitshopMoves(bb, enemyCells, bitshopIndexes):
                     if((enemyCells & destCell) == destCell):
                         #enemy piece. add capture move
                         #print "Capture Move: " + str(startPos) + "-" + str(destCell)
-                        movesList.append(Move.Move(startPos, destCell, Move.CAPTURE))
+                        movesList.append(Move.Move(startPos, destCell, Constants.BITSHOP_CODE, Move.CAPTURE))
                 else:
                     #add quiet move
                     #print "Quiet Move: " + str(startPos) + "-" + str(destCell)
-                    movesList.append(Move.Move(startPos, destCell, Move.QUIET))
+                    movesList.append(Move.Move(startPos, destCell, Constants.BITSHOP_CODE, Move.QUIET))
                 i += 1
     return movesList
 
@@ -125,11 +125,11 @@ def getRookMoves(bb, enemyCells, rookIndexes):
                     if((enemyCells & destCell) == destCell):
                         #enemy piece. add capture move
                         #print "Capture Move: " + str(startPos) + "-" + str(destCell)
-                        movesList.append(Move.Move(startPos, destCell, Move.CAPTURE))
+                        movesList.append(Move.Move(startPos, destCell, Constants.ROOK_CODE, Move.CAPTURE))
                 else:
                     #add quiet move
                     #print "Quiet Move: " + str(startPos) + "-" + str(destCell)
-                    movesList.append(Move.Move(startPos, destCell, Move.QUIET))
+                    movesList.append(Move.Move(startPos, destCell, Constants.ROOK_CODE, Move.QUIET))
                 i += 1
     return movesList
 
@@ -151,11 +151,11 @@ def getQueenMoves(bb, enemyCells, queenIndexes):
                     if((enemyCells & destCell) == destCell):
                         #enemy piece. add capture move
                         #print "Capture Move: " + str(startPos) + "-" + str(destCell)
-                        movesList.append(Move.Move(startPos, destCell, Move.CAPTURE))
+                        movesList.append(Move.Move(startPos, destCell, Constants.QUEEN_CODE, Move.CAPTURE))
                 else:
                     #add quiet move
                     #print "Quiet Move: " + str(startPos) + "-" + str(destCell)
-                    movesList.append(Move.Move(startPos, destCell, Move.QUIET))
+                    movesList.append(Move.Move(startPos, destCell, Constants.QUEEN_CODE, Move.QUIET))
                 i += 1
     return movesList
 
@@ -172,7 +172,7 @@ def getPawnMoves(bb, enemyCells, pawnIndexes, color):
             if((enemyCells & destCell) == destCell):
                 #enemy piece. add capture move
                 #print "Capture Move: " + str(startPos) + "-" + str(destCell)
-                movesList.append(Move.Move(startPos, destCell, Move.CAPTURE))
+                movesList.append(Move.Move(startPos, destCell, Constants.PAWN_CODE, Move.CAPTURE))
         #move right up
         if Constants.RIGHT_UP in allMoves:
             destCell = allMoves[Constants.RIGHT_UP]
@@ -180,7 +180,7 @@ def getPawnMoves(bb, enemyCells, pawnIndexes, color):
             if((enemyCells & destCell) == destCell):
                 #enemy piece. add capture move
                 #print "Capture Move: " + str(startPos) + "-" + str(destCell)
-                movesList.append(Move.Move(startPos, destCell, Move.CAPTURE))
+                movesList.append(Move.Move(startPos, destCell, Constants.PAWN_CODE, Move.CAPTURE))
         #move up. 1
         if Constants.UP in allMoves:
             destCell = allMoves[Constants.UP]
@@ -188,7 +188,7 @@ def getPawnMoves(bb, enemyCells, pawnIndexes, color):
             if((emptyCells & destCell) == destCell):
                 #enemy piece. add capture move
                 #print "Capture Move: " + str(startPos) + "-" + str(destCell)
-                movesList.append(Move.Move(startPos, destCell, Move.QUIET))
+                movesList.append(Move.Move(startPos, destCell, Constants.PAWN_CODE, Move.QUIET))
         #move up. 2
         if Constants.DOUBLE_UP in allMoves:
             destCellUp = allMoves[Constants.UP]
@@ -197,5 +197,5 @@ def getPawnMoves(bb, enemyCells, pawnIndexes, color):
             if((emptyCells & destCellUp) == destCellUp and (emptyCells & destCellDoubleUp) == destCellDoubleUp):
                 #enemy piece. add capture move
                 #print "Capture Move: " + str(startPos) + "-" + str(destCellDoubleUp)
-                movesList.append(Move.Move(startPos, destCellDoubleUp, Move.QUIET))
+                movesList.append(Move.Move(startPos, destCellDoubleUp, Constants.PAWN_CODE, Move.QUIET))
     return movesList
