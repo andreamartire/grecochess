@@ -357,101 +357,102 @@ class QuadBitBoard(object):
             print output
         return 
     
+    def setEndPosition(self, move):
+        #set end position
+        if(self.black & move.start == move.start):
+            #is black piece
+            self.black = self.black & ~(move.start | move.end)
+            
+            #Pawn
+            if(move.pieceStart == Constants.PAWN_CODE):
+                self.pbq    = self.pbq | move.end
+                self.blackPawnsIndexes.pop(move.start, None)
+                self.blackPawnsIndexes[move.end] = 1 
+            #Bitshop
+            elif(move.pieceStart == Constants.BITSHOP_CODE):
+                self.pbq    = self.pbq | move.end
+                self.nbk    = self.nbk | move.end
+                self.blackBitshopsIndexes.pop(move.start, None)
+                self.blackBitshopsIndexes[move.end] = 1
+            #Knight
+            elif(move.pieceStart == Constants.KNIGHT_CODE):
+                self.nbk    = self.nbk | move.end
+                self.blackKnightIndexes.pop(move.start, None)
+                self.blackKnightIndexes[move.end] = 1 
+            #Rook
+            elif(move.pieceStart == Constants.ROOK_CODE):
+                self.rqk    = self.rqk | move.end
+                self.blackRooksIndexes[move.end] = 1 
+                self.blackRooksIndexes.pop(move.start, None)
+            #Queen
+            elif(move.pieceStart == Constants.QUEEN_CODE):
+                self.pbq    = self.pbq | move.end
+                self.rqk    = self.rqk | move.end
+                self.blackQueenIndexes[move.end] = 1 
+                self.blackQueenIndexes.pop(move.start, None)
+            #King
+            else:
+                self.rqk    = self.rqk | move.end
+                self.nbk    = self.nbk | move.end
+                self.blackKingIndex[move.end] = 1 
+                self.blackKingIndex.pop(move.start, None)
+        else:
+            #is white piece
+                        
+            #set end position
+            #Pawn
+            if(move.pieceStart == Constants.PAWN_CODE):
+                self.pbq    = self.pbq | move.end
+                self.whitePawnsIndexes[move.end] = 1
+                self.whitePawnsIndexes.pop(move.start, None) 
+            #Bitshop
+            elif(move.pieceStart == Constants.BITSHOP_CODE):
+                self.pbq    = self.pbq | move.end
+                self.nbk    = self.nbk | move.end
+                self.whiteBitshopsIndexes[move.end] = 1 
+                self.whiteBitshopsIndexes.pop(move.start, None)
+            #Knight
+            elif(move.pieceStart == Constants.KNIGHT_CODE):
+                self.nbk    = self.nbk | move.end
+                self.whiteKnightIndexes[move.end] = 1 
+                self.whiteKnightIndexes.pop(move.start, None)
+            #Rook
+            elif(move.pieceStart == Constants.ROOK_CODE):
+                self.rqk    = self.rqk | move.end
+                self.whiteRooksIndexes[move.end] = 1 
+                self.whiteRooksIndexes.pop(move.start, None)
+            #Queen
+            elif(move.pieceStart == Constants.QUEEN_CODE):
+                self.pbq    = self.pbq | move.end
+                self.rqk    = self.rqk | move.end
+                self.whiteQueenIndexes[move.end] = 1 
+                self.whiteQueenIndexes.pop(move.start, None)
+            #King
+            else:
+                self.rqk    = self.rqk | move.end
+                self.nbk    = self.nbk | move.end
+                self.whiteKingIndex[move.end] = 1 
+                self.whiteKingIndex.pop(move.start, None)
+            
     def executeMove(self, move):
-        #get move bb
-        moveBB = move.start | move.end
-        #create bb start/end positions
-        cleanBB     = ~moveBB
-        
         if(move.type == Move.QUIET):
             #quiet move
+            #create bb start/end positions
+            cleanBB = ~(move.start | move.end)
             #clean start/end positions
             self.rqk    = self.rqk & cleanBB
             self.pbq    = self.pbq & cleanBB
             self.nbk    = self.nbk & cleanBB
-            
-            if(self.black & move.start == move.start):
-                #is black piece
-                self.black = self.black & cleanBB
+            #set end position
+            self.setEndPosition(move)
                 
-                #set end position
-                #Pawn
-                if(move.pieceStart == Constants.PAWN_CODE):
-                    self.pbq    = self.pbq | move.end
-                    self.blackPawnsIndexes.pop(move.start, None)
-                    self.blackPawnsIndexes[move.end] = 1 
-                #Bitshop
-                elif(move.pieceStart == Constants.BITSHOP_CODE):
-                    self.pbq    = self.pbq | move.end
-                    self.nbk    = self.nbk | move.end
-                    self.blackBitshopsIndexes.pop(move.start, None)
-                    self.blackBitshopsIndexes[move.end] = 1
-                #Knight
-                elif(move.pieceStart == Constants.KNIGHT_CODE):
-                    self.nbk    = self.nbk | move.end
-                    self.blackKnightIndexes.pop(move.start, None)
-                    self.blackKnightIndexes[move.end] = 1 
-                #Rook
-                elif(move.pieceStart == Constants.ROOK_CODE):
-                    self.rqk    = self.rqk | move.end
-                    self.blackRooksIndexes[move.end] = 1 
-                    self.blackRooksIndexes.pop(move.start, None)
-                #Queen
-                elif(move.pieceStart == Constants.QUEEN_CODE):
-                    self.pbq    = self.pbq | move.end
-                    self.rqk    = self.rqk | move.end
-                    self.blackQueenIndexes[move.end] = 1 
-                    self.blackQueenIndexes.pop(move.start, None)
-                #King
-                else:
-                    self.rqk    = self.rqk | move.end
-                    self.nbk    = self.nbk | move.end
-                    self.blackKingIndex[move.end] = 1 
-                    self.blackKingIndex.pop(move.start, None)
-            else:
-                #is white piece
-                            
-                #set end position
-                #Pawn
-                if(move.pieceStart == Constants.PAWN_CODE):
-                    self.pbq    = self.pbq | move.end
-                    self.whitePawnsIndexes[move.end] = 1
-                    self.whitePawnsIndexes.pop(move.start, None) 
-                #Bitshop
-                elif(move.pieceStart == Constants.BITSHOP_CODE):
-                    self.pbq    = self.pbq | move.end
-                    self.nbk    = self.nbk | move.end
-                    self.whiteBitshopsIndexes[move.end] = 1 
-                    self.whiteBitshopsIndexes.pop(move.start, None)
-                #Knight
-                elif(move.pieceStart == Constants.KNIGHT_CODE):
-                    self.nbk    = self.nbk | move.end
-                    self.whiteKnightIndexes[move.end] = 1 
-                    self.whiteKnightIndexes.pop(move.start, None)
-                #Rook
-                elif(move.pieceStart == Constants.ROOK_CODE):
-                    self.rqk    = self.rqk | move.end
-                    self.whiteRooksIndexes[move.end] = 1 
-                    self.whiteRooksIndexes.pop(move.start, None)
-                #Queen
-                elif(move.pieceStart == Constants.QUEEN_CODE):
-                    self.pbq    = self.pbq | move.end
-                    self.rqk    = self.rqk | move.end
-                    self.whiteQueenIndexes[move.end] = 1 
-                    self.whiteQueenIndexes.pop(move.start, None)
-                #King
-                else:
-                    self.rqk    = self.rqk | move.end
-                    self.nbk    = self.nbk | move.end
-                    self.whiteKingIndex[move.end] = 1 
-                    self.whiteKingIndex.pop(move.start, None)
         elif(move.type == Move.CAPTURE):
             #capture move
-            #improvement. remove whithout check color?
+            #improvement. remove without check color?
             #remove target piece
             if(self.black & move.end == move.end):
                 #is black piece
-                self.black = self.black & cleanBB
+                self.black = self.black & ~(move.start | move.end)
                 #detect which Black piece
                 #Pawn
                 if(self.pbq & ~self.nbk & ~self.rqk & move.end == move.end):
@@ -481,7 +482,7 @@ class QuadBitBoard(object):
                     self.rqk    = self.rqk ^ move.end
                     self.blackQueenIndexes.pop(move.end, None) 
                 #King
-                elif(~self.pbq & self.nbk & self.rqk & move.end == move.end):
+                else:
                     #remove black king
                     self.nbk    = self.nbk ^ move.end
                     self.rqk    = self.rqk ^ move.end
@@ -516,11 +517,17 @@ class QuadBitBoard(object):
                     self.rqk    = self.rqk ^ move.end
                     self.whiteQueenIndexes.pop(move.end, None) 
                 #King
-                elif(~self.pbq & self.nbk & self.rqk & move.end == move.end):
+                else:
                     #remove white king
                     self.nbk    = self.nbk ^ move.end
                     self.rqk    = self.rqk ^ move.end
                     self.whiteKingIndex.pop(move.end, None) 
-            #set moving piece
-            cleanBB     = ~moveBB
+            #create bb start/end positions
+            cleanBB = ~(move.start | move.end)
+            #clean start/end positions
+            self.rqk    = self.rqk & cleanBB
+            self.pbq    = self.pbq & cleanBB
+            self.nbk    = self.nbk & cleanBB
+            #set end position
+            self.setEndPosition(move)
         return

@@ -20,7 +20,7 @@ end = time.clock()
 print end - start'''
 
 start = Utils.getCellBitArrayById(3)
-end = Utils.getCellBitArrayById(60)
+end = Utils.getCellBitArrayById(57)
 move = Move(start, end, Constants.QUEEN_CODE, CAPTURE) 
 
 board.executeMove(move)
