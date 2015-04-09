@@ -10,7 +10,7 @@ Created on Mar 28, 2015
 
 import Constants, time, Utils
 from model import QuadBitBoard, Engine
-from model.Move import Move, CAPTURE
+from model.Move import Move, CAPTURE, QUIET
 
 board = QuadBitBoard.QuadBitBoard()
 '''start = time.clock()
@@ -19,9 +19,9 @@ for i in range(0,100000):
 end = time.clock()
 print end - start'''
 
-start = Utils.getCellBitArrayById(0)
-end = Utils.getCellBitArrayById(16)
-move = Move(start, end, Constants.ROOK_CODE, CAPTURE) 
+start = Utils.getCellBitArrayById(3)
+end = Utils.getCellBitArrayById(60)
+move = Move(start, end, Constants.QUEEN_CODE, CAPTURE) 
 
 board.executeMove(move)
 

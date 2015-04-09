@@ -38,33 +38,33 @@ class QuadBitBoard(object):
         #white pawns
         for num in range(8,16):
             self.pbq = self.pbq.setbit(num)
-            self.whitePawnsIndexes[Utils.getCellBitArrayById(num)] = num
+            self.whitePawnsIndexes[Utils.getCellBitArrayById(num)] = 1
         
         #white knights
         self.nbk = self.nbk.setbit(1).setbit(6)
         self.whiteKnightIndexes[Utils.getCellBitArrayById(1)] = 1
-        self.whiteKnightIndexes[Utils.getCellBitArrayById(6)] = 6
+        self.whiteKnightIndexes[Utils.getCellBitArrayById(6)] = 1
         
         #white bitshops
         self.nbk = self.nbk.setbit(2).setbit(5)
         self.pbq = self.pbq.setbit(2).setbit(5)
-        self.whiteBitshopsIndexes[Utils.getCellBitArrayById(2)] = 2
-        self.whiteBitshopsIndexes[Utils.getCellBitArrayById(5)] = 5
+        self.whiteBitshopsIndexes[Utils.getCellBitArrayById(2)] = 1
+        self.whiteBitshopsIndexes[Utils.getCellBitArrayById(5)] = 1
         
         #white rooks
         self.rqk = self.rqk.setbit(0).setbit(7)
-        self.whiteRooksIndexes[Utils.getCellBitArrayById(0)] = 0
-        self.whiteRooksIndexes[Utils.getCellBitArrayById(7)] = 7
+        self.whiteRooksIndexes[Utils.getCellBitArrayById(0)] = 1
+        self.whiteRooksIndexes[Utils.getCellBitArrayById(7)] = 1
         
         #white queen
         self.rqk = self.rqk.setbit(3)
         self.pbq = self.pbq.setbit(3)
-        self.whiteQueenIndexes[Utils.getCellBitArrayById(3)] = 3
+        self.whiteQueenIndexes[Utils.getCellBitArrayById(3)] = 1
         
         #white king
         self.nbk = self.nbk.setbit(4)
         self.rqk = self.rqk.setbit(4)
-        self.whiteKingIndex[Utils.getCellBitArrayById(4)] = 4
+        self.whiteKingIndex[Utils.getCellBitArrayById(4)] = 1
         
         #black
         for num in range(48,64):
@@ -73,33 +73,33 @@ class QuadBitBoard(object):
         #black pawns
         for num in range(48,56):
             self.pbq = self.pbq.setbit(num)
-            self.blackPawnsIndexes[Utils.getCellBitArrayById(num)] = num
+            self.blackPawnsIndexes[Utils.getCellBitArrayById(num)] = 1
         
         #black knights
         self.nbk = self.nbk.setbit(57).setbit(62)
-        self.blackKnightIndexes[Utils.getCellBitArrayById(57)] = 57
-        self.blackKnightIndexes[Utils.getCellBitArrayById(62)] = 62
+        self.blackKnightIndexes[Utils.getCellBitArrayById(57)] = 1
+        self.blackKnightIndexes[Utils.getCellBitArrayById(62)] = 1
         
         #black bitshops
         self.nbk = self.nbk.setbit(58).setbit(61)
         self.pbq = self.pbq.setbit(58).setbit(61)
-        self.blackBitshopsIndexes[Utils.getCellBitArrayById(58)] = 58
-        self.blackBitshopsIndexes[Utils.getCellBitArrayById(61)] = 61
+        self.blackBitshopsIndexes[Utils.getCellBitArrayById(58)] = 1
+        self.blackBitshopsIndexes[Utils.getCellBitArrayById(61)] = 1
 
         #black rooks
         self.rqk = self.rqk.setbit(56).setbit(63)
-        self.blackRooksIndexes[Utils.getCellBitArrayById(56)] = 56
-        self.blackRooksIndexes[Utils.getCellBitArrayById(63)] = 63
+        self.blackRooksIndexes[Utils.getCellBitArrayById(56)] = 1
+        self.blackRooksIndexes[Utils.getCellBitArrayById(63)] = 1
         
         #black queen
         self.rqk = self.rqk.setbit(59)
         self.pbq = self.pbq.setbit(59)
-        self.blackQueenIndexes[Utils.getCellBitArrayById(59)] = 59
+        self.blackQueenIndexes[Utils.getCellBitArrayById(59)] = 1
         
         #black king
         self.nbk = self.nbk.setbit(60)
         self.rqk = self.rqk.setbit(60)
-        self.blackKingIndex[Utils.getCellBitArrayById(60)] = 60
+        self.blackKingIndex[Utils.getCellBitArrayById(60)] = 1
         
     def clean(self):
         self.rqk = mpz(0)
@@ -360,65 +360,167 @@ class QuadBitBoard(object):
     def executeMove(self, move):
         #get move bb
         moveBB = move.start | move.end
+        #create bb start/end positions
+        cleanBB     = ~moveBB
         
         if(move.type == Move.QUIET):
-            #if it is one among Rook, Queen, King
-            if(self.rqk & move.start == move.start):
-                self.rqk    = self.rqk ^ moveBB
-    
-            #if it is one among Pawn, Bitshop, Queen
-            if(self.pbq & move.start == move.start):
-                self.pbq    = self.pbq ^ moveBB
-    
-            #if it is one among Knight, Bitshop, King
-            if(self.nbk & move.start == move.start):
-                self.nbk    = self.nbk ^ moveBB
-    
-            #if it is Black
-            if(self.black & move.start == move.start):
-                self.black  = self.black ^ moveBB
-        elif(move.type == Move.CAPTURE):
-            #clean start/end position
-            cleanBB = ~moveBB
+            #quiet move
+            #clean start/end positions
             self.rqk    = self.rqk & cleanBB
             self.pbq    = self.pbq & cleanBB
             self.nbk    = self.nbk & cleanBB
-            self.black  = self.black & cleanBB
             
-            '''del self.whitePawnsIndexes.pop[move.end]
-            del self.whiteKnightIndexes[move.end]
-            del self.whiteBitshopsIndexes[move.end]
-            self.whiteRooksIndexes.pop(move.end)
-            del self.whiteQueenIndexes[move.end]
-            del self.whiteKingIndex[move.end]
-            
-            del self.blackPawnsIndexes[move.end]
-            del self.blackKnightIndexes[move.end]
-            del self.blackBitshopsIndexes[move.end]
-            del self.blackRooksIndexes[move.end]
-            del self.blackQueenIndexes[move.end]
-            del self.blackKingIndex[move.end]'''
-            
-            #set end position
-            #Pawn
-            if(move.pieceStart == Constants.PAWN_CODE):
-                self.pbq    = self.pbq | move.end
-            #Bitshop
-            elif(move.pieceStart == Constants.BITSHOP_CODE):
-                self.pbq    = self.pbq | move.end
-                self.nbk    = self.nbk | move.end
-            #Knight
-            elif(move.pieceStart == Constants.KNIGHT_CODE):
-                self.nbk    = self.nbk | move.end
-            #Rook
-            elif(move.pieceStart == Constants.ROOK_CODE):
-                self.rqk    = self.rqk | move.end
-            #Queen
-            elif(move.pieceStart == Constants.QUEEN_CODE):
-                self.pbq    = self.pbq | move.end
-                self.rqk    = self.rqk | move.end
-            #King
+            if(self.black & move.start == move.start):
+                #is black piece
+                self.black = self.black & cleanBB
+                
+                #set end position
+                #Pawn
+                if(move.pieceStart == Constants.PAWN_CODE):
+                    self.pbq    = self.pbq | move.end
+                    self.blackPawnsIndexes.pop(move.start, None)
+                    self.blackPawnsIndexes[move.end] = 1 
+                #Bitshop
+                elif(move.pieceStart == Constants.BITSHOP_CODE):
+                    self.pbq    = self.pbq | move.end
+                    self.nbk    = self.nbk | move.end
+                    self.blackBitshopsIndexes.pop(move.start, None)
+                    self.blackBitshopsIndexes[move.end] = 1
+                #Knight
+                elif(move.pieceStart == Constants.KNIGHT_CODE):
+                    self.nbk    = self.nbk | move.end
+                    self.blackKnightIndexes.pop(move.start, None)
+                    self.blackKnightIndexes[move.end] = 1 
+                #Rook
+                elif(move.pieceStart == Constants.ROOK_CODE):
+                    self.rqk    = self.rqk | move.end
+                    self.blackRooksIndexes[move.end] = 1 
+                    self.blackRooksIndexes.pop(move.start, None)
+                #Queen
+                elif(move.pieceStart == Constants.QUEEN_CODE):
+                    self.pbq    = self.pbq | move.end
+                    self.rqk    = self.rqk | move.end
+                    self.blackQueenIndexes[move.end] = 1 
+                    self.blackQueenIndexes.pop(move.start, None)
+                #King
+                else:
+                    self.rqk    = self.rqk | move.end
+                    self.nbk    = self.nbk | move.end
+                    self.blackKingIndex[move.end] = 1 
+                    self.blackKingIndex.pop(move.start, None)
             else:
-                self.rqk    = self.rqk | move.end
-                self.nbk    = self.nbk | move.end
+                #is white piece
+                            
+                #set end position
+                #Pawn
+                if(move.pieceStart == Constants.PAWN_CODE):
+                    self.pbq    = self.pbq | move.end
+                    self.whitePawnsIndexes[move.end] = 1
+                    self.whitePawnsIndexes.pop(move.start, None) 
+                #Bitshop
+                elif(move.pieceStart == Constants.BITSHOP_CODE):
+                    self.pbq    = self.pbq | move.end
+                    self.nbk    = self.nbk | move.end
+                    self.whiteBitshopsIndexes[move.end] = 1 
+                    self.whiteBitshopsIndexes.pop(move.start, None)
+                #Knight
+                elif(move.pieceStart == Constants.KNIGHT_CODE):
+                    self.nbk    = self.nbk | move.end
+                    self.whiteKnightIndexes[move.end] = 1 
+                    self.whiteKnightIndexes.pop(move.start, None)
+                #Rook
+                elif(move.pieceStart == Constants.ROOK_CODE):
+                    self.rqk    = self.rqk | move.end
+                    self.whiteRooksIndexes[move.end] = 1 
+                    self.whiteRooksIndexes.pop(move.start, None)
+                #Queen
+                elif(move.pieceStart == Constants.QUEEN_CODE):
+                    self.pbq    = self.pbq | move.end
+                    self.rqk    = self.rqk | move.end
+                    self.whiteQueenIndexes[move.end] = 1 
+                    self.whiteQueenIndexes.pop(move.start, None)
+                #King
+                else:
+                    self.rqk    = self.rqk | move.end
+                    self.nbk    = self.nbk | move.end
+                    self.whiteKingIndex[move.end] = 1 
+                    self.whiteKingIndex.pop(move.start, None)
+        elif(move.type == Move.CAPTURE):
+            #capture move
+            #improvement. remove whithout check color?
+            #remove target piece
+            if(self.black & move.end == move.end):
+                #is black piece
+                self.black = self.black & cleanBB
+                #detect which Black piece
+                #Pawn
+                if(self.pbq & ~self.nbk & ~self.rqk & move.end == move.end):
+                    #remove black pawn
+                    self.pbq    = self.pbq ^ move.end
+                    self.blackPawnsIndexes.pop(move.end, None)
+                #Bitshop
+                elif(self.pbq & self.nbk & ~self.rqk & move.end == move.end):
+                    #remove black bitshop
+                    self.pbq    = self.pbq ^ move.end
+                    self.nbk    = self.nbk ^ move.end
+                    self.blackBitshopsIndexes.pop(move.end, None)
+                #Knight
+                elif(~self.pbq & self.nbk & ~self.rqk & move.end == move.end):
+                    #remove black Knight
+                    self.nbk    = self.nbk ^ move.end
+                    self.blackKnightIndexes.pop(move.end, None)
+                #Rook
+                elif(~self.pbq & ~self.nbk & self.rqk & move.end == move.end):
+                    #remove black Rook
+                    self.rqk    = self.rqk ^ move.end
+                    self.blackRooksIndexes.pop(move.end, None)
+                #Queen
+                elif(self.pbq & ~self.nbk & self.rqk & move.end == move.end):
+                    #remove black queen
+                    self.pbq    = self.pbq ^ move.end
+                    self.rqk    = self.rqk ^ move.end
+                    self.blackQueenIndexes.pop(move.end, None) 
+                #King
+                elif(~self.pbq & self.nbk & self.rqk & move.end == move.end):
+                    #remove black king
+                    self.nbk    = self.nbk ^ move.end
+                    self.rqk    = self.rqk ^ move.end
+                    self.blackKingIndex.pop(move.end, None) 
+            else:
+                #detect which white piece
+                #Pawn
+                if(self.pbq & ~self.nbk & ~self.rqk & move.end == move.end):
+                    #remove white pawn
+                    self.pbq    = self.pbq ^ move.end
+                    self.whitePawnsIndexes.pop(move.end, None)
+                #Bitshop
+                elif(self.pbq & self.nbk & ~self.rqk & move.end == move.end):
+                    #remove white bitshop
+                    self.pbq    = self.pbq ^ move.end
+                    self.nbk    = self.nbk ^ move.end
+                    self.whiteBitshopsIndexes.pop(move.end, None)
+                #Knight
+                elif(~self.pbq & self.nbk & ~self.rqk & move.end == move.end):
+                    #remove white Knight
+                    self.nbk    = self.nbk ^ move.end
+                    self.whiteKnightIndexes.pop(move.end, None)
+                #Rook
+                elif(~self.pbq & ~self.nbk & self.rqk & move.end == move.end):
+                    #remove white Rook
+                    self.rqk    = self.rqk ^ move.end
+                    self.whiteRooksIndexes.pop(move.end, None)
+                #Queen
+                elif(self.pbq & ~self.nbk & self.rqk & move.end == move.end):
+                    #remove white queen
+                    self.pbq    = self.pbq ^ move.end
+                    self.rqk    = self.rqk ^ move.end
+                    self.whiteQueenIndexes.pop(move.end, None) 
+                #King
+                elif(~self.pbq & self.nbk & self.rqk & move.end == move.end):
+                    #remove white king
+                    self.nbk    = self.nbk ^ move.end
+                    self.rqk    = self.rqk ^ move.end
+                    self.whiteKingIndex.pop(move.end, None) 
+            #set moving piece
+            cleanBB     = ~moveBB
         return
