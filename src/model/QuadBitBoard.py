@@ -33,6 +33,9 @@ class QuadBitBoard(object):
     blackQueenIndexes = {}
     blackKingIndex = {}
     
+    whiteCastleEnabled = 1;
+    blackCastleEnabled = 1;
+    
     def __init__(self):
         
         #white pawns
@@ -113,7 +116,7 @@ class QuadBitBoard(object):
         self.whiteBitshopsIndexes = {}
         self.whiteRooksIndexes = {}
         self.whiteQueenIndexes = {}
-        self.whiteKingIndex = mpz(0).setbit(0)
+        self.whiteKingIndex = {}
         
         #black indexes
         self.blackPawnsIndexes = {}
@@ -121,7 +124,7 @@ class QuadBitBoard(object):
         self.blackBitshopsIndexes = {}
         self.blackRooksIndexes = {}
         self.blackQueenIndexes = {}
-        self.blackKingIndex = mpz(0).setbit(0)
+        self.blackKingIndex = {}
         return
     
     def setCellbyId(self, i, pieceType):
@@ -227,46 +230,46 @@ class QuadBitBoard(object):
         if(view >= 1):
             for i in cells:
                 if(i % 8 == 0):
-                    output += "\n+-----+-----+-----+-----+-----+-----+-----+-----+\n"
+                    output += "\n+------+------+------+------+------+------+------+------+\n"
                     if(i < 8):
-                        output = output + "|    0|    1|    2|    3|    4|    5|    6|    7|\n"
+                        output = output + "|     0|     1|     2|     3|     4|     5|     6|     7|\n"
                     elif(i < 16):
-                        output = output + "|    8|    9|   10|   11|   12|   13|   14|   15|\n"
+                        output = output + "|     8|     9|    10|    11|    12|    13|    14|    15|\n"
                     else:
                         for j in range(i,i+8):
-                            output = output + "|   "+str(j)
+                            output = output + "|    "+str(j)
                         output += "|\n"
                 if(self.black.getbit(i) == 1):
                     if(blackRooks.getbit(i) == 1):
-                        output += "| r   "
+                        output += "|  r   "
                     elif(blackKnights.getbit(i) == 1):
-                        output += "| n   "
+                        output += "|  n   "
                     elif(blackBitshops.getbit(i) == 1):
-                        output += "| b   "
+                        output += "|   b  "
                     elif(blackPawns.getbit(i) == 1):
-                        output += "| p   "
+                        output += "|  p   "
                     elif(blackQueens.getbit(i) == 1):
-                        output += "| q   "
+                        output += "|  q   "
                     elif(blackKing.getbit(i) == 1):
-                        output += "| k   "
+                        output += "|  k   "
                 elif(white.getbit(i) == 1):
                     if(whiteRooks.getbit(i) == 1):
-                        output += "| R   "
+                        output += "|  R   "
                     elif(whiteKnights.getbit(i) == 1):
-                        output += "| N   "
+                        output += "|  N   "
                     elif(whiteBitshops.getbit(i) == 1):
-                        output += "| B   "
+                        output += "|  B   "
                     elif(whitePawns.getbit(i) == 1):
-                        output += "| P   "
+                        output += "|  P   "
                     elif(whiteQueens.getbit(i) == 1):
-                        output += "| Q   "
+                        output += "|  Q   "
                     elif(whiteKing.getbit(i) == 1):
-                        output += "| K   "
+                        output += "|  K   "
                 else:
-                    output += "|     "
+                    output += "|      "
                 if(i % 8 == 7): 
                     output += "|"
-            output += "\n+-----+-----+-----+-----+-----+-----+-----+-----+\n"
+            output += "\n+------+------+------+------+------+------+------+------+\n"
         #only piece
         else:
             for i in cells:
@@ -435,10 +438,11 @@ class QuadBitBoard(object):
                 self.whiteKingIndex.pop(move.start, None)
             
     def executeMove(self, move):
+        #create bb start/end positions
+        cleanBB = ~(move.start | move.end)
+        
         if(move.type == Move.QUIET):
             #quiet move
-            #create bb start/end positions
-            cleanBB = ~(move.start | move.end)
             #clean start/end positions
             self.rqk    = self.rqk & cleanBB
             self.pbq    = self.pbq & cleanBB
@@ -522,8 +526,6 @@ class QuadBitBoard(object):
                     self.nbk    = self.nbk ^ move.end
                     self.rqk    = self.rqk ^ move.end
                     self.whiteKingIndex.pop(move.end, None) 
-            #create bb start/end positions
-            cleanBB = ~(move.start | move.end)
             #clean start/end positions
             self.rqk    = self.rqk & cleanBB
             self.pbq    = self.pbq & cleanBB

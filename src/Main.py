@@ -19,10 +19,15 @@ for i in range(0,100000):
 end = time.clock()
 print end - start'''
 
-start = Utils.getCellBitArrayById(3)
-end = Utils.getCellBitArrayById(57)
-move = Move(start, end, Constants.QUEEN_CODE, CAPTURE) 
+board.clean()
 
-board.executeMove(move)
+board.setCellbyId(60, 'k')
+board.setCellbyId(63, 'r')
+
+board.setCellbyId(56, 'Q')
 
 board.showBoard(2)
+
+Engine.getAllPseudoLegalMoves(board, Constants.BLACK)
+
+
