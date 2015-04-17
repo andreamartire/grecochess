@@ -148,7 +148,7 @@ class QuadBitBoard(object):
         if(pieceType == 'q'):
             self.rqk = self.rqk.setbit(i)
             self.pbq = self.pbq.setbit(i)
-            self.blackRooksIndexes[Utils.getCellBitArrayById(i)] = i
+            self.blackQueenIndexes[Utils.getCellBitArrayById(i)] = i
         if(pieceType == 'k'):
             self.rqk = self.rqk.setbit(i)
             self.nbk = self.nbk.setbit(i)
