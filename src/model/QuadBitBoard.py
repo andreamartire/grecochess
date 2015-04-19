@@ -312,7 +312,7 @@ class QuadBitBoard(object):
         print output
         
         #show indexes
-        if(view == 2):
+        if(view >= 2):
             print "White"
             output = "\tPawn: \t "
             for index in self.whitePawnsIndexes:
@@ -364,6 +364,14 @@ class QuadBitBoard(object):
             for index in self.blackKingIndex:
                 output += str(Utils.getPositionByCellBitArray(index)) + "  "
             print output
+            
+        if(view >= 3):
+            print "\nHistory:"
+            if(self.moveSize > 0):
+                for i in range(self.moveSize):
+                    print self.moveHistory[i]
+            else:
+                print "No moves"
         return 
     
     def setEndPosition(self, move):
@@ -375,34 +383,40 @@ class QuadBitBoard(object):
             #Pawn
             if(move.pieceStart == Constants.PAWN_CODE):
                 self.pbq    = self.pbq | move.end
+                self.black  = self.black | move.end
                 self.blackPawnsIndexes.pop(move.start, None)
                 self.blackPawnsIndexes[move.end] = 1 
             #Bitshop
             elif(move.pieceStart == Constants.BITSHOP_CODE):
                 self.pbq    = self.pbq | move.end
                 self.nbk    = self.nbk | move.end
+                self.black  = self.black | move.end
                 self.blackBitshopsIndexes.pop(move.start, None)
                 self.blackBitshopsIndexes[move.end] = 1
             #Knight
             elif(move.pieceStart == Constants.KNIGHT_CODE):
                 self.nbk    = self.nbk | move.end
+                self.black  = self.black | move.end
                 self.blackKnightIndexes.pop(move.start, None)
                 self.blackKnightIndexes[move.end] = 1 
             #Rook
             elif(move.pieceStart == Constants.ROOK_CODE):
                 self.rqk    = self.rqk | move.end
+                self.black  = self.black | move.end
                 self.blackRooksIndexes[move.end] = 1 
                 self.blackRooksIndexes.pop(move.start, None)
             #Queen
             elif(move.pieceStart == Constants.QUEEN_CODE):
                 self.pbq    = self.pbq | move.end
                 self.rqk    = self.rqk | move.end
+                self.black  = self.black | move.end
                 self.blackQueenIndexes[move.end] = 1 
                 self.blackQueenIndexes.pop(move.start, None)
             #King
             else:
                 self.rqk    = self.rqk | move.end
                 self.nbk    = self.nbk | move.end
+                self.black  = self.black | move.end
                 self.blackKingIndex[move.end] = 1 
                 self.blackKingIndex.pop(move.start, None)
         else:
@@ -566,6 +580,7 @@ class QuadBitBoard(object):
                 #change rook position
                 self.blackRooksIndexes.pop(Utils.H8, None) 
                 self.blackRooksIndexes[Utils.F8] = 1 
+                
         elif(move.type == Constants.MOVE_QUEEN_CASTLE):
             print "queen castle"
             if(move.start == Utils.E1):
@@ -592,7 +607,24 @@ class QuadBitBoard(object):
         return
     
     def rollbackLastMove(self):
-        move = self.moveHistory[self.moveSize]
+        move = self.moveHistory[self.moveSize-1]
+        self.moveSize -= 1
         print "Last Move: "
         print move
+        
+        #create bb start/end positions
+        cleanBB = ~(move.start | move.end)
+        
+        if(move.type == Constants.MOVE_QUIET):
+            #quiet move
+            #clean start/end positions
+            self.rqk    = self.rqk & cleanBB
+            self.pbq    = self.pbq & cleanBB
+            self.nbk    = self.nbk & cleanBB
+            #swap positions
+            tmp = move.start
+            move.start = move.end
+            move.end = tmp
+            #set end position
+            self.setEndPosition(move)
         return
