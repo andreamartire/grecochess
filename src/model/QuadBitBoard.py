@@ -7,11 +7,15 @@ Created on Mar 28, 2015
 from gmpy import mpz
 import Utils, Constants
 from model import Move
+from model.Castle import *
 
 EMPTY_BIT_BOARD = mpz(0)
 
 class QuadBitBoard(object):
     busyCells = mpz(0)
+    
+    moveHistory = []
+    moveSize = 0
     
     #quad bit board
     rqk = mpz(0)
@@ -440,10 +444,14 @@ class QuadBitBoard(object):
                 self.whiteKingIndex.pop(move.start, None)
             
     def executeMove(self, move):
+        print self.moveSize
+        self.moveHistory.append(move)
+        self.moveSize += 1
+        
         #create bb start/end positions
         cleanBB = ~(move.start | move.end)
         
-        if(move.type == Move.QUIET):
+        if(move.type == Constants.MOVE_QUIET):
             #quiet move
             #clean start/end positions
             self.rqk    = self.rqk & cleanBB
@@ -452,7 +460,7 @@ class QuadBitBoard(object):
             #set end position
             self.setEndPosition(move)
                 
-        elif(move.type == Move.CAPTURE):
+        elif(move.type == Constants.MOVE_CAPTURE):
             #capture move
             #improvement. remove without check color?
             #remove target piece
@@ -534,4 +542,57 @@ class QuadBitBoard(object):
             self.nbk    = self.nbk & cleanBB
             #set end position
             self.setEndPosition(move)
+            
+        elif(move.type == Constants.MOVE_KING_CASTLE):
+            print "king castle"
+            if(move.start == Utils.E1):
+                #white king castle
+                self.rqk    = self.rqk ^ shadowRqkWhiteKingCastle
+                self.nbk    = self.nbk ^ shadowNbkWhiteKingCastle
+                #change king position
+                self.whiteKingIndex.pop(Utils.E1, None) 
+                self.whiteKingIndex[Utils.G1] = 1 
+                #change rook position
+                self.whiteRooksIndexes.pop(Utils.H1, None) 
+                self.whiteRooksIndexes[Utils.F1] = 1 
+            else:
+                #black king castle
+                self.rqk    = self.rqk ^ shadowRqkBlackKingCastle
+                self.nbk    = self.nbk ^ shadowNbkBlackKingCastle
+                self.black  = self.black ^ shadowRqkBlackKingCastle
+                #change king position
+                self.blackKingIndex.pop(Utils.E8, None) 
+                self.blackKingIndex[Utils.G8] = 1 
+                #change rook position
+                self.blackRooksIndexes.pop(Utils.H8, None) 
+                self.blackRooksIndexes[Utils.F8] = 1 
+        elif(move.type == Constants.MOVE_QUEEN_CASTLE):
+            print "queen castle"
+            if(move.start == Utils.E1):
+                #white queen castle
+                self.rqk    = self.rqk ^ shadowRqkWhiteQueenCastle
+                self.nbk    = self.nbk ^ shadowNbkWhiteQueenCastle
+                #change king position
+                self.whiteKingIndex.pop(Utils.E1, None) 
+                self.whiteKingIndex[Utils.C1] = 1 
+                #change rook position
+                self.whiteRooksIndexes.pop(Utils.A1, None) 
+                self.whiteRooksIndexes[Utils.D1] = 1 
+            else:
+                #black queen castle
+                self.rqk    = self.rqk ^ shadowRqkBlackQueenCastle
+                self.nbk    = self.nbk ^ shadowNbkBlackQueenCastle
+                self.black  = self.black ^ shadowRqkBlackQueenCastle
+                #change king position
+                self.blackKingIndex.pop(Utils.E8, None) 
+                self.blackKingIndex[Utils.C8] = 1 
+                #change rook position
+                self.blackRooksIndexes.pop(Utils.A8, None) 
+                self.blackRooksIndexes[Utils.D8] = 1 
+        return
+    
+    def rollbackLastMove(self):
+        move = self.moveHistory[self.moveSize]
+        print "Last Move: "
+        print move
         return

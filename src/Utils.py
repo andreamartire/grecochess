@@ -121,3 +121,19 @@ _piecesCode = initPiecesCode();
 
 def getPieceByCode(pieceCode):
     return _piecesCode[pieceCode]
+
+#usefull cells
+A1 = getCellBitArrayById(0)
+A8 = getCellBitArrayById(56)
+C1 = getCellBitArrayById(2)
+C8 = getCellBitArrayById(58)
+D1 = getCellBitArrayById(3)
+D8 = getCellBitArrayById(59)
+E1 = getCellBitArrayById(4)
+E8 = getCellBitArrayById(60)
+F1 = getCellBitArrayById(5)
+F8 = getCellBitArrayById(61)
+G1 = getCellBitArrayById(6)
+G8 = getCellBitArrayById(62)
+H1 = getCellBitArrayById(7)
+H8 = getCellBitArrayById(63)

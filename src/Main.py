@@ -23,6 +23,7 @@ board.clean()
 
 board.setCellbyId(4, 'K')
 board.setCellbyId(0, 'R')
+board.setCellbyId(7, 'R')
 
 board.setCellbyId(60, 'k')
 board.setCellbyId(56, 'r')
@@ -31,4 +32,10 @@ board.setCellbyId(63, 'r')
 board.showBoard(2)
 
 moves = Engine.getAllPseudoLegalMoves(board, Constants.WHITE, True)
+
+for move in moves:
+    print move
+
+board.executeMove(moves[5])
+board.showBoard(2)
 

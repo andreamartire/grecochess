@@ -60,9 +60,9 @@ class Engine(object):
             #for each move
             for destCell in allMoves:
                 #if dest cell is busy
-                if((bb.busyCells & destCell) == destCell):
+                if(bb.busyCells & destCell == destCell):
                     #if enemy piece occupies dest cell
-                    if((enemyCells & destCell) == destCell):
+                    if(enemyCells & destCell == destCell):
                         #enemy piece. add capture move
                         #print "Capture Move: " + str(startPos) + "-" + str(destCell)
                         movesList.append(Move(startPos, destCell, Constants.KNIGHT_CODE, Constants.MOVE_CAPTURE))
@@ -83,9 +83,9 @@ class Engine(object):
             #for each move
             for destCell in allMoves:
                 #if dest cell is busy
-                if((bb.busyCells & destCell) == destCell):
+                if(bb.busyCells & destCell == destCell):
                     #if enemy piece occupies dest cell
-                    if((enemyCells & destCell) == destCell):
+                    if(enemyCells & destCell == destCell):
                         #enemy piece. add capture move
                         #print "Capture Move: " + str(startPos) + "-" + str(destCell)
                         movesList.append(Move(startPos, destCell, Constants.KING_CODE, Constants.MOVE_CAPTURE))
@@ -98,15 +98,10 @@ class Engine(object):
         if(checkCastles):
             #check castle
             if(color == Constants.WHITE and bb.whiteCastleEnabled == 1):
-                #king position
-                E1 = Utils.getCellBitArrayById(4);
-                
                 #check king position
-                if(bb.rqk & bb.nbk & E1 == E1):
-                    #rook position for KING CASTLE
-                    H1 = Utils.getCellBitArrayById(7);
+                if(bb.rqk & bb.nbk & Utils.E1 == Utils.E1):
                     #check rook position and free spaces between king and rook
-                    if(bb.rqk & ~bb.pbq & ~bb.nbk & H1 == H1 and Castle.spacesWhiteKingCastle & bb.emptyCells == Castle.spacesWhiteKingCastle):
+                    if(bb.rqk & ~bb.pbq & ~bb.nbk & Utils.H1 == Utils.H1 and Castle.spacesWhiteKingCastle & bb.emptyCells == Castle.spacesWhiteKingCastle):
                         #king and rook in correct position, spaces free
                         #get all enemy moves
                         enemyMoves = Engine.getAllPseudoLegalMoves(bb, Constants.BLACK, False)
@@ -117,11 +112,9 @@ class Engine(object):
                         #if king and white spaces aren't under attack
                         if(Castle.safeCellsWhiteKingCastle & enemyAttacks == EMPTY_BIT_BOARD):
                             print "King Castle: " + str(4) + "-" + str(6)
-                            movesList.append(Move(E1, Utils.getCellBitArrayById(6), Constants.KING_CODE, Constants.MOVE_KING_CASTLE))
-                    #rook position for QUEEN CASTLE
-                    A1 = Utils.getCellBitArrayById(0);
+                            movesList.append(Move(Utils.E1, Utils.getCellBitArrayById(6), Constants.KING_CODE, Constants.MOVE_KING_CASTLE))
                     #check rook position and free spaces between king and rook
-                    if(bb.rqk & ~bb.pbq & ~bb.nbk & A1 == A1 and Castle.spacesWhiteQueenCastle & bb.emptyCells == Castle.spacesWhiteQueenCastle):
+                    if(bb.rqk & ~bb.pbq & ~bb.nbk & Utils.A1 == Utils.A1 and Castle.spacesWhiteQueenCastle & bb.emptyCells == Castle.spacesWhiteQueenCastle):
                         #king and rook in correct position, spaces free
                         #get all enemy moves
                         enemyMoves = Engine.getAllPseudoLegalMoves(bb, Constants.BLACK, False)
@@ -132,17 +125,12 @@ class Engine(object):
                         #if king and white spaces aren't under attack
                         if(Castle.safeCellsWhiteQueenCastle & enemyAttacks == EMPTY_BIT_BOARD):
                             print "Queen Castle: " + str(4) + "-" + str(2)
-                            movesList.append(Move(E1, Utils.getCellBitArrayById(2), Constants.KING_CODE, Constants.MOVE_QUEEN_CASTLE))
+                            movesList.append(Move(Utils.E1, Utils.getCellBitArrayById(2), Constants.KING_CODE, Constants.MOVE_QUEEN_CASTLE))
             elif(color == Constants.BLACK and bb.blackCastleEnabled == 1):
-                #king position
-                E8 = Utils.getCellBitArrayById(60);
-                
                 #check king position
-                if(bb.rqk & bb.nbk & E8 == E8):
-                    #rook position for KING CASTLE
-                    H8 = Utils.getCellBitArrayById(63);
+                if(bb.rqk & bb.nbk & Utils.E8 == Utils.E8):
                     #check rook position and free spaces between king and rook
-                    if(bb.rqk & ~bb.pbq & ~bb.nbk & H8 == H8 and Castle.spacesBlackKingCastle & bb.emptyCells == Castle.spacesBlackKingCastle):
+                    if(bb.rqk & ~bb.pbq & ~bb.nbk & Utils.H8 == Utils.H8 and Castle.spacesBlackKingCastle & bb.emptyCells == Castle.spacesBlackKingCastle):
                         #king and rook in correct position, spaces free
                         #get all enemy moves
                         enemyMoves = Engine.getAllPseudoLegalMoves(bb, Constants.WHITE, False)
@@ -153,11 +141,9 @@ class Engine(object):
                         #if king and white spaces aren't under attack
                         if(Castle.safeCellsBlackKingCastle & enemyAttacks == EMPTY_BIT_BOARD):
                             print "King Castle: " + str(60) + "-" + str(62)
-                            movesList.append(Move(E8, Utils.getCellBitArrayById(62), Constants.KING_CODE, Constants.MOVE_KING_CASTLE))
-                    #rook position for QUEEN CASTLE
-                    A8 = Utils.getCellBitArrayById(56);
+                            movesList.append(Move(Utils.E8, Utils.getCellBitArrayById(62), Constants.KING_CODE, Constants.MOVE_KING_CASTLE))
                     #check rook position and free spaces between king and rook
-                    if(bb.rqk & ~bb.pbq & ~bb.nbk & A8 == A8 and Castle.spacesBlackQueenCastle & bb.emptyCells == Castle.spacesBlackQueenCastle):
+                    if(bb.rqk & ~bb.pbq & ~bb.nbk & Utils.A8 == Utils.A8 and Castle.spacesBlackQueenCastle & bb.emptyCells == Castle.spacesBlackQueenCastle):
                         #king and rook in correct position, spaces free
                         #get all enemy moves
                         enemyMoves = Engine.getAllPseudoLegalMoves(bb, Constants.WHITE, False)
@@ -168,7 +154,7 @@ class Engine(object):
                         #if king and white spaces aren't under attack
                         if(Castle.safeCellsBlackQueenCastle & enemyAttacks == EMPTY_BIT_BOARD):
                             print "Queen Castle: " + str(60) + "-" + str(58)
-                            movesList.append(Move(E8, Utils.getCellBitArrayById(58), Constants.KING_CODE, Constants.MOVE_QUEEN_CASTLE))
+                            movesList.append(Move(Utils.E8, Utils.getCellBitArrayById(58), Constants.KING_CODE, Constants.MOVE_QUEEN_CASTLE))
 
                 
         return movesList
@@ -185,11 +171,11 @@ class Engine(object):
                 while i < len(allMoves[direction]):
                     destCell = allMoves[direction][i]
                     #if dest cell is busy
-                    if((bb.busyCells & destCell) == destCell):
+                    if(bb.busyCells & destCell == destCell):
                         #stop loop
                         i = 99
                         #if enemy piece occupies dest cell
-                        if((enemyCells & destCell) == destCell):
+                        if(enemyCells & destCell == destCell):
                             #enemy piece. add capture move
                             #print "Capture Move: " + str(startPos) + "-" + str(destCell)
                             movesList.append(Move(startPos, destCell, Constants.BITSHOP_CODE, Constants.MOVE_CAPTURE))
@@ -212,11 +198,11 @@ class Engine(object):
                 while i < len(allMoves[direction]):
                     destCell = allMoves[direction][i]
                     #if dest cell is busy
-                    if((bb.busyCells & destCell) == destCell):
+                    if(bb.busyCells & destCell == destCell):
                         #stop loop
                         i = 99
                         #if enemy piece occupies dest cell
-                        if((enemyCells & destCell) == destCell):
+                        if(enemyCells & destCell == destCell):
                             #enemy piece. add capture move
                             #print "Capture Move: " + str(startPos) + "-" + str(destCell)
                             movesList.append(Move(startPos, destCell, Constants.ROOK_CODE, Constants.MOVE_CAPTURE))
@@ -239,11 +225,11 @@ class Engine(object):
                 while i < len(allMoves[direction]):
                     destCell = allMoves[direction][i]
                     #if dest cell is busy
-                    if((bb.busyCells & destCell) == destCell):
+                    if(bb.busyCells & destCell == destCell):
                         #stop loop
                         i = 99
                         #if enemy piece occupies dest cell
-                        if((enemyCells & destCell) == destCell):
+                        if(enemyCells & destCell == destCell):
                             #enemy piece. add capture move
                             #print "Capture Move: " + str(startPos) + "-" + str(destCell)
                             movesList.append(Move(startPos, destCell, Constants.QUEEN_CODE, Constants.MOVE_CAPTURE))
@@ -265,7 +251,7 @@ class Engine(object):
             if Constants.LEFT_UP in allMoves:
                 destCell = allMoves[Constants.LEFT_UP]
                 #if enemy piece occupies dest cell
-                if((enemyCells & destCell) == destCell):
+                if(enemyCells & destCell == destCell):
                     #enemy piece. add capture move
                     #print "Capture Move: " + str(startPos) + "-" + str(destCell)
                     movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_CAPTURE))
@@ -273,7 +259,7 @@ class Engine(object):
             if Constants.RIGHT_UP in allMoves:
                 destCell = allMoves[Constants.RIGHT_UP]
                 #if enemy piece occupies dest cell
-                if((enemyCells & destCell) == destCell):
+                if(enemyCells & destCell == destCell):
                     #enemy piece. add capture move
                     #print "Capture Move: " + str(startPos) + "-" + str(destCell)
                     movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_CAPTURE))
@@ -281,7 +267,7 @@ class Engine(object):
             if Constants.UP in allMoves:
                 destCell = allMoves[Constants.UP]
                 #if dest cell is empty
-                if((emptyCells & destCell) == destCell):
+                if(emptyCells & destCell == destCell):
                     #enemy piece. add capture move
                     #print "Capture Move: " + str(startPos) + "-" + str(destCell)
                     movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_QUIET))
@@ -290,7 +276,7 @@ class Engine(object):
                 destCellUp = allMoves[Constants.UP]
                 destCellDoubleUp = allMoves[Constants.DOUBLE_UP]
                 #if cell UP and cell DOUBLE_UP are empty
-                if((emptyCells & destCellUp) == destCellUp and (emptyCells & destCellDoubleUp) == destCellDoubleUp):
+                if(emptyCells & destCellUp == destCellUp and emptyCells & destCellDoubleUp == destCellDoubleUp):
                     #enemy piece. add capture move
                     #print "Capture Move: " + str(startPos) + "-" + str(destCellDoubleUp)
                     movesList.append(Move(startPos, destCellDoubleUp, Constants.PAWN_CODE, Constants.MOVE_QUIET))
