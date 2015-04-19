@@ -9,13 +9,13 @@ Created on Mar 28, 2015
 #TODO hash positions instead of array positions
 
 import Constants, time, Utils
-from model import QuadBitBoard, Engine
-from model.Move import Move, CAPTURE, QUIET
+from model import QuadBitBoard
+from model.Engine import Engine
 
 board = QuadBitBoard.QuadBitBoard()
 '''start = time.clock()
 for i in range(0,100000):
-    Engine.getAllPseudoLegalMoves(board, Constants.BLACK)
+    Engine.getAllPseudoLegalMoves(board, Constants.BLACK, True)
 end = time.clock()
 print end - start'''
 
@@ -29,7 +29,7 @@ board.setCellbyId(60, 'k')
 board.setCellbyId(56, 'r')
 board.setCellbyId(63, 'r')
 
-board.setCellbyId(40, 'N')
+board.setCellbyId(46, 'N')
 
 board.showBoard(2)
 

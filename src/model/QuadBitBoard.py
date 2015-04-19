@@ -8,6 +8,8 @@ from gmpy import mpz
 import Utils, Constants
 from model import Move
 
+EMPTY_BIT_BOARD = mpz(0)
+
 class QuadBitBoard(object):
     busyCells = mpz(0)
     
