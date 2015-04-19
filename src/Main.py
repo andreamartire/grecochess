@@ -25,7 +25,7 @@ board.setCellbyId(4, 'K')
 board.setCellbyId(0, 'R')
 board.setCellbyId(7, 'R')
 
-board.setCellbyId(27, 'n')
+board.setCellbyId(17, 'n')
 
 board.setCellbyId(60, 'k')
 board.setCellbyId(56, 'r')

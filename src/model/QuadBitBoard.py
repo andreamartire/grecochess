@@ -627,4 +627,31 @@ class QuadBitBoard(object):
             move.end = tmp
             #set end position
             self.setEndPosition(move)
+        if(move.type == Constants.MOVE_CAPTURE):
+            #capture move
+            #clean start/end positions
+            self.rqk    = self.rqk & cleanBB
+            self.pbq    = self.pbq & cleanBB
+            self.nbk    = self.nbk & cleanBB
         return
+    
+    def getPieceCode(self, pos):        
+        #rooks
+        if( self.rqk & ~self.pbq & ~self.nbk & pos == pos):
+            return Constants.ROOK_CODE
+        #knigths
+        if(~self.rqk & ~self.pbq &  self.nbk & pos == pos):
+            return Constants.KNIGHT_CODE
+        #bitshops
+        if( self.pbq &  self.nbk             & pos == pos):
+            return Constants.BITSHOP_CODE
+        #queens
+        if( self.rqk &  self.pbq             & pos == pos):
+            return Constants.QUEEN_CODE
+        #pawns
+        if(~self.rqk &  self.pbq & ~self.nbk & pos == pos):
+            return Constants.PAWN_CODE
+        #kings
+        if( self.rqk &              self.nbk & pos == pos):
+            return Constants.KING_CODE
+        return Constants.NO_PIECE_CODE

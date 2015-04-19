@@ -12,15 +12,19 @@ class Move(object):
     start = -1
     end = -1
     pieceStart = NO_PIECE_CODE
+    pieceEnd = NO_PIECE_CODE
     
-    def __init__(self, start, end, pieceStart, moveType):
+    def __init__(self, start, end, pieceStart, moveType, pieceEnd=NO_PIECE_CODE):
         self.start = start
         self.end = end
         self.pieceStart = pieceStart
         self.type = typeMap[moveType]
+        self.pieceEnd = pieceEnd
         return
     
     def __str__(self):
+        if(self.pieceEnd != NO_PIECE_CODE):
+            return "(" + str(Utils.getPieceByCode(self.pieceStart)) + "," + str(Utils.getPositionByCellBitArray(self.start)) + "," + str(Utils.getPositionByCellBitArray(self.end)) + "," + bin(self.type) + "," + str(Utils.getPieceByCode(self.pieceEnd)) + ")"
         return "(" + str(Utils.getPieceByCode(self.pieceStart)) + "," + str(Utils.getPositionByCellBitArray(self.start)) + "," + str(Utils.getPositionByCellBitArray(self.end)) + "," + bin(self.type) + ")"
 
 def createTypeMap():

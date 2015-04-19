@@ -65,7 +65,7 @@ class Engine(object):
                     if(enemyCells & destCell == destCell):
                         #enemy piece. add capture move
                         #print "Capture Move: " + str(startPos) + "-" + str(destCell)
-                        movesList.append(Move(startPos, destCell, Constants.KNIGHT_CODE, Constants.MOVE_CAPTURE))
+                        movesList.append(Move(startPos, destCell, Constants.KNIGHT_CODE, Constants.MOVE_CAPTURE, bb.getPieceCode(destCell)))
                 else:
                     #add quiet move
                     #print "Quiet Move: " + str(startPos) + "-" + str(destCell)
@@ -88,7 +88,7 @@ class Engine(object):
                     if(enemyCells & destCell == destCell):
                         #enemy piece. add capture move
                         #print "Capture Move: " + str(startPos) + "-" + str(destCell)
-                        movesList.append(Move(startPos, destCell, Constants.KING_CODE, Constants.MOVE_CAPTURE))
+                        movesList.append(Move(startPos, destCell, Constants.KING_CODE, Constants.MOVE_CAPTURE, bb.getPieceCode(destCell)))
                 else:
                     #add quiet move
                     #print "Quiet Move: " + str(startPos) + "-" + str(destCell)
@@ -178,7 +178,7 @@ class Engine(object):
                         if(enemyCells & destCell == destCell):
                             #enemy piece. add capture move
                             #print "Capture Move: " + str(startPos) + "-" + str(destCell)
-                            movesList.append(Move(startPos, destCell, Constants.BITSHOP_CODE, Constants.MOVE_CAPTURE))
+                            movesList.append(Move(startPos, destCell, Constants.BITSHOP_CODE, Constants.MOVE_CAPTURE, bb.getPieceCode(destCell)))
                     else:
                         #add quiet move
                         #print "Quiet Move: " + str(startPos) + "-" + str(destCell)
@@ -205,7 +205,7 @@ class Engine(object):
                         if(enemyCells & destCell == destCell):
                             #enemy piece. add capture move
                             #print "Capture Move: " + str(startPos) + "-" + str(destCell)
-                            movesList.append(Move(startPos, destCell, Constants.ROOK_CODE, Constants.MOVE_CAPTURE))
+                            movesList.append(Move(startPos, destCell, Constants.ROOK_CODE, Constants.MOVE_CAPTURE, bb.getPieceCode(destCell)))
                     else:
                         #add quiet move
                         #print "Quiet Move: " + str(startPos) + "-" + str(destCell)
@@ -232,7 +232,7 @@ class Engine(object):
                         if(enemyCells & destCell == destCell):
                             #enemy piece. add capture move
                             #print "Capture Move: " + str(startPos) + "-" + str(destCell)
-                            movesList.append(Move(startPos, destCell, Constants.QUEEN_CODE, Constants.MOVE_CAPTURE))
+                            movesList.append(Move(startPos, destCell, Constants.QUEEN_CODE, Constants.MOVE_CAPTURE, bb.getPieceCode(destCell)))
                     else:
                         #add quiet move
                         #print "Quiet Move: " + str(startPos) + "-" + str(destCell)
@@ -254,7 +254,7 @@ class Engine(object):
                 if(enemyCells & destCell == destCell):
                     #enemy piece. add capture move
                     #print "Capture Move: " + str(startPos) + "-" + str(destCell)
-                    movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_CAPTURE))
+                    movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_CAPTURE, bb.getPieceCode(destCell)))
             #move right up
             if Constants.RIGHT_UP in allMoves:
                 destCell = allMoves[Constants.RIGHT_UP]
@@ -262,7 +262,7 @@ class Engine(object):
                 if(enemyCells & destCell == destCell):
                     #enemy piece. add capture move
                     #print "Capture Move: " + str(startPos) + "-" + str(destCell)
-                    movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_CAPTURE))
+                    movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_CAPTURE, bb.getPieceCode(destCell)))
             #move up. 1
             if Constants.UP in allMoves:
                 destCell = allMoves[Constants.UP]
