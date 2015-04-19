@@ -5,7 +5,7 @@ Created on 31/mar/2015
 '''
 from gmpy import mpz
 import Utils
-from Constants import PAWN_CODE, NO_PIECE_CODE
+from Constants import NO_PIECE_CODE
 
 class Move(object):
     type = mpz(0)
@@ -22,22 +22,6 @@ class Move(object):
     
     def __str__(self):
         return "(" + str(Utils.getPieceByCode(self.pieceStart)) + "," + str(Utils.getPositionByCellBitArray(self.start)) + "," + str(Utils.getPositionByCellBitArray(self.end)) + "," + bin(self.type) + ")"
-    
-#move types
-QUIET = 0
-DOUBLE_PAWN = 1
-KING_CASTLE = 2
-QUEEN_CASTLE = 3
-CAPTURE = 4
-EP_CAPTURE = 5
-KNIGHT_PROMOTION = 8
-BITSHOP_PROMOTION = 9
-ROOK_PROMOTION = 10
-QUEEN_PROMOTION = 11
-KNIGHT_PROMO_CAPTURE = 12
-BITSHOP_PROMO_CAPTURE = 13
-ROOK_PROMO_CAPTURE = 14
-QUEEN_PROMO_CAPTURE = 15
 
 def createTypeMap():
     _typeMap = {}

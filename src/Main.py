@@ -22,16 +22,13 @@ print end - start'''
 board.clean()
 
 board.setCellbyId(4, 'K')
-board.setCellbyId(7, 'R')
 board.setCellbyId(0, 'R')
 
 board.setCellbyId(60, 'k')
 board.setCellbyId(56, 'r')
 board.setCellbyId(63, 'r')
 
-board.setCellbyId(46, 'N')
-
 board.showBoard(2)
 
-moves = Engine.getAllPseudoLegalMoves(board, Constants.BLACK, True)
+moves = Engine.getAllPseudoLegalMoves(board, Constants.WHITE, True)
 
