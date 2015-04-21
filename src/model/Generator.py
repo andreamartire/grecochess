@@ -12,7 +12,7 @@ from model.Move import Move
 import Utils
 from model import Castle
 
-class Engine(object):
+class Generator(object):
     
     @staticmethod
     def getAllPseudoLegalMoves(bb, color, checkCastles):
@@ -41,12 +41,12 @@ class Engine(object):
             queenIndexes = bb.blackQueenIndexes
             pawnIndexes = bb.blackPawnsIndexes
         
-        knightMoves = Engine.getKnightMoves(bb, enemyCells, knightIndexes)
-        bitshopMoves = Engine.getBitshopMoves(bb, enemyCells, bitshopIndexes)
-        rookMoves = Engine.getRookMoves(bb, enemyCells, rookIndexes)
-        queenMoves = Engine.getQueenMoves(bb, enemyCells, queenIndexes)
-        pawnMoves = Engine.getPawnMoves(bb, enemyCells, pawnIndexes, color)
-        kingMoves = Engine.getKingMoves(bb, enemyCells, kingIndex, color, checkCastles)
+        knightMoves = Generator.getKnightMoves(bb, enemyCells, knightIndexes)
+        bitshopMoves = Generator.getBitshopMoves(bb, enemyCells, bitshopIndexes)
+        rookMoves = Generator.getRookMoves(bb, enemyCells, rookIndexes)
+        queenMoves = Generator.getQueenMoves(bb, enemyCells, queenIndexes)
+        pawnMoves = Generator.getPawnMoves(bb, enemyCells, pawnIndexes, color)
+        kingMoves = Generator.getKingMoves(bb, enemyCells, kingIndex, color, checkCastles)
         
         return knightMoves + kingMoves + bitshopMoves + rookMoves + queenMoves + pawnMoves
     
@@ -104,27 +104,27 @@ class Engine(object):
                     if(bb.rqk & ~bb.pbq & ~bb.nbk & Utils.H1 == Utils.H1 and Castle.spacesWhiteKingCastle & bb.emptyCells == Castle.spacesWhiteKingCastle):
                         #king and rook in correct position, spaces free
                         #get all enemy moves
-                        enemyMoves = Engine.getAllPseudoLegalMoves(bb, Constants.BLACK, False)
+                        enemyMoves = Generator.getAllPseudoLegalMoves(bb, Constants.BLACK, False)
                         #check if king is attacked king and free spaces
                         enemyAttacks = EMPTY_BIT_BOARD
                         for move in enemyMoves:
                             enemyAttacks |= move.end
                         #if king and white spaces aren't under attack
                         if(Castle.safeCellsWhiteKingCastle & enemyAttacks == EMPTY_BIT_BOARD):
-                            print "King Castle: " + str(4) + "-" + str(6)
+                            #print "King Castle: " + str(4) + "-" + str(6)
                             movesList.append(Move(Utils.E1, Utils.getCellBitArrayById(6), Constants.KING_CODE, Constants.MOVE_KING_CASTLE))
                     #check rook position and free spaces between king and rook
                     if(bb.rqk & ~bb.pbq & ~bb.nbk & Utils.A1 == Utils.A1 and Castle.spacesWhiteQueenCastle & bb.emptyCells == Castle.spacesWhiteQueenCastle):
                         #king and rook in correct position, spaces free
                         #get all enemy moves
-                        enemyMoves = Engine.getAllPseudoLegalMoves(bb, Constants.BLACK, False)
+                        enemyMoves = Generator.getAllPseudoLegalMoves(bb, Constants.BLACK, False)
                         #check if king is attacked king and free spaces
                         enemyAttacks = EMPTY_BIT_BOARD
                         for move in enemyMoves:
                             enemyAttacks |= move.end
                         #if king and white spaces aren't under attack
                         if(Castle.safeCellsWhiteQueenCastle & enemyAttacks == EMPTY_BIT_BOARD):
-                            print "Queen Castle: " + str(4) + "-" + str(2)
+                            #print "Queen Castle: " + str(4) + "-" + str(2)
                             movesList.append(Move(Utils.E1, Utils.getCellBitArrayById(2), Constants.KING_CODE, Constants.MOVE_QUEEN_CASTLE))
             elif(color == Constants.BLACK and bb.blackCastleEnabled == 1):
                 #check king position
@@ -133,27 +133,27 @@ class Engine(object):
                     if(bb.rqk & ~bb.pbq & ~bb.nbk & Utils.H8 == Utils.H8 and Castle.spacesBlackKingCastle & bb.emptyCells == Castle.spacesBlackKingCastle):
                         #king and rook in correct position, spaces free
                         #get all enemy moves
-                        enemyMoves = Engine.getAllPseudoLegalMoves(bb, Constants.WHITE, False)
+                        enemyMoves = Generator.getAllPseudoLegalMoves(bb, Constants.WHITE, False)
                         #check if king is attacked king and free spaces
                         enemyAttacks = EMPTY_BIT_BOARD
                         for move in enemyMoves:
                             enemyAttacks |= move.end
                         #if king and white spaces aren't under attack
                         if(Castle.safeCellsBlackKingCastle & enemyAttacks == EMPTY_BIT_BOARD):
-                            print "King Castle: " + str(60) + "-" + str(62)
+                            #print "King Castle: " + str(60) + "-" + str(62)
                             movesList.append(Move(Utils.E8, Utils.getCellBitArrayById(62), Constants.KING_CODE, Constants.MOVE_KING_CASTLE))
                     #check rook position and free spaces between king and rook
                     if(bb.rqk & ~bb.pbq & ~bb.nbk & Utils.A8 == Utils.A8 and Castle.spacesBlackQueenCastle & bb.emptyCells == Castle.spacesBlackQueenCastle):
                         #king and rook in correct position, spaces free
                         #get all enemy moves
-                        enemyMoves = Engine.getAllPseudoLegalMoves(bb, Constants.WHITE, False)
+                        enemyMoves = Generator.getAllPseudoLegalMoves(bb, Constants.WHITE, False)
                         #check if king is attacked king and free spaces
                         enemyAttacks = EMPTY_BIT_BOARD
                         for move in enemyMoves:
                             enemyAttacks |= move.end
                         #if king and white spaces aren't under attack
                         if(Castle.safeCellsBlackQueenCastle & enemyAttacks == EMPTY_BIT_BOARD):
-                            print "Queen Castle: " + str(60) + "-" + str(58)
+                            #print "Queen Castle: " + str(60) + "-" + str(58)
                             movesList.append(Move(Utils.E8, Utils.getCellBitArrayById(58), Constants.KING_CODE, Constants.MOVE_QUEEN_CASTLE))
 
                 
