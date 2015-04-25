@@ -782,3 +782,9 @@ class QuadBitBoard(object):
         if( self.rqk &              self.nbk & pos == pos):
             return Constants.KING_CODE
         return Constants.NO_PIECE_CODE
+        
+    def cellNotAbandoned(self, pos):      
+        for i in range(self.moveSize):
+            if(self.moveHistory[i].start == pos):
+                return False
+        return True

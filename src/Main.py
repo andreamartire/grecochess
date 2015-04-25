@@ -51,16 +51,26 @@ board.setCellbyId(55, 'p')
 
 board.showBoard(2)
 
-moves = Generator.getAllPseudoLegalMoves(board, Constants.WHITE, True)
+moves = Generator.getAllPseudoLegalMoves(board, Constants.BLACK, True)
 
 print "\nMoves:"
 for move in moves:
     print move
 
-board.executeMove(moves[3])
+board.executeMove(moves[4])
 board.showBoard(3)
 
-board.rollbackLastMove()
+moves = Generator.getAllPseudoLegalMoves(board, Constants.BLACK, True)
 
+print "\nMoves:"
+for move in moves:
+    print move
+    
+board.executeMove(moves[7])
 board.showBoard(3)
 
+moves = Generator.getAllPseudoLegalMoves(board, Constants.BLACK, True)
+
+print "\nMoves:"
+for move in moves:
+    print move

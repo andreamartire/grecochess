@@ -110,7 +110,8 @@ class Generator(object):
                         for move in enemyMoves:
                             enemyAttacks |= move.end
                         #if king and white spaces aren't under attack
-                        if(Castle.safeCellsWhiteKingCastle & enemyAttacks == EMPTY_BIT_BOARD):
+                        if(Castle.safeCellsWhiteKingCastle & enemyAttacks == EMPTY_BIT_BOARD and
+                                bb.cellNotAbandoned(Utils.E1) and bb.cellNotAbandoned(Utils.H1)):
                             #print "King Castle: " + str(4) + "-" + str(6)
                             movesList.append(Move(Utils.E1, Utils.getCellBitArrayById(6), Constants.KING_CODE, Constants.MOVE_KING_CASTLE))
                     #check rook position and free spaces between king and rook
@@ -123,10 +124,11 @@ class Generator(object):
                         for move in enemyMoves:
                             enemyAttacks |= move.end
                         #if king and white spaces aren't under attack
-                        if(Castle.safeCellsWhiteQueenCastle & enemyAttacks == EMPTY_BIT_BOARD):
+                        if(Castle.safeCellsWhiteQueenCastle & enemyAttacks == EMPTY_BIT_BOARD and
+                                bb.cellNotAbandoned(Utils.E1) and bb.cellNotAbandoned(Utils.A1)):
                             #print "Queen Castle: " + str(4) + "-" + str(2)
                             movesList.append(Move(Utils.E1, Utils.getCellBitArrayById(2), Constants.KING_CODE, Constants.MOVE_QUEEN_CASTLE))
-            elif(color == Constants.BLACK and bb.blackCastleEnabled == 0):
+            elif(color == Constants.BLACK and bb.blackCastleExecuted == 0):
                 #check king position
                 if(bb.rqk & bb.nbk & Utils.E8 == Utils.E8):
                     #check rook position and free spaces between king and rook
@@ -139,7 +141,8 @@ class Generator(object):
                         for move in enemyMoves:
                             enemyAttacks |= move.end
                         #if king and white spaces aren't under attack
-                        if(Castle.safeCellsBlackKingCastle & enemyAttacks == EMPTY_BIT_BOARD):
+                        if(Castle.safeCellsBlackKingCastle & enemyAttacks == EMPTY_BIT_BOARD and
+                                bb.cellNotAbandoned(Utils.E8) and bb.cellNotAbandoned(Utils.H8)):
                             #print "King Castle: " + str(60) + "-" + str(62)
                             movesList.append(Move(Utils.E8, Utils.getCellBitArrayById(62), Constants.KING_CODE, Constants.MOVE_KING_CASTLE))
                     #check rook position and free spaces between king and rook
@@ -152,7 +155,8 @@ class Generator(object):
                         for move in enemyMoves:
                             enemyAttacks |= move.end
                         #if king and white spaces aren't under attack
-                        if(Castle.safeCellsBlackQueenCastle & enemyAttacks == EMPTY_BIT_BOARD):
+                        if(Castle.safeCellsBlackQueenCastle & enemyAttacks == EMPTY_BIT_BOARD and
+                                bb.cellNotAbandoned(Utils.E8) and bb.cellNotAbandoned(Utils.A8)):
                             #print "Queen Castle: " + str(60) + "-" + str(58)
                             movesList.append(Move(Utils.E8, Utils.getCellBitArrayById(58), Constants.KING_CODE, Constants.MOVE_QUEEN_CASTLE))
 
