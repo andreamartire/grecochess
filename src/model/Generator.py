@@ -257,24 +257,48 @@ class Generator(object):
                 #if enemy piece occupies dest cell
                 if(enemyCells & destCell == destCell):
                     #enemy piece. add capture move
-                    #print "Capture Move: " + str(startPos) + "-" + str(destCell)
-                    movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_CAPTURE, bb.getPieceCode(destCell)))
+                    if(destCell & Utils.PROMOTION_ROWS == destCell):
+                        #capture promotion
+                        print "Promotion Capture Move: " + str(startPos) + "-" + str(destCell)
+                        movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_QUEEN_PROMO_CAPTURE, bb.getPieceCode(destCell)))
+                        movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_ROOK_PROMO_CAPTURE, bb.getPieceCode(destCell)))
+                        movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_BITSHOP_PROMO_CAPTURE, bb.getPieceCode(destCell)))
+                        movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_KNIGHT_PROMO_CAPTURE, bb.getPieceCode(destCell)))
+                    else:    
+                        #print "Capture Move: " + str(startPos) + "-" + str(destCell)
+                        movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_CAPTURE, bb.getPieceCode(destCell)))
             #move right up
             if Constants.RIGHT_UP in allMoves:
                 destCell = allMoves[Constants.RIGHT_UP]
                 #if enemy piece occupies dest cell
                 if(enemyCells & destCell == destCell):
                     #enemy piece. add capture move
-                    #print "Capture Move: " + str(startPos) + "-" + str(destCell)
-                    movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_CAPTURE, bb.getPieceCode(destCell)))
+                    if(destCell & Utils.PROMOTION_ROWS == destCell):
+                        #capture promotion
+                        print "Promotion Capture Move: " + str(startPos) + "-" + str(destCell)
+                        movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_QUEEN_PROMO_CAPTURE, bb.getPieceCode(destCell)))
+                        movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_ROOK_PROMO_CAPTURE, bb.getPieceCode(destCell)))
+                        movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_BITSHOP_PROMO_CAPTURE, bb.getPieceCode(destCell)))
+                        movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_KNIGHT_PROMO_CAPTURE, bb.getPieceCode(destCell)))
+                    else:    
+                        #print "Capture Move: " + str(startPos) + "-" + str(destCell)
+                        movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_CAPTURE, bb.getPieceCode(destCell)))
             #move up. 1
             if Constants.UP in allMoves:
                 destCell = allMoves[Constants.UP]
                 #if dest cell is empty
                 if(emptyCells & destCell == destCell):
-                    #enemy piece. add capture move
-                    #print "Capture Move: " + str(startPos) + "-" + str(destCell)
-                    movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_QUIET))
+                    #enemy piece. add quiet move
+                    if(destCell & Utils.PROMOTION_ROWS == destCell):
+                        #promotion
+                        print "Promotion Move: " + str(startPos) + "-" + str(destCell)
+                        movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_QUEEN_PROMOTION, bb.getPieceCode(destCell)))
+                        movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_ROOK_PROMOTION, bb.getPieceCode(destCell)))
+                        movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_KNIGHT_PROMOTION, bb.getPieceCode(destCell)))
+                        movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_BITSHOP_PROMOTION, bb.getPieceCode(destCell)))
+                    else:    
+                        #print "Capture Move: " + str(startPos) + "-" + str(destCell)
+                        movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_QUIET))
             #move up. 2
             if Constants.DOUBLE_UP in allMoves:
                 destCellUp = allMoves[Constants.UP]
