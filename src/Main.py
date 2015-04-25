@@ -26,13 +26,19 @@ print end - start'''
 board.clean()
 
 board.setCellbyId(55, 'P')
-board.setCellbyId(62, 'k')
 
-board.showBoard(2)
+board.showBoard(3)
 
 moves = Generator.getAllPseudoLegalMoves(board, Constants.WHITE, True)
 
 print "\nMoves:"
 for move in moves:
     print move
+    
+board.executeMove(moves[3])
 
+board.showBoard(3)
+
+board.rollbackLastMove()
+
+board.showBoard(3)

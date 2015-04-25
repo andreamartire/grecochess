@@ -259,7 +259,7 @@ class Generator(object):
                     #enemy piece. add capture move
                     if(destCell & Utils.PROMOTION_ROWS == destCell):
                         #capture promotion
-                        print "Promotion Capture Move: " + str(startPos) + "-" + str(destCell)
+                        #print "Promotion Capture Move: " + str(startPos) + "-" + str(destCell)
                         movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_QUEEN_PROMO_CAPTURE, bb.getPieceCode(destCell)))
                         movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_ROOK_PROMO_CAPTURE, bb.getPieceCode(destCell)))
                         movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_BITSHOP_PROMO_CAPTURE, bb.getPieceCode(destCell)))
@@ -275,7 +275,7 @@ class Generator(object):
                     #enemy piece. add capture move
                     if(destCell & Utils.PROMOTION_ROWS == destCell):
                         #capture promotion
-                        print "Promotion Capture Move: " + str(startPos) + "-" + str(destCell)
+                        #print "Promotion Capture Move: " + str(startPos) + "-" + str(destCell)
                         movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_QUEEN_PROMO_CAPTURE, bb.getPieceCode(destCell)))
                         movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_ROOK_PROMO_CAPTURE, bb.getPieceCode(destCell)))
                         movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_BITSHOP_PROMO_CAPTURE, bb.getPieceCode(destCell)))
@@ -291,7 +291,7 @@ class Generator(object):
                     #enemy piece. add quiet move
                     if(destCell & Utils.PROMOTION_ROWS == destCell):
                         #promotion
-                        print "Promotion Move: " + str(startPos) + "-" + str(destCell)
+                        #print "Promotion Move: " + str(startPos) + "-" + str(destCell)
                         movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_QUEEN_PROMOTION, bb.getPieceCode(destCell)))
                         movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_ROOK_PROMOTION, bb.getPieceCode(destCell)))
                         movesList.append(Move(startPos, destCell, Constants.PAWN_CODE, Constants.MOVE_KNIGHT_PROMOTION, bb.getPieceCode(destCell)))

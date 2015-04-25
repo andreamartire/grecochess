@@ -614,6 +614,50 @@ class QuadBitBoard(object):
                 #change rook position
                 self.blackRooksIndexes.pop(Utils.A8, None) 
                 self.blackRooksIndexes[Utils.D8] = 1 
+        elif(move.type == Constants.MOVE_QUEEN_PROMOTION):
+            #queen promotion            
+            if(self.black & move.start == move.start):
+                self.black = self.black ^ (move.start | move.end)
+                self.blackPawnsIndexes.pop(move.start, None)
+                self.blackQueenIndexes[move.end] = 1
+            else:
+                self.whitePawnsIndexes.pop(move.start, None)
+                self.whiteQueenIndexes[move.end] = 1
+            self.rqk    = self.rqk | move.end
+            self.pbq    = self.pbq ^ (move.start | move.end)
+        elif(move.type == Constants.MOVE_ROOK_PROMOTION):
+            #rook promotion            
+            if(self.black & move.start == move.start):
+                self.black = self.black ^ (move.start | move.end)
+                self.blackPawnsIndexes.pop(move.start, None)
+                self.blackRooksIndexes[move.end] = 1
+            else:
+                self.whitePawnsIndexes.pop(move.start, None)
+                self.whiteRooksIndexes[move.end] = 1
+            self.rqk    = self.rqk | move.end
+            self.pbq    = self.pbq ^ move.start
+        elif(move.type == Constants.MOVE_BITSHOP_PROMOTION):
+            #bitshop promotion            
+            if(self.black & move.start == move.start):
+                self.black = self.black ^ (move.start | move.end)
+                self.blackPawnsIndexes.pop(move.start, None)
+                self.blackBitshopsIndexes[move.end] = 1
+            else:
+                self.whitePawnsIndexes.pop(move.start, None)
+                self.whiteBitshopsIndexes[move.end] = 1
+            self.pbq    = self.pbq ^ (move.start | move.end)
+            self.nbk    = self.nbk ^ move.end
+        elif(move.type == Constants.MOVE_KNIGHT_PROMOTION):
+            #knight promotion            
+            if(self.black & move.start == move.start):
+                self.black = self.black ^ (move.start | move.end)
+                self.blackPawnsIndexes.pop(move.start, None)
+                self.blackKnightIndexes[move.end] = 1
+            else:
+                self.whitePawnsIndexes.pop(move.start, None)
+                self.whiteKnightIndexes[move.end] = 1
+            self.pbq    = self.pbq ^ move.start
+            self.nbk    = self.nbk | move.end
         return
     
     def rollbackLastMove(self):
@@ -759,7 +803,50 @@ class QuadBitBoard(object):
                 #change rook position
                 self.blackRooksIndexes.pop(Utils.D8, None) 
                 self.blackRooksIndexes[Utils.A8] = 1 
-                
+        elif(move.type == Constants.MOVE_QUEEN_PROMOTION):
+            #queen promotion            
+            if(self.black & move.end == move.end):
+                self.black = self.black ^ (move.start | move.end)
+                self.blackQueenIndexes.pop(move.end, None)
+                self.blackPawnsIndexes[move.start] = 1
+            else:
+                self.whiteQueenIndexes.pop(move.end, None)
+                self.whitePawnsIndexes[move.start] = 1
+            self.rqk    = self.rqk ^ move.end 
+            self.pbq    = self.pbq ^ (move.start | move.end)
+        elif(move.type == Constants.MOVE_ROOK_PROMOTION):
+            #rook promotion
+            if(self.black & move.end == move.end):
+                self.black = self.black ^ (move.start | move.end)
+                self.blackRooksIndexes.pop(move.end, None)
+                self.blackPawnsIndexes[move.start] = 1
+            else:
+                self.whiteRooksIndexes.pop(move.end, None)
+                self.whitePawnsIndexes[move.start] = 1
+            self.rqk    = self.rqk ^ move.end 
+            self.pbq    = self.pbq ^ move.start
+        elif(move.type == Constants.MOVE_KNIGHT_PROMOTION):
+            #knight promotion
+            if(self.black & move.end == move.end):
+                self.black = self.black ^ (move.start | move.end)
+                self.blackKnightIndexes.pop(move.end, None)
+                self.blackPawnsIndexes[move.start] = 1
+            else:
+                self.whiteKnightIndexes.pop(move.end, None)
+                self.whitePawnsIndexes[move.start] = 1
+            self.nbk    = self.nbk ^ move.end 
+            self.pbq    = self.pbq ^ move.start
+        elif(move.type == Constants.MOVE_BITSHOP_PROMOTION):
+            #bitshop promotion
+            if(self.black & move.end == move.end):
+                self.black = self.black ^ (move.start | move.end)
+                self.blackBitshopsIndexes.pop(move.end, None)
+                self.blackPawnsIndexes[move.start] = 1
+            else:
+                self.whiteBitshopsIndexes.pop(move.end, None)
+                self.whitePawnsIndexes[move.start] = 1
+            self.nbk    = self.nbk ^ move.end 
+            self.pbq    = self.pbq ^ (move.start | move.end)
         return
     
     def getPieceCode(self, pos):        
