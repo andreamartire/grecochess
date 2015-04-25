@@ -57,7 +57,7 @@ print "\nMoves:"
 for move in moves:
     print move
 
-board.executeMove(moves[2])
+board.executeMove(moves[3])
 board.showBoard(3)
 
 board.rollbackLastMove()

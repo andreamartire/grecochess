@@ -97,7 +97,7 @@ class Generator(object):
         #check if castle generation is enabled
         if(checkCastles):
             #check castle
-            if(color == Constants.WHITE and bb.whiteCastleEnabled == 1):
+            if(color == Constants.WHITE and bb.whiteCastleExecuted == 0):
                 #check king position
                 if(bb.rqk & bb.nbk & Utils.E1 == Utils.E1):
                     #check rook position and free spaces between king and rook
@@ -126,7 +126,7 @@ class Generator(object):
                         if(Castle.safeCellsWhiteQueenCastle & enemyAttacks == EMPTY_BIT_BOARD):
                             #print "Queen Castle: " + str(4) + "-" + str(2)
                             movesList.append(Move(Utils.E1, Utils.getCellBitArrayById(2), Constants.KING_CODE, Constants.MOVE_QUEEN_CASTLE))
-            elif(color == Constants.BLACK and bb.blackCastleEnabled == 1):
+            elif(color == Constants.BLACK and bb.blackCastleEnabled == 0):
                 #check king position
                 if(bb.rqk & bb.nbk & Utils.E8 == Utils.E8):
                     #check rook position and free spaces between king and rook
