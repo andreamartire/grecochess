@@ -6,7 +6,7 @@ Created on Mar 28, 2015
 
 from gmpy import mpz
 import Utils, Constants
-from model import Move, Castle
+from model import Move, Castle, EnPassant
 
 EMPTY_BIT_BOARD = mpz(0)
 
@@ -515,6 +515,8 @@ class QuadBitBoard(object):
                 self.blackKingIndex.pop(move.end, None) 
         else:
             #detect which white piece
+            Utils.showBitArray(move.start)
+            Utils.showBitArray(move.end)
             #Pawn
             if(self.pbq & ~self.nbk & ~self.rqk & move.end == move.end):
                 #remove white pawn
@@ -564,7 +566,12 @@ class QuadBitBoard(object):
             self.removeCapturedPiece(move)
             #execute quiet move
             self.executeQuietMove(move)
-            
+        
+        elif(move.type == Constants.MOVE_DOUBLE_PAWN):
+            #double pawn move 
+            #execute quiet move
+            self.executeQuietMove(move)
+                
         elif(move.type == Constants.MOVE_KING_CASTLE):
             if(move.start == Utils.E1):
                 self.whiteCastleExecuted = 1
@@ -612,8 +619,8 @@ class QuadBitBoard(object):
                 self.blackKingIndex.pop(Utils.E8, None) 
                 self.blackKingIndex[Utils.C8] = 1 
                 #change rook position
-                self.blackRooksIndexes.pop(Utils.A8, None) 
-                self.blackRooksIndexes[Utils.D8] = 1 
+                self.blackRooksIndexes.pop(Utils.A8, None)
+                self.blackRooksIndexes[Utils.D8] = 1      
         elif(move.type == Constants.MOVE_QUEEN_PROMOTION):
             #queen promotion            
             if(self.black & move.start == move.start):
@@ -657,7 +664,16 @@ class QuadBitBoard(object):
                 self.whitePawnsIndexes.pop(move.start, None)
                 self.whiteKnightIndexes[move.end] = 1
             self.pbq    = self.pbq ^ move.start
-            self.nbk    = self.nbk | move.end
+            self.nbk    = self.nbk | move.end          
+        
+        elif(move.type == Constants.MOVE_EP_CAPTURE):
+            #en passant move 
+            tmpMove = Move.Move(move.start, EnPassant.getCapturingCellByEndPosition(move.end), Constants.PAWN_CODE, move.type)
+            #remove captured piece
+            self.removeCapturedPiece(tmpMove)
+            #execute quiet move
+            self.executeQuietMove(move)
+
         return
     
     def rollbackLastMove(self):
@@ -755,6 +771,14 @@ class QuadBitBoard(object):
                     self.rqk    = self.rqk | move.start
                     self.nbk    = self.nbk | move.start
                     self.blackKingIndex[move.start] = 1
+        elif(move.type == Constants.MOVE_DOUBLE_PAWN):
+            #double pawn move
+            #swap positions for execute reverse quiet move
+            tmp = move.start
+            move.start = move.end
+            move.end = tmp
+            #set end position
+            self.executeQuietMove(move)
         elif(move.type == Constants.MOVE_KING_CASTLE):
             if(move.start == Utils.E1):
                 self.whiteCastleExecuted = 0
@@ -847,6 +871,7 @@ class QuadBitBoard(object):
                 self.whitePawnsIndexes[move.start] = 1
             self.nbk    = self.nbk ^ move.end 
             self.pbq    = self.pbq ^ (move.start | move.end)
+            
         return
     
     def getPieceCode(self, pos):        

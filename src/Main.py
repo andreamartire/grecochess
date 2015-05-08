@@ -4,9 +4,7 @@ Created on Mar 28, 2015
 @author: Andrea Martire
 '''
 
-#TODO add castles
-#TODO add en passant
-#TODO hash positions instead of array positions
+#TODO add en passant rollback
 
 import Constants, time, Utils
 from model import QuadBitBoard
@@ -25,8 +23,25 @@ print end - start'''
 
 board.clean()
 
-board.setCellbyId(55, 'P')
+board.setCellbyId(52, 'p')
+board.setCellbyId(54, 'p')
+board.setCellbyId(37, 'P')
+board.setCellbyId(35, 'P')
 
+'''board.setCellbyId(25, 'p')
+board.setCellbyId(27, 'p')
+board.setCellbyId(10, 'P')
+board.setCellbyId(12, 'P')'''
+
+board.showBoard(3)
+
+moves = Generator.getAllPseudoLegalMoves(board, Constants.BLACK, True)
+
+print "\nMoves:"
+for move in moves:
+    print move
+
+board.executeMove(moves[1])
 board.showBoard(3)
 
 moves = Generator.getAllPseudoLegalMoves(board, Constants.WHITE, True)
@@ -36,7 +51,6 @@ for move in moves:
     print move
     
 board.executeMove(moves[3])
-
 board.showBoard(3)
 
 board.rollbackLastMove()
