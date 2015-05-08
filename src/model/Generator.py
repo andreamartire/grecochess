@@ -10,7 +10,7 @@ from model.QuadBitBoard import EMPTY_BIT_BOARD
 import Constants
 from model.Move import Move
 import Utils
-from model import Castle
+from model import Castle, EnPassant
 
 class Generator(object):
     
@@ -279,5 +279,19 @@ class Generator(object):
                 if(emptyCells & destCellUp == destCellUp and emptyCells & destCellDoubleUp == destCellDoubleUp):
                     #enemy piece. add capture move
                     #print "Capture Move: " + str(startPos) + "-" + str(destCellDoubleUp)
-                    movesList.append(Move(startPos, destCellDoubleUp, Constants.PAWN_CODE, Constants.MOVE_QUIET))
+                    movesList.append(Move(startPos, destCellDoubleUp, Constants.PAWN_CODE, Constants.MOVE_DOUBLE_PAWN))
+            #en passant
+            if((color == Constants.WHITE and startPos & EnPassant.whiteEnPassantRow == startPos) or
+                (color == Constants.BLACK and startPos & EnPassant.blackEnPassantRow == startPos)):
+                if(bb.moveSize > 0):
+                    lastMove = bb.moveHistory[bb.moveSize-1]
+                    #todo insert check on lastmove color?
+                    if(lastMove.type == Constants.MOVE_DOUBLE_PAWN):
+                        leftEpBlock = EnPassant.getLeftEnPassantBlock(startPos)
+                        if(lastMove.end & leftEpBlock == lastMove.end):
+                            movesList.append(Move(startPos, lastMove.end ^ leftEpBlock, Constants.PAWN_CODE, Constants.MOVE_EP_CAPTURE))
+                        else:
+                            rightEpBlock = EnPassant.getRightEnPassantBlock(startPos)
+                            if(lastMove.end & rightEpBlock == lastMove.end):
+                                movesList.append(Move(startPos, lastMove.end ^ rightEpBlock, Constants.PAWN_CODE, Constants.MOVE_EP_CAPTURE))
         return movesList

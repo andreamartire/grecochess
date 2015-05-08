@@ -49,7 +49,6 @@ def calculateWhitePawnMoves():
 #Precalculate black pawn's pseudolegal moves for each cell
 def calculateBlackPawnMoves():
     
-    
     for cellIndex in range(0,64):
         row = Utils.getRow(cellIndex)
         col = Utils.getColumn(cellIndex)
