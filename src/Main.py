@@ -4,9 +4,7 @@ Created on Mar 28, 2015
 @author: Andrea Martire
 '''
 
-#TODO add castles
-#TODO add en passant
-#TODO hash positions instead of array positions
+#TODO add en passant rollback
 
 import Constants, time, Utils
 from model import QuadBitBoard
@@ -54,4 +52,3 @@ for move in moves:
     
 board.executeMove(moves[3])
 board.showBoard(3)
-

@@ -783,7 +783,7 @@ class QuadBitBoard(object):
                 #change rook position
                 self.blackRooksIndexes.pop(Utils.D8, None) 
                 self.blackRooksIndexes[Utils.A8] = 1 
-                
+                  
         return
     
     def getPieceCode(self, pos):        
