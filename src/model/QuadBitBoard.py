@@ -871,6 +871,13 @@ class QuadBitBoard(object):
                 self.whitePawnsIndexes[move.start] = 1
             self.nbk    = self.nbk ^ move.end 
             self.pbq    = self.pbq ^ (move.start | move.end)
+        elif(move.type == Constants.MOVE_EP_CAPTURE):
+            #en passant move 
+            tmpMove = Move.Move(move.start, EnPassant.getCapturingCellByEndPosition(move.end), Constants.PAWN_CODE, move.type)
+            #add captured piece
+            self.addCapturedPiece(tmpMove)
+            #execute quiet move
+            self.executeQuietMove(move)
             
         return
     
