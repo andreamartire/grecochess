@@ -23,19 +23,19 @@ print end - start'''
 
 board.clean()
 
-board.setCellbyId(52, 'p')
+'''board.setCellbyId(52, 'p')
 board.setCellbyId(54, 'p')
 board.setCellbyId(37, 'P')
-board.setCellbyId(35, 'P')
+board.setCellbyId(35, 'P')'''
 
-'''board.setCellbyId(25, 'p')
+board.setCellbyId(25, 'p')
 board.setCellbyId(27, 'p')
 board.setCellbyId(10, 'P')
-board.setCellbyId(12, 'P')'''
+board.setCellbyId(12, 'P')
 
 board.showBoard(3)
 
-moves = Generator.getAllPseudoLegalMoves(board, Constants.BLACK, True)
+moves = Generator.getAllPseudoLegalMoves(board, Constants.WHITE, True)
 
 print "\nMoves:"
 for move in moves:
@@ -44,7 +44,7 @@ for move in moves:
 board.executeMove(moves[1])
 board.showBoard(3)
 
-moves = Generator.getAllPseudoLegalMoves(board, Constants.WHITE, True)
+moves = Generator.getAllPseudoLegalMoves(board, Constants.BLACK, True)
 
 print "\nMoves:"
 for move in moves:
