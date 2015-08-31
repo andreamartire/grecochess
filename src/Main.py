@@ -14,7 +14,15 @@ from model.Generator import Generator
 
 board = QuadBitBoard.QuadBitBoard()
 
+'''moves = Generator.getAllPseudoLegalMoves(board, 1, True)
+for move in moves:
+    print move
 
+print "Ordered"
+moves = Generator.quicksort(moves)
+for move in moves:
+    print move'''
+    
 move = AlphaBeta.calculateSolution(board, Constants.WHITE, 8)
 print "MinMaxSolution"
 print move
