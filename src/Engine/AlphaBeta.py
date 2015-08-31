@@ -35,6 +35,8 @@ def minValue(board, currPlayer, deep, alpha, beta):
         return utility(board, currPlayer)
     #print "Skip deep " + str(deep)
     
+    print "Current Player = " + str(currPlayer)
+    
     value = 999
     for move in Generator.getAllPseudoLegalMoves(board, currPlayer, True):
         #print move
@@ -42,6 +44,7 @@ def minValue(board, currPlayer, deep, alpha, beta):
         value = min(value, maxValue(board, swapPlayer(currPlayer), deep-1, alpha, beta))
         #print "value <= alpha - " + str(value) + " <= " + str(alpha)
         if(value <= alpha):
+            board.rollbackLastMove()
             return value
         #print "beta < alpha - " + str(beta) + " < " + str(alpha)
         if(value < beta):
@@ -54,6 +57,7 @@ def minValue(board, currPlayer, deep, alpha, beta):
         #print "AFTER ROLLBACK"        
         #board.showBoard(4)
         #print "."
+    #board.showBoard(3)
     return value 
 
 def maxValue(board, currPlayer, deep, alpha, beta):
@@ -69,6 +73,7 @@ def maxValue(board, currPlayer, deep, alpha, beta):
         value = max(value, minValue(board, swapPlayer(currPlayer), deep-1, alpha, beta))
         #print "value >= alpha - " + str(value) + " >= " + str(alpha)
         if(value >= beta):
+            board.rollbackLastMove()
             return value
         #print "value > alpha - " + str(value) + " > " + str(alpha)
         if(value > alpha):
@@ -81,6 +86,7 @@ def maxValue(board, currPlayer, deep, alpha, beta):
         #print "AFTER ROLLBACK"        
         #board.showBoard(4)
         #print "."
+    #board.showBoard(3)
     return value
     
 def swapPlayer(currPlayer):

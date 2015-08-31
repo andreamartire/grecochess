@@ -560,7 +560,9 @@ class QuadBitBoard(object):
                 self.whiteKingIndex.pop(move.end, None)   
         return
     
-    def executeMove(self, move):
+    def executeMove(self, move):  
+        print "  "*self.moveSize + "->" + str(move)
+        
         if(len(self.moveHistory) > self.moveSize):
             #rewrite move deleted logically
             self.moveHistory[self.moveSize] = move
@@ -691,7 +693,7 @@ class QuadBitBoard(object):
     def rollbackLastMove(self):
         move = self.moveHistory[self.moveSize-1]
         self.moveSize -= 1
-        #print "Last Move: " + str(move)
+        print "  "*self.moveSize + "<-" + str(move)
         
         if(move.type == Constants.MOVE_QUIET):
             #quiet move
@@ -783,6 +785,9 @@ class QuadBitBoard(object):
                     self.rqk    = self.rqk | move.start
                     self.nbk    = self.nbk | move.start
                     self.blackKingIndex[move.start] = 1
+                
+                #reset black color of captured piece
+                self.black      = self.black | move.start
         
         elif(move.type == Constants.MOVE_DOUBLE_PAWN):
             #double pawn move
@@ -906,6 +911,8 @@ class QuadBitBoard(object):
             move.end = tmp
             #set end position
             self.executeQuietMove(move)
+            
+        #self.showBoard(3)
         return
     
     def getPieceCode(self, pos):        

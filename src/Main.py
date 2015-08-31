@@ -10,14 +10,16 @@ import Constants, time, Utils
 from model import QuadBitBoard
 from Engine import MinMax, AlphaBeta
 
+from model.Generator import Generator
+
 board = QuadBitBoard.QuadBitBoard()
 
-move = AlphaBeta.calculateSolution(board, Constants.WHITE, 4)
 
+move = AlphaBeta.calculateSolution(board, Constants.WHITE, 8)
 print "MinMaxSolution"
 print move
 
-board.showBoard(3)
+board.showBoard(2)
 
 
 
