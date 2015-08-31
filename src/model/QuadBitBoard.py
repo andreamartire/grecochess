@@ -383,6 +383,16 @@ class QuadBitBoard(object):
                     print self.moveHistory[i]
             else:
                 print "No moves"
+        
+        if(view >= 4):           
+            print "\nRQK"
+            Utils.showBitArray(self.rqk)          
+            print "\nNBK"
+            Utils.showBitArray(self.nbk)          
+            print "\nPBQ"
+            Utils.showBitArray(self.pbq)          
+            print "\nBLACK"
+            Utils.showBitArray(self.black)
         return 
     
     def executeQuietMove(self, move):
@@ -551,7 +561,11 @@ class QuadBitBoard(object):
         return
     
     def executeMove(self, move):
-        self.moveHistory.append(move)
+        if(len(self.moveHistory) > self.moveSize):
+            #rewrite move deleted logically
+            self.moveHistory[self.moveSize] = move
+        else:
+            self.moveHistory.append(move)
         self.moveSize += 1
         
         if(move.type == Constants.MOVE_QUIET):
