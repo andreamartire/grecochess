@@ -38,8 +38,10 @@ class QuadBitBoard(object):
     blackQueenIndexes = {}
     blackKingIndex = {}
     
-    whiteCastleExecuted = 0;
-    blackCastleExecuted = 0;
+    whiteKingCastleRight = 1;
+    whiteQueenCastleRight = 1;
+    blackKingCastleRight = 1;
+    blackQueenCastleRight = 1;
     
     def __init__(self):
         
@@ -337,10 +339,15 @@ class QuadBitBoard(object):
             for index in self.whiteKingIndex:
                 output += str(Utils.getPositionByCellBitArray(index)) + "  "
             
-            if(self.whiteCastleExecuted):
-                output += "\n\n\tCastle Executed"
+            if(self.whiteKingCastleRight):
+                output += "\n\n\tKing Castle Right"
             else:
-                output += "\n\n\tCastle Not Executed"
+                output += "\n\n\tNo King Castle Right"
+                
+            if(self.whiteQueenCastleRight):
+                output += "\n\tQueen Castle Right"
+            else:
+                output += "\n\tNo Queen Castle Right"
             
             print output
             
@@ -369,10 +376,15 @@ class QuadBitBoard(object):
             for index in self.blackKingIndex:
                 output += str(Utils.getPositionByCellBitArray(index)) + "  "
             
-            if(self.blackCastleExecuted):
-                output += "\n\n\tCastle Executed"
+            if(self.blackKingCastleRight):
+                output += "\n\n\tKing Castle Right"
             else:
-                output += "\n\n\tCastle Not Executed"
+                output += "\n\n\tNo King Castle Right"
+                
+            if(self.blackQueenCastleRight):
+                output += "\n\tQueen Castle Right"
+            else:
+                output += "\n\tNo Queen Castle Right"
                 
             print output
             
@@ -428,6 +440,15 @@ class QuadBitBoard(object):
                 self.blackKnightIndexes[move.end] = 1 
             #Rook
             elif(move.pieceStart == Constants.ROOK_CODE):
+                #check which rook. if ends on its corner give it the right
+                if(move.start & Utils.A8 == Utils.A8):
+                    self.blackQueenCastleRight = 0
+                elif(move.start & Utils.H8 == Utils.H8):
+                    self.blackKingCastleRight = 0
+                elif(move.end & Utils.A8 == Utils.A8):
+                    self.blackQueenCastleRight = 1
+                elif(move.end & Utils.H8 == Utils.H8):
+                    self.blackKingCastleRight = 1
                 self.rqk    = self.rqk | move.end
                 self.black  = self.black | move.end
                 self.blackRooksIndexes[move.end] = 1 
@@ -446,6 +467,12 @@ class QuadBitBoard(object):
                 self.black  = self.black | move.end
                 self.blackKingIndex[move.end] = 1 
                 self.blackKingIndex.pop(move.start, None)
+                self.blackKingCastleRight = 0
+                self.blackQueenCastleRight = 0
+                #if the king returns on its cell give it the right
+                if(move.end & Utils.E8 == Utils.E8):
+                    self.blackKingCastleRight = 1
+                    self.blackQueenCastleRight = 1
         else:
             #is white piece
                         
@@ -468,6 +495,15 @@ class QuadBitBoard(object):
                 self.whiteKnightIndexes.pop(move.start, None)
             #Rook
             elif(move.pieceStart == Constants.ROOK_CODE):
+                #check which rook. if ends on its corner give it the right
+                if(move.start & Utils.A1 == Utils.A1):
+                    self.whiteQueenCastleRight = 0
+                elif(move.start & Utils.H1 == Utils.H1):
+                    self.whiteKingCastleRight = 0
+                elif(move.end & Utils.A1 == Utils.A1):
+                    self.whiteQueenCastleRight = 1
+                elif(move.end & Utils.H1 == Utils.H1):
+                    self.whiteKingCastleRight = 1
                 self.rqk    = self.rqk | move.end
                 self.whiteRooksIndexes[move.end] = 1 
                 self.whiteRooksIndexes.pop(move.start, None)
@@ -483,6 +519,12 @@ class QuadBitBoard(object):
                 self.nbk    = self.nbk | move.end
                 self.whiteKingIndex[move.end] = 1 
                 self.whiteKingIndex.pop(move.start, None)
+                self.whiteKingCastleRight = 0
+                self.whiteQueenCastleRight = 0
+                #if the king returns on its cell give it the right
+                if(move.end & Utils.E1 == Utils.E1):
+                    self.whiteKingCastleRight = 1
+                    self.whiteQueenCastleRight = 1
         return
     
     def removeCapturedPiece(self, move):
@@ -588,7 +630,7 @@ class QuadBitBoard(object):
                     
         elif(move.type == Constants.MOVE_KING_CASTLE):
             if(move.start == Utils.E1):
-                self.whiteCastleExecuted = 1
+                self.whiteKingCastleRight = 0
                 #white king castle
                 self.rqk    = self.rqk ^ Castle.shadowRqkWhiteKingCastle
                 self.nbk    = self.nbk ^ Castle.shadowNbkWhiteKingCastle
@@ -599,7 +641,7 @@ class QuadBitBoard(object):
                 self.whiteRooksIndexes.pop(Utils.H1, None) 
                 self.whiteRooksIndexes[Utils.F1] = 1 
             else:
-                self.blackCastleExecuted = 1
+                self.blackKingCastleRight = 0
                 #black king castle
                 self.rqk    = self.rqk ^ Castle.shadowRqkBlackKingCastle
                 self.nbk    = self.nbk ^ Castle.shadowNbkBlackKingCastle
@@ -613,7 +655,7 @@ class QuadBitBoard(object):
                 
         elif(move.type == Constants.MOVE_QUEEN_CASTLE):
             if(move.start == Utils.E1):
-                self.whiteCastleExecuted = 1
+                self.whiteQueenCastleRight = 0
                 #white queen castle
                 self.rqk    = self.rqk ^ Castle.shadowRqkWhiteQueenCastle
                 self.nbk    = self.nbk ^ Castle.shadowNbkWhiteQueenCastle
@@ -624,7 +666,7 @@ class QuadBitBoard(object):
                 self.whiteRooksIndexes.pop(Utils.A1, None) 
                 self.whiteRooksIndexes[Utils.D1] = 1 
             else:
-                self.blackCastleExecuted = 1
+                self.blackQueenCastleRight = 0
                 #black queen castle
                 self.rqk    = self.rqk ^ Castle.shadowRqkBlackQueenCastle
                 self.nbk    = self.nbk ^ Castle.shadowNbkBlackQueenCastle
@@ -800,7 +842,7 @@ class QuadBitBoard(object):
             
         elif(move.type == Constants.MOVE_KING_CASTLE):
             if(move.start == Utils.E1):
-                self.whiteCastleExecuted = 0
+                self.whiteKingCastleRight = 1
                 #white queen castle
                 self.rqk    = self.rqk ^ Castle.shadowRqkWhiteKingCastle
                 self.nbk    = self.nbk ^ Castle.shadowNbkWhiteKingCastle
@@ -811,7 +853,7 @@ class QuadBitBoard(object):
                 self.whiteRooksIndexes.pop(Utils.F1, None) 
                 self.whiteRooksIndexes[Utils.H1] = 1 
             else:
-                self.blackCastleExecuted = 0
+                self.blackKingCastleRight = 1
                 #black king castle
                 self.rqk    = self.rqk ^ Castle.shadowRqkBlackKingCastle
                 self.nbk    = self.nbk ^ Castle.shadowNbkBlackKingCastle
@@ -824,7 +866,7 @@ class QuadBitBoard(object):
                 self.blackRooksIndexes[Utils.H8] = 1 
         elif(move.type == Constants.MOVE_QUEEN_CASTLE):
             if(move.start == Utils.E1):
-                self.whiteCastleExecuted = 0
+                self.whiteQueenCastleRight = 1
                 #white queen castle
                 self.rqk    = self.rqk ^ Castle.shadowRqkWhiteQueenCastle
                 self.nbk    = self.nbk ^ Castle.shadowNbkWhiteQueenCastle
@@ -835,7 +877,7 @@ class QuadBitBoard(object):
                 self.whiteRooksIndexes.pop(Utils.D1, None) 
                 self.whiteRooksIndexes[Utils.A1] = 1 
             else:
-                self.blackCastleExecuted = 0
+                self.blackQueenCastleRight = 1
                 #black queen castle
                 self.rqk    = self.rqk ^ Castle.shadowRqkBlackQueenCastle
                 self.nbk    = self.nbk ^ Castle.shadowNbkBlackQueenCastle
@@ -941,3 +983,8 @@ class QuadBitBoard(object):
             if(self.moveHistory[i].start == pos):
                 return False
         return True
+    
+    def getHash(self):
+        hashcode = '\x10'.join([bin(self.rqk), bin(self.nbk), bin(self.pbq), bin(self.black)])
+        print hashcode
+        return hashcode

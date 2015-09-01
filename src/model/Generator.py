@@ -98,11 +98,11 @@ class Generator(object):
         #check if castle generation is enabled
         if(checkCastles):
             #check castle
-            if(color == Constants.WHITE and bb.whiteCastleExecuted == 0):
+            if(color == Constants.WHITE):
                 #check king position
                 if(bb.rqk & bb.nbk & Utils.E1 == Utils.E1):
                     #check rook position and free spaces between king and rook
-                    if(bb.rqk & ~bb.pbq & ~bb.nbk & Utils.H1 == Utils.H1 and Castle.spacesWhiteKingCastle & bb.emptyCells == Castle.spacesWhiteKingCastle):
+                    if(bb.whiteKingCastleRight == 1 and bb.rqk & ~bb.pbq & ~bb.nbk & Utils.H1 == Utils.H1 and Castle.spacesWhiteKingCastle & bb.emptyCells == Castle.spacesWhiteKingCastle):
                         #king and rook in correct position, spaces free
                         #get all enemy moves
                         enemyMoves = Generator.getAllPseudoLegalMoves(bb, Constants.BLACK, False)
@@ -116,7 +116,7 @@ class Generator(object):
                             #print "King Castle: " + str(4) + "-" + str(6)
                             movesList.append(Move(Utils.E1, Utils.getCellBitArrayById(6), Constants.KING_CODE, Constants.MOVE_KING_CASTLE))
                     #check rook position and free spaces between king and rook
-                    if(bb.rqk & ~bb.pbq & ~bb.nbk & Utils.A1 == Utils.A1 and Castle.spacesWhiteQueenCastle & bb.emptyCells == Castle.spacesWhiteQueenCastle):
+                    if(bb.whiteQueenCastleRight == 1 and bb.rqk & ~bb.pbq & ~bb.nbk & Utils.A1 == Utils.A1 and Castle.spacesWhiteQueenCastle & bb.emptyCells == Castle.spacesWhiteQueenCastle):
                         #king and rook in correct position, spaces free
                         #get all enemy moves
                         enemyMoves = Generator.getAllPseudoLegalMoves(bb, Constants.BLACK, False)
@@ -129,11 +129,11 @@ class Generator(object):
                                 bb.cellNotAbandoned(Utils.E1) and bb.cellNotAbandoned(Utils.A1)):
                             #print "Queen Castle: " + str(4) + "-" + str(2)
                             movesList.append(Move(Utils.E1, Utils.getCellBitArrayById(2), Constants.KING_CODE, Constants.MOVE_QUEEN_CASTLE))
-            elif(color == Constants.BLACK and bb.blackCastleExecuted == 0):
+            elif(color == Constants.BLACK):
                 #check king position
                 if(bb.rqk & bb.nbk & Utils.E8 == Utils.E8):
                     #check rook position and free spaces between king and rook
-                    if(bb.rqk & ~bb.pbq & ~bb.nbk & Utils.H8 == Utils.H8 and Castle.spacesBlackKingCastle & bb.emptyCells == Castle.spacesBlackKingCastle):
+                    if(bb.blackKingCastleRight == 1 and bb.rqk & ~bb.pbq & ~bb.nbk & Utils.H8 == Utils.H8 and Castle.spacesBlackKingCastle & bb.emptyCells == Castle.spacesBlackKingCastle):
                         #king and rook in correct position, spaces free
                         #get all enemy moves
                         enemyMoves = Generator.getAllPseudoLegalMoves(bb, Constants.WHITE, False)
@@ -147,7 +147,7 @@ class Generator(object):
                             #print "King Castle: " + str(60) + "-" + str(62)
                             movesList.append(Move(Utils.E8, Utils.getCellBitArrayById(62), Constants.KING_CODE, Constants.MOVE_KING_CASTLE))
                     #check rook position and free spaces between king and rook
-                    if(bb.rqk & ~bb.pbq & ~bb.nbk & Utils.A8 == Utils.A8 and Castle.spacesBlackQueenCastle & bb.emptyCells == Castle.spacesBlackQueenCastle):
+                    if(bb.blackQueenCastleRight == 1 and bb.rqk & ~bb.pbq & ~bb.nbk & Utils.A8 == Utils.A8 and Castle.spacesBlackQueenCastle & bb.emptyCells == Castle.spacesBlackQueenCastle):
                         #king and rook in correct position, spaces free
                         #get all enemy moves
                         enemyMoves = Generator.getAllPseudoLegalMoves(bb, Constants.WHITE, False)
@@ -355,7 +355,7 @@ class Generator(object):
             end = len(array) - 1
     
         if end - start < 1:
-            return
+            return []
     
         idx_pivot = random.randint(start, end)
         i = Generator.sub_partition(array, start, end, idx_pivot)
