@@ -310,22 +310,24 @@ class Generator(object):
                     #print "Capture Move: " + str(startPos) + "-" + str(destCellDoubleUp)
                     movesList.append(Move(startPos, destCellDoubleUp, Constants.PAWN_CODE, Constants.MOVE_DOUBLE_PAWN))
             #en passant
-            if((color == Constants.WHITE and startPos & EnPassant.whiteEnPassantRow == startPos) or
-                (color == Constants.BLACK and startPos & EnPassant.blackEnPassantRow == startPos)):
-                if(bb.moveSize > 0):
-                    lastMove = bb.moveHistory[bb.moveSize-1]
-                    #todo insert check on lastmove color?
-                    if(lastMove.type == Constants.MOVE_DOUBLE_PAWN):
-                        leftEpBlock = EnPassant.getLeftEnPassantBlock(startPos)
-                        if(lastMove.end & leftEpBlock == lastMove.end):
-                            movesList.append(Move(startPos, lastMove.end ^ leftEpBlock, Constants.PAWN_CODE, Constants.MOVE_EP_CAPTURE))
-                        else:
-                            rightEpBlock = EnPassant.getRightEnPassantBlock(startPos)
-                            if(lastMove.end & rightEpBlock == lastMove.end):
-                                movesList.append(Move(startPos, lastMove.end ^ rightEpBlock, Constants.PAWN_CODE, Constants.MOVE_EP_CAPTURE))
+            #if double push column is setted
+            if(bb.doublePushColumn != EnPassant.noDoublePushColumn
+               and ((color == Constants.WHITE and startPos & EnPassant.whiteEnPassantRow == startPos) or
+                    (color == Constants.BLACK and startPos & EnPassant.blackEnPassantRow == startPos))):
+                #get last move
+                lastMove = bb.moveHistory[bb.moveSize-1]
+                if(lastMove.type == Constants.MOVE_DOUBLE_PAWN):
+                    #check left side pawn
+                    leftEpBlock = EnPassant.getLeftEnPassantBlock(startPos)
+                    if(lastMove.end & leftEpBlock == lastMove.end):
+                        movesList.append(Move(startPos, lastMove.end ^ leftEpBlock, Constants.PAWN_CODE, Constants.MOVE_EP_CAPTURE))
+                    else:
+                        #check right side pawn
+                        rightEpBlock = EnPassant.getRightEnPassantBlock(startPos)
+                        if(lastMove.end & rightEpBlock == lastMove.end):
+                            movesList.append(Move(startPos, lastMove.end ^ rightEpBlock, Constants.PAWN_CODE, Constants.MOVE_EP_CAPTURE))
         
         #order moves
-        
         return Generator.quicksort(movesList)
     
     @staticmethod
@@ -357,7 +359,8 @@ class Generator(object):
         if end - start < 1:
             return []
     
-        idx_pivot = random.randint(start, end)
+        #idx_pivot = random.randint(start, end)
+        idx_pivot = (end + start) / 2
         i = Generator.sub_partition(array, start, end, idx_pivot)
         #print array, i, idx_pivot
         Generator.quicksort(array, start, i - 1)

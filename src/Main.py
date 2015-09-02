@@ -13,6 +13,7 @@ from Engine import MinMax, AlphaBeta
 from model.Generator import Generator
 
 board = QuadBitBoard.QuadBitBoard()
+board.showBoard(3)
 
 '''print "Ordered"
 moves = Generator.quicksort(moves)
@@ -23,43 +24,36 @@ for move in moves:
 print "MinMaxSolution"
 print move'''
 
-board.clean()
-
-board.setCellbyId(4, 'K')
-board.setCellbyId(0, 'R')
-board.setCellbyId(31, 'r')
-board.setCellbyId(7, 'R')
-
-board.showBoard(2)
-
-moves = Generator.getAllPseudoLegalMoves(board, 0, True)
+moves = Generator.getAllPseudoLegalMoves(board, Constants.WHITE, True)
 for i in range(0,len(moves)):
     print str(i) + "=" + str(moves[i])
 
 board.executeMove(moves[7])
-board.showBoard(2)
-
-moves = Generator.getAllPseudoLegalMoves(board, 0, True)
+board.showBoard(3)
+    
+moves = Generator.getAllPseudoLegalMoves(board, Constants.WHITE, True)
 for i in range(0,len(moves)):
     print str(i) + "=" + str(moves[i])
 
-board.executeMove(moves[25])
-board.showBoard(2)
-
-moves = Generator.getAllPseudoLegalMoves(board, 0, True)
+board.executeMove(moves[15])
+board.showBoard(3)
+    
+moves = Generator.getAllPseudoLegalMoves(board, Constants.BLACK, True)
 for i in range(0,len(moves)):
     print str(i) + "=" + str(moves[i])
     
-board.executeMove(moves[12])
-board.showBoard(2)
+board.executeMove(moves[10])
+board.showBoard(3)
 
-moves = Generator.getAllPseudoLegalMoves(board, 0, True)
+hashcode = board.getHash()
+
+moves = Generator.getAllPseudoLegalMoves(board, Constants.BLACK, True)
 for i in range(0,len(moves)):
     print str(i) + "=" + str(moves[i])
     
-board.executeMove(moves[19])
-board.showBoard(2)
+board.executeMove(moves[1])
+board.showBoard(3)
 
-moves = Generator.getAllPseudoLegalMoves(board, 0, True)
-for i in range(0,len(moves)):
-    print str(i) + "=" + str(moves[i])
+boardBackup = QuadBitBoard.QuadBitBoard()
+boardBackup.setHash(hashcode)
+boardBackup.showBoard(3)

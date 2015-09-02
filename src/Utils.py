@@ -140,3 +140,8 @@ H8 = getCellBitArrayById(63)
 
 PROMOTION_ROWS = mpz(0).setbit(56).setbit(57).setbit(58).setbit(59).setbit(60).setbit(61).setbit(62).setbit(63)
 PROMOTION_ROWS = PROMOTION_ROWS.setbit(0).setbit(1).setbit(2).setbit(3).setbit(4).setbit(5).setbit(6).setbit(7)
+
+def toggle(currPlayer):
+    if(currPlayer == Constants.WHITE):
+        return Constants.BLACK
+    return Constants.WHITE

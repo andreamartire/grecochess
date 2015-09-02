@@ -6,6 +6,34 @@ Created on 14/apr/2015
 from gmpy import mpz
 import Utils
 
+noDoublePushColumn = mpz(0)
+doublePushColumnA = mpz(0).setbit(0)
+doublePushColumnB = mpz(0).setbit(1)
+doublePushColumnC = mpz(0).setbit(2)
+doublePushColumnD = mpz(0).setbit(3)
+doublePushColumnE = mpz(0).setbit(4)
+doublePushColumnF = mpz(0).setbit(5)
+doublePushColumnG = mpz(0).setbit(6)
+doublePushColumnH = mpz(0).setbit(7)
+
+columnByStartPosition = {}
+columnByStartPosition[Utils.getCellBitArrayById(8)] = doublePushColumnA
+columnByStartPosition[Utils.getCellBitArrayById(48)] = doublePushColumnA
+columnByStartPosition[Utils.getCellBitArrayById(9)] = doublePushColumnB
+columnByStartPosition[Utils.getCellBitArrayById(49)] = doublePushColumnB
+columnByStartPosition[Utils.getCellBitArrayById(10)] = doublePushColumnC
+columnByStartPosition[Utils.getCellBitArrayById(50)] = doublePushColumnC
+columnByStartPosition[Utils.getCellBitArrayById(11)] = doublePushColumnD
+columnByStartPosition[Utils.getCellBitArrayById(51)] = doublePushColumnD
+columnByStartPosition[Utils.getCellBitArrayById(12)] = doublePushColumnE
+columnByStartPosition[Utils.getCellBitArrayById(52)] = doublePushColumnE
+columnByStartPosition[Utils.getCellBitArrayById(13)] = doublePushColumnF
+columnByStartPosition[Utils.getCellBitArrayById(53)] = doublePushColumnF
+columnByStartPosition[Utils.getCellBitArrayById(14)] = doublePushColumnG
+columnByStartPosition[Utils.getCellBitArrayById(54)] = doublePushColumnG
+columnByStartPosition[Utils.getCellBitArrayById(15)] = doublePushColumnH
+columnByStartPosition[Utils.getCellBitArrayById(55)] = doublePushColumnH
+
 #white
 whiteEnPassantRow = mpz(0).setbit(32).setbit(33).setbit(34).setbit(35).setbit(36).setbit(37).setbit(38).setbit(39)
 

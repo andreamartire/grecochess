@@ -7,6 +7,7 @@ Created on 14/apr/2015
 import Constants
 from model.Generator import Generator
 import copy
+import Utils
 
 def calculateSolution(board, currPlayer, deep):
     print "AlphaBetaDecision"
@@ -41,7 +42,7 @@ def minValue(board, currPlayer, deep, alpha, beta):
     for move in Generator.getAllPseudoLegalMoves(board, currPlayer, True):
         #print move
         board.executeMove(move)
-        value = min(value, maxValue(board, swapPlayer(currPlayer), deep-1, alpha, beta))
+        value = min(value, maxValue(board, Utils.toggle(currPlayer), deep-1, alpha, beta))
         #print "value <= alpha - " + str(value) + " <= " + str(alpha)
         if(value <= alpha):
             board.rollbackLastMove()
@@ -70,7 +71,7 @@ def maxValue(board, currPlayer, deep, alpha, beta):
     for move in Generator.getAllPseudoLegalMoves(board, currPlayer, True):
         #print move
         board.executeMove(move)
-        value = max(value, minValue(board, swapPlayer(currPlayer), deep-1, alpha, beta))
+        value = max(value, minValue(board, Utils.toggle(currPlayer), deep-1, alpha, beta))
         #print "value >= alpha - " + str(value) + " >= " + str(alpha)
         if(value >= beta):
             board.rollbackLastMove()
@@ -88,11 +89,6 @@ def maxValue(board, currPlayer, deep, alpha, beta):
         #print "."
     #board.showBoard(3)
     return value
-    
-def swapPlayer(currPlayer):
-    if(currPlayer == Constants.WHITE):
-        return Constants.BLACK
-    return Constants.WHITE
 
 def utility(board, currPlayer):    
     if(currPlayer == Constants.WHITE):
