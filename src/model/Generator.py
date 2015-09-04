@@ -64,7 +64,7 @@ class Generator(object):
         kingMoves = Generator.getKingMoves(bb, enemyCells, kingIndex, color, checkCastles)
             
         allMoves = knightMoves + kingMoves + bitshopMoves + rookMoves + queenMoves + pawnMoves
-            
+        
         #order moves
         allMoves = Generator.quicksort(allMoves)
         
@@ -380,9 +380,7 @@ class Generator(object):
         if end - start < 1:
             return []
     
-        #TODO enable pivot random generation
-        #idx_pivot = random.randint(start, end)
-        idx_pivot = (end + start) / 2
+        idx_pivot = random.randint(start, end)
         i = Generator.sub_partition(array, start, end, idx_pivot)
         #print array, i, idx_pivot
         Generator.quicksort(array, start, i - 1)

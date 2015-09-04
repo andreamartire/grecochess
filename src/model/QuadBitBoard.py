@@ -443,6 +443,7 @@ class QuadBitBoard(object):
                 
                 if(move.end == Utils.getCellBitArrayById(5)):
                     print "BUG!" + str(move)
+                    self.showBoard(4)
                 self.blackBitshopsIndexes[move.end] = 1
             #Knight
             elif(move.pieceStart == Constants.KNIGHT_CODE):
@@ -473,12 +474,15 @@ class QuadBitBoard(object):
                 self.blackQueenIndexes[move.end] = 1 
                 self.blackQueenIndexes.pop(move.start, None)
             #King
-            else:
+            elif(move.pieceStart == Constants.KING_CODE):
                 self.rqk    = self.rqk | move.end
                 self.nbk    = self.nbk | move.end
                 self.black  = self.black | move.end
                 self.blackKingIndex[move.end] = 1 
                 self.blackKingIndex.pop(move.start, None)
+                if(len(self.blackKingIndex) == 2):
+                    print "BUG"
+                    self.showBoard(4)
                 self.blackKingCastleRight = 0
                 self.blackQueenCastleRight = 0
                 #if the king returns on its cell give it the right
@@ -526,11 +530,14 @@ class QuadBitBoard(object):
                 self.whiteQueenIndexes[move.end] = 1 
                 self.whiteQueenIndexes.pop(move.start, None)
             #King
-            else:
+            elif(move.pieceStart == Constants.KING_CODE):
                 self.rqk    = self.rqk | move.end
                 self.nbk    = self.nbk | move.end
                 self.whiteKingIndex[move.end] = 1 
                 self.whiteKingIndex.pop(move.start, None)
+                if(len(self.whiteKingIndex) == 2):
+                    print "BUG"
+                    self.showBoard(4)
                 self.whiteKingCastleRight = 0
                 self.whiteQueenCastleRight = 0
                 #if the king returns on its cell give it the right
@@ -557,6 +564,7 @@ class QuadBitBoard(object):
                 
                 if(move.start == Utils.getCellBitArrayById(5)):
                     print "BUG!" + str(move)
+                    self.showBoard(4)
                 self.blackBitshopsIndexes.pop(move.end, None)
             #Knight
             elif(~self.pbq & self.nbk & ~self.rqk & move.end == move.end):
@@ -575,7 +583,7 @@ class QuadBitBoard(object):
                 self.rqk    = self.rqk ^ move.end
                 self.blackQueenIndexes.pop(move.end, None) 
             #King
-            else:
+            elif(~self.pbq & self.nbk & self.rqk & move.end == move.end):
                 #remove black king
                 self.nbk    = self.nbk ^ move.end
                 self.rqk    = self.rqk ^ move.end
@@ -610,7 +618,7 @@ class QuadBitBoard(object):
                 self.rqk    = self.rqk ^ move.end
                 self.whiteQueenIndexes.pop(move.end, None) 
             #King
-            else:
+            elif(~self.pbq & self.nbk & self.rqk & move.end == move.end):
                 #remove white king
                 self.nbk    = self.nbk ^ move.end
                 self.rqk    = self.rqk ^ move.end
@@ -620,6 +628,10 @@ class QuadBitBoard(object):
     def executeMove(self, move):  
         print "  "*self.moveSize + "->" + str(move)
         
+        if(len(self.blackKingIndex) == 2):
+            print "FOUND BUG"
+            self.showBoard(4)
+            
         #reset double push column
         self.doublePushColumn = EnPassant.noDoublePushColumn
         
@@ -660,6 +672,9 @@ class QuadBitBoard(object):
                 #change king position
                 self.whiteKingIndex.pop(Utils.E1, None) 
                 self.whiteKingIndex[Utils.G1] = 1 
+                if(len(self.whiteKingIndex) == 2):
+                    print "BUG"
+                    self.showBoard(4)
                 #change rook position
                 self.whiteRooksIndexes.pop(Utils.H1, None) 
                 self.whiteRooksIndexes[Utils.F1] = 1 
@@ -672,6 +687,9 @@ class QuadBitBoard(object):
                 #change king position
                 self.blackKingIndex.pop(Utils.E8, None) 
                 self.blackKingIndex[Utils.G8] = 1 
+                if(len(self.blackKingIndex) == 2):
+                    print "BUG"
+                    self.showBoard(4)
                 #change rook position
                 self.blackRooksIndexes.pop(Utils.H8, None) 
                 self.blackRooksIndexes[Utils.F8] = 1 
@@ -685,6 +703,9 @@ class QuadBitBoard(object):
                 #change king position
                 self.whiteKingIndex.pop(Utils.E1, None) 
                 self.whiteKingIndex[Utils.C1] = 1 
+                if(len(self.whiteKingIndex) == 2):
+                    print "BUG"
+                    self.showBoard(4)
                 #change rook position
                 self.whiteRooksIndexes.pop(Utils.A1, None) 
                 self.whiteRooksIndexes[Utils.D1] = 1 
@@ -727,9 +748,6 @@ class QuadBitBoard(object):
             if(self.black & move.start == move.start):
                 self.black = self.black ^ (move.start | move.end)
                 self.blackPawnsIndexes.pop(move.start, None)
-                
-                if(move.start == Utils.getCellBitArrayById(5)):
-                    print "BUG!" + str(move)
                 self.blackBitshopsIndexes[move.end] = 1
             else:
                 self.whitePawnsIndexes.pop(move.start, None)
@@ -759,6 +777,9 @@ class QuadBitBoard(object):
         return
     
     def rollbackLastMove(self):
+        if(len(self.blackKingIndex) == 2):
+            print "FOUND BUG"
+            self.showBoard(4)
         if(self.moveSize > 0):
             self.sideToMove = Utils.toggle(self.sideToMove)
         
@@ -821,11 +842,14 @@ class QuadBitBoard(object):
                         self.rqk    = self.rqk | move.end
                         self.whiteQueenIndexes[move.end] = 1 
                     #King
-                    else:
+                    elif(move.pieceEnd == Constants.KING_CODE):
                         #print "king"
                         self.rqk    = self.rqk | move.end
                         self.nbk    = self.nbk | move.end
                         self.whiteKingIndex[move.end] = 1 
+                        if(len(self.whiteKingIndex) == 2):
+                            print "BUG"
+                            self.showBoard(4)
                 else:
                     #capturing piece is white, then captured is black
                     #print "capturing piece is white, then captured is black"
@@ -857,11 +881,14 @@ class QuadBitBoard(object):
                         self.rqk    = self.rqk | move.end
                         self.blackQueenIndexes[move.end] = 1 
                     #King
-                    else:
+                    elif(move.pieceEnd == Constants.KING_CODE):
                         #print "king"
                         self.rqk    = self.rqk | move.end
                         self.nbk    = self.nbk | move.end
                         self.blackKingIndex[move.end] = 1
+                        if(len(self.blackKingIndex) == 2):
+                            print "BUG"
+                            self.showBoard(4)
                     
                     #reset black color of captured piece
                     self.black      = self.black | move.end
@@ -882,7 +909,10 @@ class QuadBitBoard(object):
                     self.nbk    = self.nbk ^ Castle.shadowNbkWhiteKingCastle
                     #change king position
                     self.whiteKingIndex.pop(Utils.G1, None) 
-                    self.whiteKingIndex[Utils.E1] = 1 
+                    self.whiteKingIndex[Utils.E1] = 1
+                    if(len(self.whiteKingIndex) == 2):
+                        print "BUG" 
+                        self.showBoard(4)
                     #change rook position
                     self.whiteRooksIndexes.pop(Utils.F1, None) 
                     self.whiteRooksIndexes[Utils.H1] = 1 
@@ -895,6 +925,9 @@ class QuadBitBoard(object):
                     #change king position
                     self.blackKingIndex.pop(Utils.G8, None) 
                     self.blackKingIndex[Utils.E8] = 1 
+                    if(len(self.blackKingIndex) == 2):
+                        print "BUG"
+                        self.showBoard(4)
                     #change rook position
                     self.blackRooksIndexes.pop(Utils.F8, None) 
                     self.blackRooksIndexes[Utils.H8] = 1 
@@ -907,6 +940,9 @@ class QuadBitBoard(object):
                     #change king position
                     self.whiteKingIndex.pop(Utils.C1, None) 
                     self.whiteKingIndex[Utils.E1] = 1 
+                    if(len(self.whiteKingIndex) == 2):
+                        print "BUG"
+                        self.showBoard(4)
                     #change rook position
                     self.whiteRooksIndexes.pop(Utils.D1, None) 
                     self.whiteRooksIndexes[Utils.A1] = 1 
@@ -963,6 +999,7 @@ class QuadBitBoard(object):
                     
                     if(move.start == Utils.getCellBitArrayById(5)):
                         print "BUG!" + str(move)
+                        self.showBoard(4)
                     self.blackPawnsIndexes[move.start] = 1
                 else:
                     self.whiteBitshopsIndexes.pop(move.end, None)

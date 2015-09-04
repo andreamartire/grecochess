@@ -10,10 +10,11 @@ import Constants
 import unittest
 import Utils
 from model import QuadBitBoard
+from engine.AlphaBeta import AlphaBeta
 
-class HistoryTest(unittest.TestCase):
+class GenericTest(unittest.TestCase):
     
-    def runTest(self):
+    def testHistorySize(self):
         board = QuadBitBoard.QuadBitBoard()
          
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 12, 28)
@@ -21,3 +22,11 @@ class HistoryTest(unittest.TestCase):
         board.executeMove(move)
          
         assert board.moveSize == 1, 'History Error'
+    
+    def AlphaBeta(self):
+        board = QuadBitBoard.QuadBitBoard()
+        board.showBoard(3)
+        
+        AlphaBeta.calculateSolution(board, Constants.WHITE, 6)
+         
+        assert board.getNumOfPieces() == 32
