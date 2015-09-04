@@ -40,6 +40,7 @@ def minValue(board, currPlayer, deep, alpha, beta):
     
     value = 999
     for move in Generator.getAllPseudoLegalMoves(board, currPlayer, True):
+        board.showBoard(4)
         #print move
         board.executeMove(move)
         value = min(value, maxValue(board, Utils.toggle(currPlayer), deep-1, alpha, beta))
@@ -69,8 +70,10 @@ def maxValue(board, currPlayer, deep, alpha, beta):
     
     value = -999
     for move in Generator.getAllPseudoLegalMoves(board, currPlayer, True):
+        board.showBoard(4)
         #print move
         board.executeMove(move)
+        board.showBoard(4)
         value = max(value, minValue(board, Utils.toggle(currPlayer), deep-1, alpha, beta))
         #print "value >= alpha - " + str(value) + " >= " + str(alpha)
         if(value >= beta):
@@ -93,10 +96,10 @@ def maxValue(board, currPlayer, deep, alpha, beta):
 def utility(board, currPlayer):    
     if(currPlayer == Constants.WHITE):
         total = len(board.whitePawnsIndexes) * 1 + len(board.whiteKnightIndexes) * 3 
-        total += len(board.whiteBitshopsIndexes) * 3.15 + len(board.whiteRooksIndexes) * 5
-        total += len(board.whiteQueenIndexes) * 9 + len(board.whiteKingIndex) * 200
+        + len(board.whiteBitshopsIndexes) * 3.15 + len(board.whiteRooksIndexes) * 5
+        + len(board.whiteQueenIndexes) * 9 + len(board.whiteKingIndex) * 200
     else:
         total = len(board.blackPawnsIndexes) * 1 + len(board.blackKnightIndexes) * 3
-        total += len(board.blackBitshopsIndexes) * 3.15 + len(board.blackRooksIndexes) * 5
-        total += len(board.blackQueenIndexes) * 9 + len(board.blackKingIndex) * 200
+        + len(board.blackBitshopsIndexes) * 3.15 + len(board.blackRooksIndexes) * 5
+        + len(board.blackQueenIndexes) * 9 + len(board.blackKingIndex) * 200
     return total

@@ -428,7 +428,7 @@ class QuadBitBoard(object):
         #set end position
         if(self.black & move.start == move.start):
             #is black piece
-            self.black = self.black & ~(move.start | move.end)
+            self.black = self.black & cleanBB
             
             #Pawn
             if(move.pieceStart == Constants.PAWN_CODE):
@@ -442,6 +442,9 @@ class QuadBitBoard(object):
                 self.nbk    = self.nbk | move.end
                 self.black  = self.black | move.end
                 self.blackBitshopsIndexes.pop(move.start, None)
+                
+                if(move.end == Utils.getCellBitArrayById(5)):
+                    print "BUG!" + str(move)
                 self.blackBitshopsIndexes[move.end] = 1
             #Knight
             elif(move.pieceStart == Constants.KNIGHT_CODE):
@@ -553,6 +556,9 @@ class QuadBitBoard(object):
                 #remove black bitshop
                 self.pbq    = self.pbq ^ move.end
                 self.nbk    = self.nbk ^ move.end
+                
+                if(move.start == Utils.getCellBitArrayById(5)):
+                    print "BUG!" + str(move)
                 self.blackBitshopsIndexes.pop(move.end, None)
             #Knight
             elif(~self.pbq & self.nbk & ~self.rqk & move.end == move.end):
@@ -637,8 +643,10 @@ class QuadBitBoard(object):
             #capture move     
             #remove captured piece
             self.removeCapturedPiece(move)
+            self.showBoard(4)
             #execute quiet move
             self.executeQuietMove(move)
+            self.showBoard(4)
         
         elif(move.type == Constants.MOVE_DOUBLE_PAWN):
             #double pawn move 
@@ -723,6 +731,9 @@ class QuadBitBoard(object):
             if(self.black & move.start == move.start):
                 self.black = self.black ^ (move.start | move.end)
                 self.blackPawnsIndexes.pop(move.start, None)
+                
+                if(move.start == Utils.getCellBitArrayById(5)):
+                    print "BUG!" + str(move)
                 self.blackBitshopsIndexes[move.end] = 1
             else:
                 self.whitePawnsIndexes.pop(move.start, None)
@@ -743,7 +754,7 @@ class QuadBitBoard(object):
 
         elif(move.type == Constants.MOVE_EP_CAPTURE):
             #en passant move 
-            tmpMove = Move.Move(move.start, EnPassant.getCapturingCellByEndPosition(move.end), Constants.PAWN_CODE, move.type)
+            tmpMove = Move.Move(move.start, EnPassant.getCapturingCellByEndPosition(move.end), Constants.PAWN_CODE, Constants.MOVE_QUIET)
             #remove captured piece
             self.removeCapturedPiece(tmpMove)
             #execute quiet move
@@ -755,6 +766,7 @@ class QuadBitBoard(object):
         if(self.moveSize > 0):
             self.sideToMove = Utils.toggle(self.sideToMove)
         
+            self.showBoard(4)
             self.moveSize -= 1
             move = self.moveHistory[self.moveSize]
             
@@ -771,79 +783,83 @@ class QuadBitBoard(object):
             if(move.type == Constants.MOVE_QUIET):
                 #quiet move
                 #swap positions for execute reverse quiet move
-                reverseMove = Move.Move(move.end, move.start, move.pieceStart, move.type, move.pieceEnd)
+                reverseMove = Move.Move(move.end, move.start, move.pieceStart, Constants.MOVE_QUIET, move.pieceEnd)
                 #set end position
                 self.executeQuietMove(reverseMove)
             elif(move.type == Constants.MOVE_CAPTURE):
                 #capture move
                 #swap positions for execute reverse quiet move
-                reverseMove = Move.Move(move.end, move.start, move.pieceStart, move.type, move.pieceEnd)
+                reverseMove = Move.Move(move.end, move.start, move.pieceStart, Constants.MOVE_QUIET, move.pieceEnd)
                 #set end position
                 self.executeQuietMove(reverseMove)
                 #add captured white piece 
                 
-                if(move.end & self.black == move.end):
+                if(move.start & self.black == move.start):
                     #capturing piece is black, then captured is white
                     #print "capturing piece is black, then captured is white"
                     #Pawn
-                    if(move.pieceEnd == Constants.PAWN_CODE):
+                    if(move.pieceStart == Constants.PAWN_CODE):
                         #print "pawn"
-                        self.pbq    = self.pbq | move.start
-                        self.whitePawnsIndexes[move.start] = 1
+                        self.pbq    = self.pbq | move.end
+                        self.whitePawnsIndexes[move.end] = 1
                     #Bitshop
-                    elif(move.pieceEnd == Constants.BITSHOP_CODE):
+                    elif(move.pieceStart == Constants.BITSHOP_CODE):
                         #print "bitshop"
-                        self.pbq    = self.pbq | move.start
-                        self.nbk    = self.nbk | move.start
-                        self.whiteBitshopsIndexes[move.start] = 1 
+                        self.pbq    = self.pbq | move.end
+                        self.nbk    = self.nbk | move.end
+                        self.whiteBitshopsIndexes[move.end] = 1 
                     #Knight
-                    elif(move.pieceEnd == Constants.KNIGHT_CODE):
+                    elif(move.pieceStart == Constants.KNIGHT_CODE):
                         #print "knight"
-                        self.nbk    = self.nbk | move.start
-                        self.whiteKnightIndexes[move.start] = 1 
+                        self.nbk    = self.nbk | move.end
+                        self.whiteKnightIndexes[move.end] = 1 
                     #Rook
-                    elif(move.pieceEnd == Constants.ROOK_CODE):
+                    elif(move.pieceStart == Constants.ROOK_CODE):
                         #print "rook"
-                        self.rqk    = self.rqk | move.start
-                        self.whiteRooksIndexes[move.start] = 1 
+                        self.rqk    = self.rqk | move.end
+                        self.whiteRooksIndexes[move.end] = 1 
                     #Queen
-                    elif(move.pieceEnd == Constants.QUEEN_CODE):
+                    elif(move.pieceStart == Constants.QUEEN_CODE):
                         #print "queen"
-                        self.pbq    = self.pbq | move.start
-                        self.rqk    = self.rqk | move.start
-                        self.whiteQueenIndexes[move.start] = 1 
+                        self.pbq    = self.pbq | move.end
+                        self.rqk    = self.rqk | move.end
+                        self.whiteQueenIndexes[move.end] = 1 
                     #King
                     else:
                         #print "king"
-                        self.rqk    = self.rqk | move.start
-                        self.nbk    = self.nbk | move.start
-                        self.whiteKingIndex[move.start] = 1 
+                        self.rqk    = self.rqk | move.end
+                        self.nbk    = self.nbk | move.end
+                        self.whiteKingIndex[move.end] = 1 
                 else:
                     #capturing piece is white, then captured is black
                     #print "capturing piece is white, then captured is black"
                     #Pawn
-                    if(move.pieceEnd == Constants.PAWN_CODE):
+                    if(move.pieceStart == Constants.PAWN_CODE):
                         #print "pawn"
                         self.pbq    = self.pbq | move.start
                         self.blackPawnsIndexes[move.start] = 1
                     #Bitshop
-                    elif(move.pieceEnd == Constants.BITSHOP_CODE):
+                    elif(move.pieceStart == Constants.BITSHOP_CODE):
                         #print "bitshop"
                         self.pbq    = self.pbq | move.start
                         self.nbk    = self.nbk | move.start
+                        
+                        if(move.start == Utils.getCellBitArrayById(5)):
+                            print "BUG!" + str(move)
+                            self.showBoard(4)
                         self.blackBitshopsIndexes[move.start] = 1 
                     #Knight
-                    elif(move.pieceEnd == Constants.KNIGHT_CODE):
+                    elif(move.pieceStart == Constants.KNIGHT_CODE):
                         #print "knight"
                         self.nbk    = self.nbk | move.start
                         self.blackKnightIndexes[move.start] = 1 
                     #Rook
-                    elif(move.pieceEnd == Constants.ROOK_CODE):
+                    elif(move.pieceStart == Constants.ROOK_CODE):
                         #print "rook"
                         self.rqk    = self.rqk | move.start
                         self.blackRooksIndexes[move.start] = 1 
                     #Queen
-                    elif(move.pieceEnd == Constants.QUEEN_CODE):
+                    elif(move.pieceStart == Constants.QUEEN_CODE):
                         #print "queen"
                         self.pbq    = self.pbq | move.start
                         self.rqk    = self.rqk | move.start
@@ -856,12 +872,13 @@ class QuadBitBoard(object):
                         self.blackKingIndex[move.start] = 1
                     
                     #reset black color of captured piece
-                    self.black      = self.black | move.start
+                    self.black      = self.black | move.end
             
             elif(move.type == Constants.MOVE_DOUBLE_PAWN):
                 #double pawn move
+                    
                 #swap positions for execute reverse quiet move
-                reverseMove = Move.Move(move.end, move.start, move.pieceStart, move.type, move.pieceEnd)
+                reverseMove = Move.Move(move.end, move.start, move.pieceStart, Constants.MOVE_QUIET, move.pieceEnd)
                 #set end position
                 self.executeQuietMove(reverseMove)
                 
@@ -951,6 +968,9 @@ class QuadBitBoard(object):
                 if(self.black & move.end == move.end):
                     self.black = self.black ^ (move.start | move.end)
                     self.blackBitshopsIndexes.pop(move.end, None)
+                    
+                    if(move.start == Utils.getCellBitArrayById(5)):
+                        print "BUG!" + str(move)
                     self.blackPawnsIndexes[move.start] = 1
                 else:
                     self.whiteBitshopsIndexes.pop(move.end, None)
@@ -973,11 +993,12 @@ class QuadBitBoard(object):
                     self.whitePawnsIndexes[capturePawnPos] = 1
                     
                 #swap positions for execute reverse quiet move
-                reverseMove = Move.Move(move.end, move.start, move.pieceStart, move.type, move.pieceEnd)
+                reverseMove = Move.Move(move.end, move.start, move.pieceStart, Constants.MOVE_QUIET, move.pieceEnd)
                 #set end position
                 self.executeQuietMove(reverseMove)
                 
-            #self.showBoard(3)
+        #self.showBoard(3)
+        
         return
     
     def getPieceCode(self, pos):        
@@ -1006,6 +1027,34 @@ class QuadBitBoard(object):
             if(self.moveHistory[i].start == pos):
                 return False
         return True
+    
+    def getNumOfPieces(self):
+        print "White Pawns: " + str(len(self.whitePawnsIndexes))
+        for index in self.whitePawnsIndexes:
+                print str(Utils.getPositionByCellBitArray(index))
+        print "White Knights: " + str(len(self.whiteKnightIndexes))
+        print "White Bitshops: " + str(len(self.whiteBitshopsIndexes))
+        print "White Rooks: " + str(len(self.whiteRooksIndexes))
+        print "White Queens: " + str(len(self.whiteQueenIndexes))
+        print "White King: " + str(len(self.whiteKingIndex))
+        
+        print "Black Pawns: " + str(len(self.blackPawnsIndexes))
+        for index in self.blackPawnsIndexes:
+                print str(Utils.getPositionByCellBitArray(index))
+        
+        print "Black Knights: " + str(len(self.blackKnightIndexes))
+        print "Black Bitshops: " + str(len(self.blackBitshopsIndexes))
+        print "Black Rooks: " + str(len(self.blackRooksIndexes))
+        print "Black Queens: " + str(len(self.blackQueenIndexes))
+        print "Black King: " + str(len(self.blackKingIndex))
+        
+        self.showBoard(3)
+        return len(self.whitePawnsIndexes) + len(self.whiteKnightIndexes) + \
+            len(self.whiteBitshopsIndexes) + len(self.whiteRooksIndexes) + \
+            len(self.whiteQueenIndexes) + len(self.whiteKingIndex) + \
+            len(self.blackPawnsIndexes) + len(self.blackKnightIndexes) + \
+            len(self.blackBitshopsIndexes) + len(self.blackRooksIndexes) + \
+            len(self.blackQueenIndexes) + len(self.blackKingIndex)
     
     def getHash(self):
         hashcode = '\x01'.join([bin(self.rqk), 

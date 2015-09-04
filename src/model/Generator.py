@@ -12,11 +12,17 @@ from model.Move import Move
 import Utils
 from model import Castle, EnPassant
 import random
+from model.MoveCache import MoveCache
 
 class Generator(object):
     
     @staticmethod
-    def getAllPseudoLegalMoves(bb, color, checkCastles):
+    def getAllPseudoLegalMoves(bb, color, checkCastles=True):
+        
+        #check if exists in move cache
+        allMoves = MoveCache.get(color, bb.getHash())
+        if(allMoves != None):
+            return allMoves
         
         bb.busyCells = bb.rqk | bb.pbq | bb.nbk
         bb.emptyCells = ~bb.busyCells
@@ -49,7 +55,17 @@ class Generator(object):
         pawnMoves = Generator.getPawnMoves(bb, enemyCells, pawnIndexes, color)
         kingMoves = Generator.getKingMoves(bb, enemyCells, kingIndex, color, checkCastles)
         
-        return knightMoves + kingMoves + bitshopMoves + rookMoves + queenMoves + pawnMoves
+        allMoves = knightMoves + kingMoves + bitshopMoves + rookMoves + queenMoves + pawnMoves
+        
+        #order moves
+        allMoves = Generator.quicksort(allMoves)
+        
+        bb.showBoard(4)
+        
+        #save moves in cache
+        MoveCache.put(color, bb, allMoves)
+        
+        return allMoves
     
     @staticmethod
     def getKnightMoves(bb, enemyCells, knightIndexes):
@@ -327,8 +343,7 @@ class Generator(object):
                         if(lastMove.end & rightEpBlock == lastMove.end):
                             movesList.append(Move(startPos, lastMove.end ^ rightEpBlock, Constants.PAWN_CODE, Constants.MOVE_EP_CAPTURE))
         
-        #order moves
-        return Generator.quicksort(movesList)
+        return movesList
     
     @staticmethod
     def sub_partition(array, start, end, idx_pivot):
@@ -359,6 +374,7 @@ class Generator(object):
         if end - start < 1:
             return []
     
+        #TODO enable pivot random generation
         #idx_pivot = random.randint(start, end)
         idx_pivot = (end + start) / 2
         i = Generator.sub_partition(array, start, end, idx_pivot)
