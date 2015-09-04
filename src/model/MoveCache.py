@@ -24,7 +24,6 @@ class MoveCache(object):
             blackCache[hashcode] = moveList
         
         #save the support information to facilitate the operation of the cache cleaning
-        print "Num Pieces: " + str(board.getNumOfPieces()) + " Hashcode: " + str(hashcode)
         cleaningMap[board.getNumOfPieces()].append(hashcode)
         return 
     

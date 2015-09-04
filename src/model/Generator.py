@@ -6,7 +6,6 @@ Created on 6/apr/2015
 
 from pieces import Knight, King, Bitshop, Rook, Queen, Pawn
 
-from model.QuadBitBoard import EMPTY_BIT_BOARD
 import Constants
 from model.Move import Move
 import Utils
@@ -17,8 +16,17 @@ from model.MoveCache import MoveCache
 class Generator(object):
     
     @staticmethod
-    def getAllPseudoLegalMoves(bb, color, checkCastles=True):
-        
+    def getMoveByIndexes(bb, color, startCell, endCell):
+            
+        moves = Generator.getAllPseudoLegalMoves(bb, color, True)
+        for move in moves:
+            if(move.start == Utils.getCellBitArrayById(startCell) and
+               move.end == Utils.getCellBitArrayById(endCell)):
+                return move
+        return None
+    
+    @staticmethod
+    def getAllPseudoLegalMoves(bb, color, checkCastles=True):            
         #check if exists in move cache
         allMoves = MoveCache.get(color, bb.getHash())
         if(allMoves != None):
@@ -47,20 +55,18 @@ class Generator(object):
             rookIndexes = bb.blackRooksIndexes
             queenIndexes = bb.blackQueenIndexes
             pawnIndexes = bb.blackPawnsIndexes
-        
+            
         knightMoves = Generator.getKnightMoves(bb, enemyCells, knightIndexes)
         bitshopMoves = Generator.getBitshopMoves(bb, enemyCells, bitshopIndexes)
         rookMoves = Generator.getRookMoves(bb, enemyCells, rookIndexes)
         queenMoves = Generator.getQueenMoves(bb, enemyCells, queenIndexes)
         pawnMoves = Generator.getPawnMoves(bb, enemyCells, pawnIndexes, color)
         kingMoves = Generator.getKingMoves(bb, enemyCells, kingIndex, color, checkCastles)
-        
+            
         allMoves = knightMoves + kingMoves + bitshopMoves + rookMoves + queenMoves + pawnMoves
-        
+            
         #order moves
         allMoves = Generator.quicksort(allMoves)
-        
-        bb.showBoard(4)
         
         #save moves in cache
         MoveCache.put(color, bb, allMoves)
@@ -123,11 +129,11 @@ class Generator(object):
                         #get all enemy moves
                         enemyMoves = Generator.getAllPseudoLegalMoves(bb, Constants.BLACK, False)
                         #check if king is attacked king and free spaces
-                        enemyAttacks = EMPTY_BIT_BOARD
+                        enemyAttacks = Utils.EMPTY_BIT_BOARD
                         for move in enemyMoves:
                             enemyAttacks |= move.end
                         #if king and white spaces aren't under attack
-                        if(Castle.safeCellsWhiteKingCastle & enemyAttacks == EMPTY_BIT_BOARD and
+                        if(Castle.safeCellsWhiteKingCastle & enemyAttacks == Utils.EMPTY_BIT_BOARD and
                                 bb.cellNotAbandoned(Utils.E1) and bb.cellNotAbandoned(Utils.H1)):
                             #print "King Castle: " + str(4) + "-" + str(6)
                             movesList.append(Move(Utils.E1, Utils.getCellBitArrayById(6), Constants.KING_CODE, Constants.MOVE_KING_CASTLE))
@@ -137,11 +143,11 @@ class Generator(object):
                         #get all enemy moves
                         enemyMoves = Generator.getAllPseudoLegalMoves(bb, Constants.BLACK, False)
                         #check if king is attacked king and free spaces
-                        enemyAttacks = EMPTY_BIT_BOARD
+                        enemyAttacks = Utils.EMPTY_BIT_BOARD
                         for move in enemyMoves:
                             enemyAttacks |= move.end
                         #if king and white spaces aren't under attack
-                        if(Castle.safeCellsWhiteQueenCastle & enemyAttacks == EMPTY_BIT_BOARD and
+                        if(Castle.safeCellsWhiteQueenCastle & enemyAttacks == Utils.EMPTY_BIT_BOARD and
                                 bb.cellNotAbandoned(Utils.E1) and bb.cellNotAbandoned(Utils.A1)):
                             #print "Queen Castle: " + str(4) + "-" + str(2)
                             movesList.append(Move(Utils.E1, Utils.getCellBitArrayById(2), Constants.KING_CODE, Constants.MOVE_QUEEN_CASTLE))
@@ -154,11 +160,11 @@ class Generator(object):
                         #get all enemy moves
                         enemyMoves = Generator.getAllPseudoLegalMoves(bb, Constants.WHITE, False)
                         #check if king is attacked king and free spaces
-                        enemyAttacks = EMPTY_BIT_BOARD
+                        enemyAttacks = Utils.EMPTY_BIT_BOARD
                         for move in enemyMoves:
                             enemyAttacks |= move.end
                         #if king and white spaces aren't under attack
-                        if(Castle.safeCellsBlackKingCastle & enemyAttacks == EMPTY_BIT_BOARD and
+                        if(Castle.safeCellsBlackKingCastle & enemyAttacks == Utils.EMPTY_BIT_BOARD and
                                 bb.cellNotAbandoned(Utils.E8) and bb.cellNotAbandoned(Utils.H8)):
                             #print "King Castle: " + str(60) + "-" + str(62)
                             movesList.append(Move(Utils.E8, Utils.getCellBitArrayById(62), Constants.KING_CODE, Constants.MOVE_KING_CASTLE))
@@ -168,11 +174,11 @@ class Generator(object):
                         #get all enemy moves
                         enemyMoves = Generator.getAllPseudoLegalMoves(bb, Constants.WHITE, False)
                         #check if king is attacked king and free spaces
-                        enemyAttacks = EMPTY_BIT_BOARD
+                        enemyAttacks = Utils.EMPTY_BIT_BOARD
                         for move in enemyMoves:
                             enemyAttacks |= move.end
                         #if king and white spaces aren't under attack
-                        if(Castle.safeCellsBlackQueenCastle & enemyAttacks == EMPTY_BIT_BOARD and
+                        if(Castle.safeCellsBlackQueenCastle & enemyAttacks == Utils.EMPTY_BIT_BOARD and
                                 bb.cellNotAbandoned(Utils.E8) and bb.cellNotAbandoned(Utils.A8)):
                             #print "Queen Castle: " + str(60) + "-" + str(58)
                             movesList.append(Move(Utils.E8, Utils.getCellBitArrayById(58), Constants.KING_CODE, Constants.MOVE_QUEEN_CASTLE))

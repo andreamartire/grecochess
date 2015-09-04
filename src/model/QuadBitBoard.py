@@ -8,46 +8,44 @@ from gmpy import mpz
 import Utils, Constants
 from model import Move, Castle, EnPassant
 
-EMPTY_BIT_BOARD = mpz(0)
-
 class QuadBitBoard(object):
-    busyCells = mpz(0)
-    
-    moveHistory = []
-    moveSize = 0
-    
-    sideToMove = Constants.WHITE
-    
-    doublePushColumn = EnPassant.noDoublePushColumn
-    
-    #quad bit board
-    rqk = mpz(0)
-    nbk = mpz(0)
-    pbq = mpz(0)
-    black = mpz(0)
-    
-    #white indexes
-    whitePawnsIndexes = {}
-    whiteKnightIndexes = {}
-    whiteBitshopsIndexes = {}
-    whiteRooksIndexes = {}
-    whiteQueenIndexes = {}
-    whiteKingIndex = {}
-    
-    #black indexes
-    blackPawnsIndexes = {}
-    blackKnightIndexes = {}
-    blackBitshopsIndexes = {}
-    blackRooksIndexes = {}
-    blackQueenIndexes = {}
-    blackKingIndex = {}
-    
-    whiteKingCastleRight = 1;
-    whiteQueenCastleRight = 1;
-    blackKingCastleRight = 1;
-    blackQueenCastleRight = 1;
     
     def __init__(self):
+        self.busyCells = mpz(0)
+    
+        self.moveHistory = []
+        self.moveSize = 0
+        
+        self.sideToMove = Constants.WHITE
+        
+        self.doublePushColumn = EnPassant.noDoublePushColumn
+        
+        #quad bit board
+        self.rqk = mpz(0)
+        self.nbk = mpz(0)
+        self.pbq = mpz(0)
+        self.black = mpz(0)
+        
+        #white indexes
+        self.whitePawnsIndexes = {}
+        self.whiteKnightIndexes = {}
+        self.whiteBitshopsIndexes = {}
+        self.whiteRooksIndexes = {}
+        self.whiteQueenIndexes = {}
+        self.whiteKingIndex = {}
+        
+        #black indexes
+        self.blackPawnsIndexes = {}
+        self.blackKnightIndexes = {}
+        self.blackBitshopsIndexes = {}
+        self.blackRooksIndexes = {}
+        self.blackQueenIndexes = {}
+        self.blackKingIndex = {}
+        
+        self.whiteKingCastleRight = 1;
+        self.whiteQueenCastleRight = 1;
+        self.blackKingCastleRight = 1;
+        self.blackQueenCastleRight = 1;
         
         #white pawns
         for num in range(8,16):
@@ -643,10 +641,8 @@ class QuadBitBoard(object):
             #capture move     
             #remove captured piece
             self.removeCapturedPiece(move)
-            self.showBoard(4)
             #execute quiet move
             self.executeQuietMove(move)
-            self.showBoard(4)
         
         elif(move.type == Constants.MOVE_DOUBLE_PAWN):
             #double pawn move 
@@ -766,7 +762,6 @@ class QuadBitBoard(object):
         if(self.moveSize > 0):
             self.sideToMove = Utils.toggle(self.sideToMove)
         
-            self.showBoard(4)
             self.moveSize -= 1
             move = self.moveHistory[self.moveSize]
             
@@ -790,6 +785,7 @@ class QuadBitBoard(object):
                 #capture move
                 #swap positions for execute reverse quiet move
                 reverseMove = Move.Move(move.end, move.start, move.pieceStart, Constants.MOVE_QUIET, move.pieceEnd)
+                
                 #set end position
                 self.executeQuietMove(reverseMove)
                 #add captured white piece 
@@ -798,28 +794,28 @@ class QuadBitBoard(object):
                     #capturing piece is black, then captured is white
                     #print "capturing piece is black, then captured is white"
                     #Pawn
-                    if(move.pieceStart == Constants.PAWN_CODE):
+                    if(move.pieceEnd == Constants.PAWN_CODE):
                         #print "pawn"
                         self.pbq    = self.pbq | move.end
                         self.whitePawnsIndexes[move.end] = 1
                     #Bitshop
-                    elif(move.pieceStart == Constants.BITSHOP_CODE):
+                    elif(move.pieceEnd == Constants.BITSHOP_CODE):
                         #print "bitshop"
                         self.pbq    = self.pbq | move.end
                         self.nbk    = self.nbk | move.end
                         self.whiteBitshopsIndexes[move.end] = 1 
                     #Knight
-                    elif(move.pieceStart == Constants.KNIGHT_CODE):
+                    elif(move.pieceEnd == Constants.KNIGHT_CODE):
                         #print "knight"
                         self.nbk    = self.nbk | move.end
                         self.whiteKnightIndexes[move.end] = 1 
                     #Rook
-                    elif(move.pieceStart == Constants.ROOK_CODE):
+                    elif(move.pieceEnd == Constants.ROOK_CODE):
                         #print "rook"
                         self.rqk    = self.rqk | move.end
                         self.whiteRooksIndexes[move.end] = 1 
                     #Queen
-                    elif(move.pieceStart == Constants.QUEEN_CODE):
+                    elif(move.pieceEnd == Constants.QUEEN_CODE):
                         #print "queen"
                         self.pbq    = self.pbq | move.end
                         self.rqk    = self.rqk | move.end
@@ -834,42 +830,38 @@ class QuadBitBoard(object):
                     #capturing piece is white, then captured is black
                     #print "capturing piece is white, then captured is black"
                     #Pawn
-                    if(move.pieceStart == Constants.PAWN_CODE):
+                    if(move.pieceEnd == Constants.PAWN_CODE):
                         #print "pawn"
                         self.pbq    = self.pbq | move.start
-                        self.blackPawnsIndexes[move.start] = 1
+                        self.blackPawnsIndexes[move.end] = 1
                     #Bitshop
-                    elif(move.pieceStart == Constants.BITSHOP_CODE):
+                    elif(move.pieceEnd == Constants.BITSHOP_CODE):
                         #print "bitshop"
-                        self.pbq    = self.pbq | move.start
-                        self.nbk    = self.nbk | move.start
-                        
-                        if(move.start == Utils.getCellBitArrayById(5)):
-                            print "BUG!" + str(move)
-                            self.showBoard(4)
-                        self.blackBitshopsIndexes[move.start] = 1 
+                        self.pbq    = self.pbq | move.end
+                        self.nbk    = self.nbk | move.end
+                        self.blackBitshopsIndexes[move.end] = 1 
                     #Knight
-                    elif(move.pieceStart == Constants.KNIGHT_CODE):
+                    elif(move.pieceEnd == Constants.KNIGHT_CODE):
                         #print "knight"
-                        self.nbk    = self.nbk | move.start
-                        self.blackKnightIndexes[move.start] = 1 
+                        self.nbk    = self.nbk | move.end
+                        self.blackKnightIndexes[move.end] = 1 
                     #Rook
-                    elif(move.pieceStart == Constants.ROOK_CODE):
+                    elif(move.pieceEnd == Constants.ROOK_CODE):
                         #print "rook"
-                        self.rqk    = self.rqk | move.start
-                        self.blackRooksIndexes[move.start] = 1 
+                        self.rqk    = self.rqk | move.end
+                        self.blackRooksIndexes[move.end] = 1 
                     #Queen
-                    elif(move.pieceStart == Constants.QUEEN_CODE):
+                    elif(move.pieceEnd == Constants.QUEEN_CODE):
                         #print "queen"
-                        self.pbq    = self.pbq | move.start
-                        self.rqk    = self.rqk | move.start
-                        self.blackQueenIndexes[move.start] = 1 
+                        self.pbq    = self.pbq | move.end
+                        self.rqk    = self.rqk | move.end
+                        self.blackQueenIndexes[move.end] = 1 
                     #King
                     else:
                         #print "king"
-                        self.rqk    = self.rqk | move.start
-                        self.nbk    = self.nbk | move.start
-                        self.blackKingIndex[move.start] = 1
+                        self.rqk    = self.rqk | move.end
+                        self.nbk    = self.nbk | move.end
+                        self.blackKingIndex[move.end] = 1
                     
                     #reset black color of captured piece
                     self.black      = self.black | move.end
@@ -1029,26 +1021,24 @@ class QuadBitBoard(object):
         return True
     
     def getNumOfPieces(self):
-        print "White Pawns: " + str(len(self.whitePawnsIndexes))
-        for index in self.whitePawnsIndexes:
-                print str(Utils.getPositionByCellBitArray(index))
-        print "White Knights: " + str(len(self.whiteKnightIndexes))
+        '''print "White Knights: " + str(len(self.whiteKnightIndexes))
         print "White Bitshops: " + str(len(self.whiteBitshopsIndexes))
         print "White Rooks: " + str(len(self.whiteRooksIndexes))
         print "White Queens: " + str(len(self.whiteQueenIndexes))
         print "White King: " + str(len(self.whiteKingIndex))
-        
-        print "Black Pawns: " + str(len(self.blackPawnsIndexes))
-        for index in self.blackPawnsIndexes:
-                print str(Utils.getPositionByCellBitArray(index))
+        print "White Pawns: " + str(len(self.whitePawnsIndexes))
+        for index in self.whitePawnsIndexes:
+                print str(Utils.getPositionByCellBitArray(index))        
         
         print "Black Knights: " + str(len(self.blackKnightIndexes))
         print "Black Bitshops: " + str(len(self.blackBitshopsIndexes))
         print "Black Rooks: " + str(len(self.blackRooksIndexes))
         print "Black Queens: " + str(len(self.blackQueenIndexes))
         print "Black King: " + str(len(self.blackKingIndex))
+        print "Black Pawns: " + str(len(self.blackPawnsIndexes))
+        for index in self.blackPawnsIndexes:
+                print str(Utils.getPositionByCellBitArray(index))'''
         
-        self.showBoard(3)
         return len(self.whitePawnsIndexes) + len(self.whiteKnightIndexes) + \
             len(self.whiteBitshopsIndexes) + len(self.whiteRooksIndexes) + \
             len(self.whiteQueenIndexes) + len(self.whiteKingIndex) + \
