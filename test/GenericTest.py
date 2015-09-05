@@ -16,6 +16,7 @@ class GenericTest(unittest.TestCase):
     
     def testHistorySize(self):
         board = QuadBitBoard.QuadBitBoard()
+        board.showBoard(3)
          
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 12, 28)
          
