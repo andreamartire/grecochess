@@ -13,7 +13,7 @@ import Utils
 
 class BlackPawnTest(unittest.TestCase):
         
-    def testBlackPawnTakePawnRight(self):
+    def testBlackPawnTakeWhitePawnRight(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
         
@@ -22,8 +22,8 @@ class BlackPawnTest(unittest.TestCase):
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
-        assert len(board.whitePawnsIndexes) == 1
         assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whitePawnsIndexes) == 1
         assert Utils.getCellBitArrayById(37) in board.blackPawnsIndexes
         assert Utils.getCellBitArrayById(30) in board.whitePawnsIndexes
         
@@ -42,12 +42,12 @@ class BlackPawnTest(unittest.TestCase):
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
-        assert len(board.whitePawnsIndexes) == 1
         assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whitePawnsIndexes) == 1
         assert Utils.getCellBitArrayById(37) in board.blackPawnsIndexes
         assert Utils.getCellBitArrayById(30) in board.whitePawnsIndexes
     
-    def testBlackPawnTakePawnLeft(self):
+    def testBlackPawnTakeWhitePawnLeft(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
         
@@ -56,8 +56,8 @@ class BlackPawnTest(unittest.TestCase):
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
-        assert len(board.whitePawnsIndexes) == 1
         assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whitePawnsIndexes) == 1
         assert Utils.getCellBitArrayById(37) in board.blackPawnsIndexes
         assert Utils.getCellBitArrayById(28) in board.whitePawnsIndexes
         
@@ -76,11 +76,351 @@ class BlackPawnTest(unittest.TestCase):
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
-        assert len(board.whitePawnsIndexes) == 1
         assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whitePawnsIndexes) == 1
         assert Utils.getCellBitArrayById(37) in board.blackPawnsIndexes
         assert Utils.getCellBitArrayById(28) in board.whitePawnsIndexes
+    
+    def testBlackPawnTakeWhiteKnightRight(self):
+        board = QuadBitBoard.QuadBitBoard()
+        board.clean()
+        
+        board.setCellbyId(26, 'p')
+        board.setCellbyId(19, 'N')
+         
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteKnightIndexes) == 1
+        assert Utils.getCellBitArrayById(26) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(19) in board.whiteKnightIndexes
+        
+        move = Generator.getMoveByIndexes(board, Constants.BLACK, 26, 19)
+        
+        board.executeMove(move)
+         
+        assert board.moveSize == 1
+        assert board.getNumOfPieces() == 1
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteKnightIndexes) == 0
+        assert Utils.getCellBitArrayById(19) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(19) not in board.whiteKnightIndexes
+        
+        board.rollbackLastMove()
+        
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteKnightIndexes) == 1
+        assert Utils.getCellBitArrayById(26) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(19) in board.whiteKnightIndexes
+    
+    def testBlackPawnTakeWhiteKnightLeft(self):
+        board = QuadBitBoard.QuadBitBoard()
+        board.clean()
+        
+        board.setCellbyId(26, 'p')
+        board.setCellbyId(17, 'N')
+         
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteKnightIndexes) == 1
+        assert Utils.getCellBitArrayById(26) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(17) in board.whiteKnightIndexes
+        
+        move = Generator.getMoveByIndexes(board, Constants.BLACK, 26, 17)
+        
+        board.executeMove(move)
+         
+        assert board.moveSize == 1
+        assert board.getNumOfPieces() == 1
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteKnightIndexes) == 0
+        assert Utils.getCellBitArrayById(17) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(17) not in board.whiteKnightIndexes
+        
+        board.rollbackLastMove()
+        
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteKnightIndexes) == 1
+        assert Utils.getCellBitArrayById(26) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(17) in board.whiteKnightIndexes
+    
+    def testBlackPawnTakeWhiteBitshopRight(self):
+        board = QuadBitBoard.QuadBitBoard()
+        board.clean()
+        
+        board.setCellbyId(26, 'p')
+        board.setCellbyId(19, 'B')
+         
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteBitshopsIndexes) == 1
+        assert Utils.getCellBitArrayById(26) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(19) in board.whiteBitshopsIndexes
+        
+        move = Generator.getMoveByIndexes(board, Constants.BLACK, 26, 19)
+        
+        board.executeMove(move)
+         
+        assert board.moveSize == 1
+        assert board.getNumOfPieces() == 1
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteBitshopsIndexes) == 0
+        assert Utils.getCellBitArrayById(19) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(19) not in board.whiteBitshopsIndexes
+        
+        board.rollbackLastMove()
+        
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteBitshopsIndexes) == 1
+        assert Utils.getCellBitArrayById(26) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(19) in board.whiteBitshopsIndexes
+    
+    def testBlackPawnTakeWhiteBitshopLeft(self):
+        board = QuadBitBoard.QuadBitBoard()
+        board.clean()
+        
+        board.setCellbyId(26, 'p')
+        board.setCellbyId(17, 'B')
+         
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteBitshopsIndexes) == 1
+        assert Utils.getCellBitArrayById(26) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(17) in board.whiteBitshopsIndexes
+        
+        move = Generator.getMoveByIndexes(board, Constants.BLACK, 26, 17)
+        
+        board.executeMove(move)
+         
+        assert board.moveSize == 1
+        assert board.getNumOfPieces() == 1
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteBitshopsIndexes) == 0
+        assert Utils.getCellBitArrayById(17) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(17) not in board.whiteBitshopsIndexes
+        
+        board.rollbackLastMove()
+        
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteBitshopsIndexes) == 1
+        assert Utils.getCellBitArrayById(26) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(17) in board.whiteBitshopsIndexes
+    
+    def testBlackPawnTakeWhiteRookRight(self):
+        board = QuadBitBoard.QuadBitBoard()
+        board.clean()
+        
+        board.setCellbyId(26, 'p')
+        board.setCellbyId(19, 'R')
+         
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteRooksIndexes) == 1
+        assert Utils.getCellBitArrayById(26) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(19) in board.whiteRooksIndexes
+        
+        move = Generator.getMoveByIndexes(board, Constants.BLACK, 26, 19)
+        
+        board.executeMove(move)
+         
+        assert board.moveSize == 1
+        assert board.getNumOfPieces() == 1
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteRooksIndexes) == 0
+        assert Utils.getCellBitArrayById(19) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(19) not in board.whiteRooksIndexes
+        
+        board.rollbackLastMove()
+        
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteRooksIndexes) == 1
+        assert Utils.getCellBitArrayById(26) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(19) in board.whiteRooksIndexes
+    
+    def testBlackPawnTakeWhiteRookLeft(self):
+        board = QuadBitBoard.QuadBitBoard()
+        board.clean()
+        
+        board.setCellbyId(26, 'p')
+        board.setCellbyId(17, 'R')
+         
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteRooksIndexes) == 1
+        assert Utils.getCellBitArrayById(26) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(17) in board.whiteRooksIndexes
+        
+        move = Generator.getMoveByIndexes(board, Constants.BLACK, 26, 17)
+        
+        board.executeMove(move)
+         
+        assert board.moveSize == 1
+        assert board.getNumOfPieces() == 1
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteRooksIndexes) == 0
+        assert Utils.getCellBitArrayById(17) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(17) not in board.whiteRooksIndexes
+        
+        board.rollbackLastMove()
+        
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteRooksIndexes) == 1
+        assert Utils.getCellBitArrayById(26) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(17) in board.whiteRooksIndexes
 
+    def testBlackPawnTakeWhiteQueenRight(self):
+        board = QuadBitBoard.QuadBitBoard()
+        board.clean()
+        
+        board.setCellbyId(26, 'p')
+        board.setCellbyId(19, 'Q')
+         
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteQueenIndexes) == 1
+        assert Utils.getCellBitArrayById(26) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(19) in board.whiteQueenIndexes
+        
+        move = Generator.getMoveByIndexes(board, Constants.BLACK, 26, 19)
+        
+        board.executeMove(move)
+         
+        assert board.moveSize == 1
+        assert board.getNumOfPieces() == 1
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteQueenIndexes) == 0
+        assert Utils.getCellBitArrayById(19) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(19) not in board.whiteQueenIndexes
+        
+        board.rollbackLastMove()
+        
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteQueenIndexes) == 1
+        assert Utils.getCellBitArrayById(26) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(19) in board.whiteQueenIndexes
+    
+    def testBlackPawnTakeWhiteQueenLeft(self):
+        board = QuadBitBoard.QuadBitBoard()
+        board.clean()
+        
+        board.setCellbyId(26, 'p')
+        board.setCellbyId(17, 'Q')
+         
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteQueenIndexes) == 1
+        assert Utils.getCellBitArrayById(26) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(17) in board.whiteQueenIndexes
+        
+        move = Generator.getMoveByIndexes(board, Constants.BLACK, 26, 17)
+        
+        board.executeMove(move)
+         
+        assert board.moveSize == 1
+        assert board.getNumOfPieces() == 1
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteQueenIndexes) == 0
+        assert Utils.getCellBitArrayById(17) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(17) not in board.whiteQueenIndexes
+        
+        board.rollbackLastMove()
+        
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteQueenIndexes) == 1
+        assert Utils.getCellBitArrayById(26) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(17) in board.whiteQueenIndexes
+        
+    def testBlackPawnTakeWhiteKingRight(self):
+        board = QuadBitBoard.QuadBitBoard()
+        board.clean()
+        
+        board.setCellbyId(26, 'p')
+        board.setCellbyId(19, 'K')
+         
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteKingIndex) == 1
+        assert Utils.getCellBitArrayById(26) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(19) in board.whiteKingIndex
+        
+        move = Generator.getMoveByIndexes(board, Constants.BLACK, 26, 19)
+        
+        board.executeMove(move)
+         
+        assert board.moveSize == 1
+        assert board.getNumOfPieces() == 1
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteKingIndex) == 0
+        assert Utils.getCellBitArrayById(19) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(19) not in board.whiteKingIndex
+        
+        board.rollbackLastMove()
+        
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteKingIndex) == 1
+        assert Utils.getCellBitArrayById(26) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(19) in board.whiteKingIndex
+    
+    def testBlackPawnTakeWhiteKingLeft(self):
+        board = QuadBitBoard.QuadBitBoard()
+        board.clean()
+        
+        board.setCellbyId(26, 'p')
+        board.setCellbyId(17, 'K')
+         
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteKingIndex) == 1
+        assert Utils.getCellBitArrayById(26) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(17) in board.whiteKingIndex
+        
+        move = Generator.getMoveByIndexes(board, Constants.BLACK, 26, 17)
+        
+        board.executeMove(move)
+         
+        assert board.moveSize == 1
+        assert board.getNumOfPieces() == 1
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteKingIndex) == 0
+        assert Utils.getCellBitArrayById(17) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(17) not in board.whiteKingIndex
+        
+        board.rollbackLastMove()
+        
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whiteKingIndex) == 1
+        assert Utils.getCellBitArrayById(26) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(17) in board.whiteKingIndex
+        
     def testBlackPawnNoMoves(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
@@ -90,7 +430,7 @@ class BlackPawnTest(unittest.TestCase):
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
-        assert len(board.whitePawnsIndexes) == 1
+        assert len(board.blackPawnsIndexes) == 1
         assert len(board.blackPawnsIndexes) == 1
         assert Utils.getCellBitArrayById(37) in board.blackPawnsIndexes
         assert Utils.getCellBitArrayById(29) in board.whitePawnsIndexes
@@ -100,8 +440,8 @@ class BlackPawnTest(unittest.TestCase):
         assert move == None
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
-        assert len(board.whitePawnsIndexes) == 1
         assert len(board.blackPawnsIndexes) == 1
+        assert len(board.whitePawnsIndexes) == 1
         assert Utils.getCellBitArrayById(37) in board.blackPawnsIndexes
         assert Utils.getCellBitArrayById(29) in board.whitePawnsIndexes
         
@@ -160,4 +500,117 @@ class BlackPawnTest(unittest.TestCase):
         assert board.getNumOfPieces() == 1
         assert len(board.blackPawnsIndexes) == 1
         assert Utils.getCellBitArrayById(51) in board.blackPawnsIndexes
+    
+    def testBlackEnPassantLeft(self):
+        board = QuadBitBoard.QuadBitBoard()
+        board.clean()
         
+        board.setCellbyId(28, 'p')
+        board.setCellbyId(11, 'P')
+        
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.whitePawnsIndexes) == 1
+        assert len(board.blackPawnsIndexes) == 1
+        assert Utils.getCellBitArrayById(28) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(11) in board.whitePawnsIndexes
+        
+        move = Generator.getMoveByIndexes(board, Constants.WHITE, 11, 27)
+           
+        board.executeMove(move)        
+        
+        assert board.moveSize == 1
+        assert board.getNumOfPieces() == 2
+        assert len(board.whitePawnsIndexes) == 1
+        assert len(board.blackPawnsIndexes) == 1   
+        assert Utils.getCellBitArrayById(28) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(11) not in board.whitePawnsIndexes
+        assert Utils.getCellBitArrayById(27) in board.whitePawnsIndexes
+           
+        move = Generator.getMoveByIndexes(board, Constants.BLACK, 28, 19)
+           
+        board.executeMove(move)
+                
+        assert board.moveSize == 2
+        assert board.getNumOfPieces() == 1
+        assert len(board.whitePawnsIndexes) == 0
+        assert len(board.blackPawnsIndexes) == 1
+        assert Utils.getCellBitArrayById(19) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(11) not in board.whitePawnsIndexes
+        assert Utils.getCellBitArrayById(27) not in board.whitePawnsIndexes
+         
+        board.rollbackLastMove()
+        
+        assert board.moveSize == 1
+        assert board.getNumOfPieces() == 2
+        assert len(board.whitePawnsIndexes) == 1
+        assert len(board.blackPawnsIndexes) == 1  
+        assert Utils.getCellBitArrayById(28) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(11) not in board.whitePawnsIndexes
+        assert Utils.getCellBitArrayById(27) in board.whitePawnsIndexes
+           
+        board.rollbackLastMove()
+        
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.whitePawnsIndexes) == 1
+        assert len(board.blackPawnsIndexes) == 1
+        assert Utils.getCellBitArrayById(28) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(11) in board.whitePawnsIndexes
+    
+    def testBlackEnPassantRight(self):            
+        board = QuadBitBoard.QuadBitBoard()
+        board.clean()
+        
+        board.setCellbyId(28, 'p')
+        board.setCellbyId(13, 'P')
+        
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.whitePawnsIndexes) == 1
+        assert len(board.blackPawnsIndexes) == 1
+        assert Utils.getCellBitArrayById(28) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(13) in board.whitePawnsIndexes
+        
+        move = Generator.getMoveByIndexes(board, Constants.WHITE, 13, 29)
+           
+        board.executeMove(move)        
+        
+        assert board.moveSize == 1
+        assert board.getNumOfPieces() == 2
+        assert len(board.whitePawnsIndexes) == 1
+        assert len(board.blackPawnsIndexes) == 1   
+        assert Utils.getCellBitArrayById(28) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(13) not in board.whitePawnsIndexes
+        assert Utils.getCellBitArrayById(29) in board.whitePawnsIndexes
+           
+        move = Generator.getMoveByIndexes(board, Constants.BLACK, 28, 21)
+           
+        board.executeMove(move)
+                
+        assert board.moveSize == 2
+        assert board.getNumOfPieces() == 1
+        assert len(board.whitePawnsIndexes) == 0
+        assert len(board.blackPawnsIndexes) == 1
+        assert Utils.getCellBitArrayById(21) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(13) not in board.whitePawnsIndexes
+        assert Utils.getCellBitArrayById(29) not in board.whitePawnsIndexes
+         
+        board.rollbackLastMove()
+        
+        assert board.moveSize == 1
+        assert board.getNumOfPieces() == 2
+        assert len(board.whitePawnsIndexes) == 1
+        assert len(board.blackPawnsIndexes) == 1  
+        assert Utils.getCellBitArrayById(28) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(13) not in board.whitePawnsIndexes
+        assert Utils.getCellBitArrayById(29) in board.whitePawnsIndexes
+           
+        board.rollbackLastMove()
+        
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.whitePawnsIndexes) == 1
+        assert len(board.blackPawnsIndexes) == 1
+        assert Utils.getCellBitArrayById(28) in board.blackPawnsIndexes
+        assert Utils.getCellBitArrayById(13) in board.whitePawnsIndexes
