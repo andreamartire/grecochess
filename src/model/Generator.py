@@ -25,6 +25,18 @@ class Generator(object):
                 return move
         return None
     
+    
+    @staticmethod
+    def getPromotionMoveByIndexes(bb, color, startCell, endCell, promotionType):
+            
+        moves = Generator.getAllPseudoLegalMoves(bb, color, True)
+        for move in moves:
+            if(move.start == Utils.getCellBitArrayById(startCell) and
+               move.end == Utils.getCellBitArrayById(endCell) and 
+               move.type == promotionType):
+                return move
+        return None
+    
     @staticmethod
     def getAllPseudoLegalMoves(bb, color, checkCastles=True):            
         #check if exists in move cache
