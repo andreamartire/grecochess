@@ -28,6 +28,16 @@ class GenericTest(unittest.TestCase):
         board = QuadBitBoard.QuadBitBoard()
         board.showBoard(3)
         
-        AlphaBeta.calculateSolution(board, Constants.WHITE, 6)
+        move = Generator.getMoveByIndexes(board, Constants.WHITE, 15, 31)
+        board.executeMove(move)
+        
+        move = Generator.getMoveByIndexes(board, Constants.BLACK, 49, 33)
+        board.executeMove(move)
+        
+        move = Generator.getMoveByIndexes(board, Constants.WHITE, 10, 26)
+        board.executeMove(move)
+        
+        move = Generator.getMoveByIndexes(board, Constants.BLACK, 55, 39)
+        board.executeMove(move)
          
         assert board.getNumOfPieces() == 32
