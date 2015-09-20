@@ -15,7 +15,6 @@ class WhiteKnightTest(unittest.TestCase):
     def testBlackKnightMoveRightUp(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
-        board.showBoard(2)
         
         board.setCellbyId(27, 'n')
          
@@ -43,7 +42,6 @@ class WhiteKnightTest(unittest.TestCase):
     def testBlackKnightTakeWhitePawnRightUp(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
-        board.showBoard(2)
         
         board.setCellbyId(27, 'n')
         board.setCellbyId(37, 'P')
@@ -76,7 +74,6 @@ class WhiteKnightTest(unittest.TestCase):
     def testBlackKnightTakeWhiteKnightRightUp(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
-        board.showBoard(2)
         
         board.setCellbyId(27, 'n')
         board.setCellbyId(37, 'N')
@@ -109,7 +106,6 @@ class WhiteKnightTest(unittest.TestCase):
     def testBlackKnightTakeWhiteBitshopRightUp(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
-        board.showBoard(2)
         
         board.setCellbyId(27, 'n')
         board.setCellbyId(37, 'B')
@@ -142,7 +138,6 @@ class WhiteKnightTest(unittest.TestCase):
     def testBlackKnightTakeWhiteRookRightUp(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
-        board.showBoard(2)
         
         board.setCellbyId(27, 'n')
         board.setCellbyId(37, 'R')
@@ -175,8 +170,7 @@ class WhiteKnightTest(unittest.TestCase):
     def testBlackKnightTakeWhiteQueenRightUp(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
-        board.showBoard(2)
-        
+
         board.setCellbyId(27, 'n')
         board.setCellbyId(37, 'Q')
         
@@ -208,7 +202,6 @@ class WhiteKnightTest(unittest.TestCase):
     def testBlackKnightTakeWhiteKingRightUp(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
-        board.showBoard(2)
         
         board.setCellbyId(27, 'n')
         board.setCellbyId(37, 'K')

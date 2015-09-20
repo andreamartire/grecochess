@@ -15,7 +15,6 @@ class WhiteRookTest(unittest.TestCase):
     def testWhiteRookMoveRight(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
-        board.showBoard(2)
         
         board.setCellbyId(27, 'R')
          
@@ -43,7 +42,6 @@ class WhiteRookTest(unittest.TestCase):
     def testWhiteRookTakeBlackPawnRight(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
-        board.showBoard(2)
         
         board.setCellbyId(27, 'R')
         board.setCellbyId(28, 'p')
@@ -76,7 +74,6 @@ class WhiteRookTest(unittest.TestCase):
     def testWhiteRookTakeBlackKnightRight(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
-        board.showBoard(2)
         
         board.setCellbyId(27, 'R')
         board.setCellbyId(28, 'n')
@@ -109,7 +106,6 @@ class WhiteRookTest(unittest.TestCase):
     def testWhiteRookTakeBlackBitshopRight(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
-        board.showBoard(2)
         
         board.setCellbyId(27, 'R')
         board.setCellbyId(28, 'b')
@@ -142,7 +138,6 @@ class WhiteRookTest(unittest.TestCase):
     def testWhiteRookTakeBlackRookRight(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
-        board.showBoard(2)
         
         board.setCellbyId(27, 'R')
         board.setCellbyId(28, 'r')
@@ -175,7 +170,6 @@ class WhiteRookTest(unittest.TestCase):
     def testWhiteRookTakeBlackQueenRight(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
-        board.showBoard(2)
         
         board.setCellbyId(27, 'R')
         board.setCellbyId(28, 'q')
@@ -208,7 +202,6 @@ class WhiteRookTest(unittest.TestCase):
     def testWhiteRookTakeBlackKingRight(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
-        board.showBoard(2)
         
         board.setCellbyId(27, 'R')
         board.setCellbyId(28, 'k')
@@ -681,7 +674,6 @@ class WhiteRookTest(unittest.TestCase):
         board.clean()
         
         board.setCellbyId(27, 'R')
-        board.showBoard(4)
          
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1

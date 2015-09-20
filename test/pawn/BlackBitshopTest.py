@@ -15,7 +15,6 @@ class BlackBitshopTest(unittest.TestCase):
     def testBlackBitshopMoveRightUp(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
-        board.showBoard(2)
         
         board.setCellbyId(27, 'b')
          
@@ -43,7 +42,6 @@ class BlackBitshopTest(unittest.TestCase):
     def testBlackBitshopTakeWhitePawnRightUp(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
-        board.showBoard(2)
         
         board.setCellbyId(27, 'b')
         board.setCellbyId(36, 'P')
@@ -76,7 +74,6 @@ class BlackBitshopTest(unittest.TestCase):
     def testBlackBitshopTakeWhiteKnightRightUp(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
-        board.showBoard(2)
         
         board.setCellbyId(27, 'b')
         board.setCellbyId(36, 'N')
@@ -109,7 +106,6 @@ class BlackBitshopTest(unittest.TestCase):
     def testBlackBitshopTakeWhiteBitshopRightUp(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
-        board.showBoard(2)
         
         board.setCellbyId(27, 'b')
         board.setCellbyId(36, 'B')
@@ -142,7 +138,6 @@ class BlackBitshopTest(unittest.TestCase):
     def testBlackBitshopTakeWhiteRookRightUp(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
-        board.showBoard(2)
         
         board.setCellbyId(27, 'b')
         board.setCellbyId(36, 'R')
@@ -175,7 +170,6 @@ class BlackBitshopTest(unittest.TestCase):
     def testBlackBitshopTakeWhiteQueenRightUp(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
-        board.showBoard(2)
         
         board.setCellbyId(27, 'b')
         board.setCellbyId(36, 'Q')
@@ -208,7 +202,6 @@ class BlackBitshopTest(unittest.TestCase):
     def testBlackBitshopTakeWhiteKingRightUp(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
-        board.showBoard(2)
         
         board.setCellbyId(27, 'b')
         board.setCellbyId(36, 'K')
@@ -681,7 +674,6 @@ class BlackBitshopTest(unittest.TestCase):
         board.clean()
         
         board.setCellbyId(27, 'b')
-        board.showBoard(4)
          
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
