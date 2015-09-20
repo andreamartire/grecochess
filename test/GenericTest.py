@@ -24,7 +24,7 @@ class GenericTest(unittest.TestCase):
          
         assert board.moveSize == 1, 'History Error'
     
-    def AlphaBeta(self):
+    def testAlphaBeta(self):
         board = QuadBitBoard.QuadBitBoard()
         board.showBoard(3)
         
