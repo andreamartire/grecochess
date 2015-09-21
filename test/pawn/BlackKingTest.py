@@ -1764,3 +1764,72 @@ class BlackKingTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(27) in board.blackKingIndex
         assert Utils.getCellBitArrayById(35) in board.whiteKingIndex
     
+    def testBlackKingMoveKingCastle(self):
+        board = QuadBitBoard.QuadBitBoard()
+        board.clean()
+        
+        board.showBoard(2)
+        board.setCellbyId(60, 'k')
+        board.setCellbyId(63, 'r')
+         
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackKingIndex) == 1
+        assert len(board.blackRooksIndexes) == 1
+        assert Utils.getCellBitArrayById(60) in board.blackKingIndex
+        assert Utils.getCellBitArrayById(63) in board.blackRooksIndexes
+        
+        move = Generator.getMoveByIndexes(board, Constants.BLACK, 60, 62)
+        
+        board.executeMove(move)
+         
+        assert board.moveSize == 1
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackKingIndex) == 1
+        assert len(board.blackRooksIndexes) == 1
+        assert Utils.getCellBitArrayById(62) in board.blackKingIndex
+        assert Utils.getCellBitArrayById(61) in board.blackRooksIndexes
+        
+        board.rollbackLastMove()
+        
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackKingIndex) == 1
+        assert len(board.blackRooksIndexes) == 1
+        assert Utils.getCellBitArrayById(60) in board.blackKingIndex
+        assert Utils.getCellBitArrayById(63) in board.blackRooksIndexes
+    
+    def testBlackKingMoveQueenCastle(self):
+        board = QuadBitBoard.QuadBitBoard()
+        board.clean()
+        
+        board.showBoard(2)
+        board.setCellbyId(60, 'k')
+        board.setCellbyId(56, 'r')
+         
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackKingIndex) == 1
+        assert len(board.blackRooksIndexes) == 1
+        assert Utils.getCellBitArrayById(60) in board.blackKingIndex
+        assert Utils.getCellBitArrayById(56) in board.blackRooksIndexes
+        
+        move = Generator.getMoveByIndexes(board, Constants.BLACK, 60, 58)
+        
+        board.executeMove(move)
+         
+        assert board.moveSize == 1
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackKingIndex) == 1
+        assert len(board.blackRooksIndexes) == 1
+        assert Utils.getCellBitArrayById(58) in board.blackKingIndex
+        assert Utils.getCellBitArrayById(59) in board.blackRooksIndexes
+        
+        board.rollbackLastMove()
+        
+        assert board.moveSize == 0
+        assert board.getNumOfPieces() == 2
+        assert len(board.blackKingIndex) == 1
+        assert len(board.blackRooksIndexes) == 1
+        assert Utils.getCellBitArrayById(60) in board.blackKingIndex
+        assert Utils.getCellBitArrayById(56) in board.blackRooksIndexes
