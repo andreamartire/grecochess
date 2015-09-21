@@ -669,7 +669,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(27) in board.whiteRooksIndexes
         assert Utils.getCellBitArrayById(19) in board.blackKingIndex
     
-    def testWhiteRookMoveLeftUp(self):
+    def testWhiteRookMoveUp(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
         
@@ -696,7 +696,7 @@ class WhiteRookTest(unittest.TestCase):
         assert len(board.whiteRooksIndexes) == 1
         assert Utils.getCellBitArrayById(27) in board.whiteRooksIndexes
     
-    def testWhiteRookTakeBlackPawnLeftUp(self):
+    def testWhiteRookTakeBlackPawnUp(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
         
@@ -728,7 +728,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(27) in board.whiteRooksIndexes
         assert Utils.getCellBitArrayById(35) in board.blackPawnsIndexes
     
-    def testWhiteRookTakeBlackKnightLeftUp(self):
+    def testWhiteRookTakeBlackKnightUp(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
         
@@ -760,7 +760,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(27) in board.whiteRooksIndexes
         assert Utils.getCellBitArrayById(35) in board.blackKnightIndexes
     
-    def testWhiteRookTakeBlackBitshopLeftUp(self):
+    def testWhiteRookTakeBlackBitshopUp(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
         
@@ -792,7 +792,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(27) in board.whiteRooksIndexes
         assert Utils.getCellBitArrayById(35) in board.blackBitshopsIndexes
         
-    def testWhiteRookTakeBlackRookLeftUp(self):
+    def testWhiteRookTakeBlackRookUp(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
         
@@ -824,7 +824,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(27) in board.whiteRooksIndexes
         assert Utils.getCellBitArrayById(35) in board.blackRooksIndexes
         
-    def testWhiteRookTakeBlackQueenLeftUp(self):
+    def testWhiteRookTakeBlackQueenUp(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
         
@@ -856,7 +856,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(27) in board.whiteRooksIndexes
         assert Utils.getCellBitArrayById(35) in board.blackQueenIndexes
         
-    def testWhiteRookTakeBlackKingLeftUp(self):
+    def testWhiteRookTakeBlackKingUp(self):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
         
