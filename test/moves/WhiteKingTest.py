@@ -1768,7 +1768,6 @@ class WhiteKingTest(unittest.TestCase):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
         
-        board.showBoard(2)
         board.setCellbyId(4, 'K')
         board.setCellbyId(7, 'R')
          

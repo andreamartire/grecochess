@@ -1768,7 +1768,6 @@ class BlackKingTest(unittest.TestCase):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
         
-        board.showBoard(2)
         board.setCellbyId(60, 'k')
         board.setCellbyId(63, 'r')
          
@@ -1803,7 +1802,6 @@ class BlackKingTest(unittest.TestCase):
         board = QuadBitBoard.QuadBitBoard()
         board.clean()
         
-        board.showBoard(2)
         board.setCellbyId(60, 'k')
         board.setCellbyId(56, 'r')
          
