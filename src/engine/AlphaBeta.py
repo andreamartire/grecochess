@@ -38,8 +38,6 @@ class AlphaBeta(object):
             return AlphaBeta.utility(board, currPlayer)
         #print "Skip deep " + str(deep)
         
-        print "Current Player = " + str(currPlayer)
-        
         value = 999
         for move in Generator.getAllPseudoLegalMoves(board, currPlayer, True):
             #print move

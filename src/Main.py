@@ -15,10 +15,11 @@ from engine.AlphaBeta import AlphaBeta
 board = QuadBitBoard.QuadBitBoard()
 board.showBoard(3)
 
-moves = AlphaBeta.calculateSolution(board, Constants.WHITE, 6)
-for i in range(0,len(moves)):
-    print str(i) + "=" + str(moves[i])
+move = AlphaBeta.calculateSolution(board, Constants.WHITE, 6)
+print "Solution: " + str(move)
 
+board.showBoard(3)
+board.checkConsistence()
 '''board.executeMove(moves[3])
 board.showBoard(3)
 

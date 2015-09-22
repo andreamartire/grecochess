@@ -25,10 +25,6 @@ class MoveCache(object):
         
         #board.showBoard(3)
         
-        if(board.getNumOfPieces() > 32):
-            print "BUG"
-            board.showBoard(4)
-        
         #save the support information to facilitate the operation of the cache cleaning
         cleaningMap[board.getNumOfPieces()].append(hashcode)
         return 
