@@ -375,7 +375,7 @@ class Generator(object):
         j = start + 1
     
         while j <= end:
-            if array[j].type > pivot.type:
+            if array[j].type < pivot.type:
                 array[j], array[i] = array[i], array[j]
                 i += 1
             j += 1
@@ -392,9 +392,8 @@ class Generator(object):
         if end - start < 1:
             return []
     
-        #idx_pivot = random.randint(start, end)
-        #i = Generator.sub_partition(array, start, end, idx_pivot)
-        i = Generator.sub_partition(array, start, end, start)
+        idx_pivot = random.randint(start, end)
+        i = Generator.sub_partition(array, start, end, idx_pivot)
         #print array, i, idx_pivot
         Generator.quicksort(array, start, i - 1)
         Generator.quicksort(array, i + 1, end)

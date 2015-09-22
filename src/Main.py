@@ -13,13 +13,15 @@ from model.MoveCache import MoveCache
 from engine.AlphaBeta import AlphaBeta
 
 board = QuadBitBoard.QuadBitBoard()
-board.showBoard(3)
 
-move = AlphaBeta.calculateSolution(board, Constants.WHITE, 6)
+import time
+start_time = time.time()
+
+move = AlphaBeta.calculateSolution(board, Constants.WHITE, 8)
 print "Solution: " + str(move)
 
-board.showBoard(3)
-board.checkConsistence()
+print("--- %s seconds ---" % (time.time() - start_time))
+
 '''board.executeMove(moves[3])
 board.showBoard(3)
 

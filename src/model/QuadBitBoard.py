@@ -617,7 +617,7 @@ class QuadBitBoard(object):
         
         assert move != None
         
-        print "  "*self.moveSize + "->" + str(move)
+        #print "  "*self.moveSize + "->" + str(move)
             
         #reset double push column
         self.doublePushColumn = EnPassant.noDoublePushColumn
@@ -821,7 +821,7 @@ class QuadBitBoard(object):
                     #set double push column
                     self.doublePushColumn = EnPassant.columnByStartPosition[previousMove.start]
             
-            print "  "*self.moveSize + "<-" + str(move)
+            #print "  "*self.moveSize + "<-" + str(move)
                     
             if(move.type == Constants.MOVE_QUIET):
                 #quiet move
