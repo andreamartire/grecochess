@@ -617,7 +617,7 @@ class QuadBitBoard(object):
         
         assert move != None
         
-        #print "  "*self.moveSize + "->" + str(move)
+        print "  "*self.moveSize + "->" + str(move)
             
         #reset double push column
         self.doublePushColumn = EnPassant.noDoublePushColumn
@@ -821,7 +821,7 @@ class QuadBitBoard(object):
                     #set double push column
                     self.doublePushColumn = EnPassant.columnByStartPosition[previousMove.start]
             
-            #print "  "*self.moveSize + "<-" + str(move)
+            print "  "*self.moveSize + "<-" + str(move)
                     
             if(move.type == Constants.MOVE_QUIET):
                 #quiet move
@@ -938,7 +938,7 @@ class QuadBitBoard(object):
                     self.whiteBitshopsIndexes.pop(move.end, None)
                     self.whitePawnsIndexes[move.start] = 1
                 self.nbk    = self.nbk ^ move.end 
-                self.pbq    = self.pbq ^ move.start
+                self.pbq    = self.pbq ^ (move.start | move.end)
             elif(move.type == Constants.MOVE_KNIGHT_PROMO_CAPTURE):
                 #knight promotion
                 if(self.black & move.end == move.end):

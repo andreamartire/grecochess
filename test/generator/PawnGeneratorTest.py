@@ -167,6 +167,7 @@ class PawnGeneratorTest(unittest.TestCase):
                 assert move.end in board.blackQueenIndexes or move.end in board.blackRooksIndexes or move.end in board.blackBitshopsIndexes or move.end in board.blackKnightIndexes
                 
                 board.rollbackLastMove()
+                board.showBoard(4)
                 board.checkConsistence()
                 
                 assert board.moveSize == 0
