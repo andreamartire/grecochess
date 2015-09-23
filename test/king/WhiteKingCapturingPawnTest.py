@@ -30,6 +30,7 @@ class WhiteKingCapturingPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(27) in board.blackPawnsIndexes
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -39,6 +40,7 @@ class WhiteKingCapturingPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(27) not in board.blackPawnsIndexes   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -64,6 +66,7 @@ class WhiteKingCapturingPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) in board.blackPawnsIndexes
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -73,6 +76,7 @@ class WhiteKingCapturingPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) not in board.blackPawnsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -98,6 +102,7 @@ class WhiteKingCapturingPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(34) in board.blackPawnsIndexes
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -107,6 +112,7 @@ class WhiteKingCapturingPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(34) not in board.blackPawnsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -132,6 +138,7 @@ class WhiteKingCapturingPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(33) in board.blackPawnsIndexes
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -141,6 +148,7 @@ class WhiteKingCapturingPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(33) not in board.blackPawnsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -166,6 +174,7 @@ class WhiteKingCapturingPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(25) in board.blackPawnsIndexes
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -175,6 +184,7 @@ class WhiteKingCapturingPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(25) not in board.blackPawnsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -200,6 +210,7 @@ class WhiteKingCapturingPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(17) in board.blackPawnsIndexes
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -209,6 +220,7 @@ class WhiteKingCapturingPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(17) not in board.blackPawnsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -234,6 +246,7 @@ class WhiteKingCapturingPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(18) in board.blackPawnsIndexes
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -243,6 +256,7 @@ class WhiteKingCapturingPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(18) not in board.blackPawnsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -268,6 +282,7 @@ class WhiteKingCapturingPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) in board.blackPawnsIndexes
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -277,6 +292,7 @@ class WhiteKingCapturingPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) not in board.blackPawnsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2

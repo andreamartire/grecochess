@@ -30,6 +30,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 37, 30)
          
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -39,6 +40,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(30) not in board.whitePawnsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -64,6 +66,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 37, 28)
          
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -73,6 +76,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(28) not in board.whitePawnsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -98,6 +102,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 26, 19)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -107,6 +112,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) not in board.whiteKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -132,6 +138,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 26, 17)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -141,6 +148,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(17) not in board.whiteKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -166,6 +174,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 26, 19)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -175,6 +184,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) not in board.whiteBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -200,6 +210,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 26, 17)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -209,6 +220,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(17) not in board.whiteBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -234,6 +246,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 26, 19)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -243,6 +256,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) not in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -268,6 +282,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 26, 17)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -277,6 +292,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(17) not in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -302,6 +318,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 26, 19)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -311,6 +328,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) not in board.whiteQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -336,6 +354,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 26, 17)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -345,6 +364,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(17) not in board.whiteQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -370,6 +390,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 26, 19)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -379,6 +400,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) not in board.whiteKingIndex
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -404,6 +426,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 26, 17)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -413,6 +436,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(17) not in board.whiteKingIndex
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -459,6 +483,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 51, 43)
          
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -467,6 +492,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(43) in board.blackPawnsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -487,6 +513,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 51, 35)
          
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -495,6 +522,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(51) not in board.blackPawnsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -517,7 +545,8 @@ class BlackPawnTest(unittest.TestCase):
         
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 11, 27)
            
-        board.executeMove(move)        
+        board.executeMove(move)
+        board.checkConsistence()        
         
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 2
@@ -530,6 +559,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 28, 19)
            
         board.executeMove(move)
+        board.checkConsistence()
                 
         assert board.moveSize == 2
         assert board.getNumOfPieces() == 1
@@ -540,6 +570,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(27) not in board.whitePawnsIndexes
          
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 2
@@ -550,6 +581,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(27) in board.whitePawnsIndexes
            
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -574,7 +606,8 @@ class BlackPawnTest(unittest.TestCase):
         
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 13, 29)
            
-        board.executeMove(move)        
+        board.executeMove(move)
+        board.checkConsistence()        
         
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 2
@@ -587,6 +620,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 28, 21)
            
         board.executeMove(move)
+        board.checkConsistence()
                 
         assert board.moveSize == 2
         assert board.getNumOfPieces() == 1
@@ -597,6 +631,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(29) not in board.whitePawnsIndexes
          
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 2
@@ -607,6 +642,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(29) in board.whitePawnsIndexes
            
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -629,6 +665,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 3, Constants.MOVE_KNIGHT_PROMOTION)
         
         board.executeMove(move)
+        board.checkConsistence()
         
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -636,6 +673,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(3) in board.blackKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -656,6 +694,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 3, Constants.MOVE_BITSHOP_PROMOTION)
         
         board.executeMove(move)
+        board.checkConsistence()
         
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -663,6 +702,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(3) in board.blackBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -683,6 +723,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 3, Constants.MOVE_ROOK_PROMOTION)
         
         board.executeMove(move)
+        board.checkConsistence()
         
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -690,6 +731,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(3) in board.blackRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -710,6 +752,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 3, Constants.MOVE_QUEEN_PROMOTION)
         
         board.executeMove(move)
+        board.checkConsistence()
         
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -717,6 +760,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(3) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -740,6 +784,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 2, Constants.MOVE_KNIGHT_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -747,6 +792,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) in board.blackKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -772,6 +818,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 2, Constants.MOVE_KNIGHT_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -779,6 +826,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) in board.blackKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -804,6 +852,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 2, Constants.MOVE_KNIGHT_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -811,6 +860,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) in board.blackKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -836,6 +886,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 2, Constants.MOVE_KNIGHT_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -843,6 +894,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) in board.blackKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -868,6 +920,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 2, Constants.MOVE_KNIGHT_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -875,6 +928,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) in board.blackKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -900,6 +954,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 4, Constants.MOVE_KNIGHT_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -907,6 +962,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(4) in board.blackKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -932,6 +988,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 4, Constants.MOVE_KNIGHT_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -939,6 +996,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(4) in board.blackKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -964,6 +1022,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 4, Constants.MOVE_KNIGHT_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -971,6 +1030,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(4) in board.blackKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -996,6 +1056,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 4, Constants.MOVE_KNIGHT_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1003,6 +1064,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(4) in board.blackKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1028,6 +1090,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 4, Constants.MOVE_KNIGHT_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1035,6 +1098,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(4) in board.blackKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1060,6 +1124,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 2, Constants.MOVE_BITSHOP_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1067,6 +1132,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) in board.blackBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1092,6 +1158,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 2, Constants.MOVE_BITSHOP_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1099,6 +1166,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) in board.blackBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1124,6 +1192,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 2, Constants.MOVE_BITSHOP_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1131,6 +1200,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) in board.blackBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1156,6 +1226,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 2, Constants.MOVE_BITSHOP_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1163,6 +1234,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) in board.blackBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1188,6 +1260,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 2, Constants.MOVE_BITSHOP_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1195,6 +1268,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) in board.blackBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1220,6 +1294,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 4, Constants.MOVE_BITSHOP_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1227,6 +1302,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(4) in board.blackBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1252,6 +1328,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 4, Constants.MOVE_BITSHOP_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1259,6 +1336,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(4) in board.blackBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1284,6 +1362,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 4, Constants.MOVE_BITSHOP_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1291,6 +1370,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(4) in board.blackBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1316,6 +1396,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 4, Constants.MOVE_BITSHOP_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1323,6 +1404,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(4) in board.blackBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1348,6 +1430,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 4, Constants.MOVE_BITSHOP_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1355,6 +1438,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(4) in board.blackBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1380,6 +1464,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 2, Constants.MOVE_ROOK_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1387,6 +1472,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) in board.blackRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1412,6 +1498,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 2, Constants.MOVE_ROOK_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1419,6 +1506,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) in board.blackRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1444,6 +1532,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 2, Constants.MOVE_ROOK_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1451,6 +1540,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) in board.blackRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1476,6 +1566,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 2, Constants.MOVE_ROOK_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1483,6 +1574,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) in board.blackRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1508,6 +1600,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 2, Constants.MOVE_ROOK_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1515,6 +1608,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) in board.blackRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1540,6 +1634,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 4, Constants.MOVE_ROOK_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1547,6 +1642,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(4) in board.blackRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1572,6 +1668,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 4, Constants.MOVE_ROOK_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1579,6 +1676,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(4) in board.blackRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1604,6 +1702,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 4, Constants.MOVE_ROOK_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1611,6 +1710,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(4) in board.blackRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1636,6 +1736,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 4, Constants.MOVE_ROOK_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1643,6 +1744,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(4) in board.blackRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1668,6 +1770,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 4, Constants.MOVE_ROOK_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1675,6 +1778,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(4) in board.blackRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1700,6 +1804,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 2, Constants.MOVE_QUEEN_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1707,6 +1812,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1732,6 +1838,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 2, Constants.MOVE_QUEEN_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1739,6 +1846,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1764,6 +1872,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 2, Constants.MOVE_QUEEN_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1771,6 +1880,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1796,6 +1906,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 2, Constants.MOVE_QUEEN_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1803,6 +1914,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1828,6 +1940,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 2, Constants.MOVE_QUEEN_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1835,6 +1948,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1860,6 +1974,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 4, Constants.MOVE_QUEEN_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1867,6 +1982,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(4) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1892,6 +2008,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 4, Constants.MOVE_QUEEN_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1899,6 +2016,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(4) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1924,6 +2042,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 4, Constants.MOVE_QUEEN_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1931,6 +2050,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(4) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1956,6 +2076,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 4, Constants.MOVE_QUEEN_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1963,6 +2084,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(4) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1988,6 +2110,7 @@ class BlackPawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.BLACK, 11, 4, Constants.MOVE_QUEEN_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1995,6 +2118,7 @@ class BlackPawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(4) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2

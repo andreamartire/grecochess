@@ -26,6 +26,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 28)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -33,6 +34,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(28) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -56,6 +58,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 28)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -63,6 +66,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(28) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -88,6 +92,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 28)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -95,6 +100,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(28) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -120,6 +126,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 28)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -127,6 +134,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(28) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -152,6 +160,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 28)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -159,6 +168,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(28) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -184,6 +194,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 28)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -191,6 +202,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(28) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -216,6 +228,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 28)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -223,6 +236,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(28) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -245,6 +259,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 26)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -252,6 +267,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(26) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -275,6 +291,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 26)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -282,6 +299,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(26) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -307,6 +325,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 26)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -314,6 +333,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(26) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -339,6 +359,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 26)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -346,6 +367,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(26) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -371,6 +393,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 26)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -378,6 +401,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(26) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -403,6 +427,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 26)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -410,6 +435,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(26) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -435,6 +461,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 26)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -442,6 +469,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(26) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -464,6 +492,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 19)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -471,6 +500,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -494,6 +524,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 19)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -501,6 +532,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -526,6 +558,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 19)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -533,6 +566,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -558,6 +592,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 19)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -565,6 +600,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -590,6 +626,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 19)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -597,6 +634,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -622,6 +660,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 19)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -629,6 +668,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -654,6 +694,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 19)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -661,6 +702,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -683,6 +725,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 35)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -690,6 +733,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -713,6 +757,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 35)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -720,6 +765,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -745,6 +791,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 35)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -752,6 +799,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -777,6 +825,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 35)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -784,6 +833,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -809,6 +859,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 35)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -816,6 +867,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -841,6 +893,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 35)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -848,6 +901,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -873,6 +927,7 @@ class WhiteRookTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 27, 35)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -880,6 +935,7 @@ class WhiteRookTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2

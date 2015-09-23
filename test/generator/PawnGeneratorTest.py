@@ -45,6 +45,7 @@ class PawnGeneratorTest(unittest.TestCase):
             
             for move in moves:
                 board.executeMove(move)
+                board.checkConsistence()
                  
                 board.showBoard(4)
                 assert board.moveSize == 1
@@ -53,6 +54,7 @@ class PawnGeneratorTest(unittest.TestCase):
                 assert move.end in board.whitePawnsIndexes
                 
                 board.rollbackLastMove()
+                board.checkConsistence()
                 
                 assert board.moveSize == 0
                 assert board.getNumOfPieces() == 1
@@ -76,6 +78,7 @@ class PawnGeneratorTest(unittest.TestCase):
             
             for move in moves:
                 board.executeMove(move)
+                board.checkConsistence()
                 
                 assert board.moveSize == 1
                 assert board.getNumOfPieces() == 1
@@ -83,6 +86,7 @@ class PawnGeneratorTest(unittest.TestCase):
                 assert move.end in board.whiteQueenIndexes or move.end in board.whiteRooksIndexes or move.end in board.whiteBitshopsIndexes or move.end in board.whiteKnightIndexes
                 
                 board.rollbackLastMove()
+                board.checkConsistence()
                 
                 assert board.moveSize == 0
                 assert board.getNumOfPieces() == 1
@@ -122,6 +126,7 @@ class PawnGeneratorTest(unittest.TestCase):
             
             for move in moves:
                 board.executeMove(move)
+                board.checkConsistence()
                  
                 board.showBoard(4)
                 assert board.moveSize == 1
@@ -130,6 +135,7 @@ class PawnGeneratorTest(unittest.TestCase):
                 assert move.end in board.blackPawnsIndexes
                 
                 board.rollbackLastMove()
+                board.checkConsistence()
                 
                 assert board.moveSize == 0
                 assert board.getNumOfPieces() == 1
@@ -153,6 +159,7 @@ class PawnGeneratorTest(unittest.TestCase):
             
             for move in moves:
                 board.executeMove(move)
+                board.checkConsistence()
                 
                 assert board.moveSize == 1
                 assert board.getNumOfPieces() == 1
@@ -160,6 +167,7 @@ class PawnGeneratorTest(unittest.TestCase):
                 assert move.end in board.blackQueenIndexes or move.end in board.blackRooksIndexes or move.end in board.blackBitshopsIndexes or move.end in board.blackKnightIndexes
                 
                 board.rollbackLastMove()
+                board.checkConsistence()
                 
                 assert board.moveSize == 0
                 assert board.getNumOfPieces() == 1

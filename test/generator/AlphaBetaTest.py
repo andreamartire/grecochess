@@ -28,6 +28,7 @@ class AlphaBetaTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 14, 30)
         
         board.executeMove(move)
+        board.checkConsistence()
         
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 32
@@ -38,6 +39,7 @@ class AlphaBetaTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 55, 39)
         
         board.executeMove(move)
+        board.checkConsistence()
         
         assert board.moveSize == 2
         assert board.getNumOfPieces() == 32
@@ -49,6 +51,7 @@ class AlphaBetaTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 11, 27)
         
         board.executeMove(move)
+        board.checkConsistence()
         
         assert board.moveSize == 3
         assert board.getNumOfPieces() == 32
@@ -61,6 +64,7 @@ class AlphaBetaTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 39, 31)
         
         board.executeMove(move)
+        board.checkConsistence()
         
         assert board.moveSize == 4
         assert board.getNumOfPieces() == 32
@@ -87,24 +91,30 @@ class AlphaBetaTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 10, 26)
         
         board.executeMove(move)
+        board.checkConsistence()
         
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 53, 37)
         
         board.executeMove(move)
+        board.checkConsistence()
         
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 15, 31)
         
         board.executeMove(move)
+        board.checkConsistence()
         
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 54, 38)
         
         board.executeMove(move)
+        board.checkConsistence()
         
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 31, 38)
                 
         board.executeMove(move)
+        board.checkConsistence()
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         board.checkConsistence()
         

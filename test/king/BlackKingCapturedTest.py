@@ -30,6 +30,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -39,6 +40,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -64,6 +66,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(17) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -73,6 +76,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(17) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -98,6 +102,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(30) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -107,6 +112,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(30) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -132,6 +138,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(14) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -141,6 +148,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(14) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -166,6 +174,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(37) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -175,6 +184,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(37) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -200,6 +210,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -209,6 +220,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -234,6 +246,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(26) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -243,6 +256,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(26) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -268,6 +282,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(10) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -277,6 +292,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(10) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -302,6 +318,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(3) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -311,6 +328,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(3) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -336,6 +354,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(5) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -345,6 +364,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(5) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -370,6 +390,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -379,6 +400,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(2) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -404,6 +426,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(6) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -413,6 +436,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(6) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -438,6 +462,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(38) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -447,6 +472,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(38) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -472,6 +498,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(34) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -481,6 +508,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(34) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -506,6 +534,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(12) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -515,6 +544,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(12) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -540,6 +570,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(30) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -549,6 +580,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(30) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -574,6 +606,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(44) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -583,6 +616,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(44) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -608,6 +642,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(26) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -617,6 +652,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(26) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -642,6 +678,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(30) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -651,6 +688,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(30) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -676,6 +714,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(46) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -685,6 +724,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(46) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -710,6 +750,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(44) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -719,6 +760,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(44) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -744,6 +786,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(42) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -753,6 +796,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(42) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -778,6 +822,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(26) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -787,6 +832,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(26) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -812,6 +858,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(10) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -821,6 +868,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(10) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -846,6 +894,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(12) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -855,6 +904,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(12) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -880,6 +930,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(14) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -889,6 +940,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(14) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -914,6 +966,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(29) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -923,6 +976,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(29) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -948,6 +1002,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(37) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -957,6 +1012,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(37) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -982,6 +1038,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(36) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -991,6 +1048,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(36) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1016,6 +1074,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1025,6 +1084,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1050,6 +1110,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(27) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1059,6 +1120,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(27) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1084,6 +1146,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1093,6 +1156,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1118,6 +1182,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(20) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1127,6 +1192,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(20) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1152,6 +1218,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(21) in board.whiteKingIndex
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1161,6 +1228,7 @@ class BlackKingCapturedTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(21) not in board.whiteKingIndex   
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2

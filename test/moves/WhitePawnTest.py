@@ -29,6 +29,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 26, 35)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -38,6 +39,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) not in board.blackPawnsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -63,6 +65,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 26, 33)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -72,6 +75,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(33) not in board.blackPawnsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -97,6 +101,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 26, 35)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -106,6 +111,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) not in board.blackKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -131,6 +137,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 26, 33)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -140,6 +147,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(33) not in board.blackKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -165,6 +173,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 26, 35)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -174,6 +183,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) not in board.blackBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -199,6 +209,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 26, 33)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -208,6 +219,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(33) not in board.blackBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -233,6 +245,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 26, 35)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -242,6 +255,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) not in board.blackRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -267,6 +281,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 26, 33)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -276,6 +291,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(33) not in board.blackRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -301,6 +317,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 26, 35)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -310,6 +327,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) not in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -335,6 +353,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 26, 33)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -344,6 +363,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(33) not in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -369,6 +389,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 26, 35)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -378,6 +399,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) not in board.blackKingIndex
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -403,6 +425,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 26, 33)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -412,6 +435,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(33) not in board.blackKingIndex
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -451,6 +475,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 11, 19)
          
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -459,6 +484,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(11) not in board.whitePawnsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -479,6 +505,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 11, 27)
          
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -487,6 +514,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(11) not in board.whitePawnsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -509,7 +537,8 @@ class WhitePawnTest(unittest.TestCase):
         
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 51, 35)
            
-        board.executeMove(move)        
+        board.executeMove(move)
+        board.checkConsistence()        
         
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 2
@@ -522,6 +551,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 36, 43)
            
         board.executeMove(move)
+        board.checkConsistence()
                 
         assert board.moveSize == 2
         assert board.getNumOfPieces() == 1
@@ -532,6 +562,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) not in board.blackPawnsIndexes
          
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 2
@@ -542,6 +573,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) in board.blackPawnsIndexes
            
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -566,7 +598,8 @@ class WhitePawnTest(unittest.TestCase):
         
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 53, 37)
            
-        board.executeMove(move)        
+        board.executeMove(move)
+        board.checkConsistence()        
         
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 2
@@ -579,6 +612,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 36, 45)
            
         board.executeMove(move)
+        board.checkConsistence()
                 
         assert board.moveSize == 2
         assert board.getNumOfPieces() == 1
@@ -589,6 +623,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(37) not in board.blackPawnsIndexes
          
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 2
@@ -599,6 +634,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(37) in board.blackPawnsIndexes
            
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -621,6 +657,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 59, Constants.MOVE_KNIGHT_PROMOTION)
         
         board.executeMove(move)
+        board.checkConsistence()
         
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -628,6 +665,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(59) in board.whiteKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -648,6 +686,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 59, Constants.MOVE_BITSHOP_PROMOTION)
         
         board.executeMove(move)
+        board.checkConsistence()
         
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -655,6 +694,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(59) in board.whiteBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -675,6 +715,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 59, Constants.MOVE_ROOK_PROMOTION)
         
         board.executeMove(move)
+        board.checkConsistence()
         
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -682,6 +723,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(59) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -702,6 +744,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 59, Constants.MOVE_QUEEN_PROMOTION)
         
         board.executeMove(move)
+        board.checkConsistence()
         
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -709,6 +752,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(59) in board.whiteQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -732,6 +776,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 58, Constants.MOVE_KNIGHT_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -739,6 +784,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(58) in board.whiteKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -764,6 +810,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 58, Constants.MOVE_KNIGHT_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -771,6 +818,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(58) in board.whiteKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -796,6 +844,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 58, Constants.MOVE_KNIGHT_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -803,6 +852,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(58) in board.whiteKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -828,6 +878,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 58, Constants.MOVE_KNIGHT_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -835,6 +886,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(58) in board.whiteKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -860,6 +912,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 58, Constants.MOVE_KNIGHT_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -867,6 +920,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(58) in board.whiteKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -892,6 +946,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 60, Constants.MOVE_KNIGHT_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -899,6 +954,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(60) in board.whiteKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -924,6 +980,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 60, Constants.MOVE_KNIGHT_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -931,6 +988,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(60) in board.whiteKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -956,6 +1014,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 60, Constants.MOVE_KNIGHT_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -963,6 +1022,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(60) in board.whiteKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -988,6 +1048,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 60, Constants.MOVE_KNIGHT_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -995,6 +1056,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(60) in board.whiteKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1020,6 +1082,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 60, Constants.MOVE_KNIGHT_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1027,6 +1090,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(60) in board.whiteKnightIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1052,6 +1116,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 58, Constants.MOVE_BITSHOP_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1059,6 +1124,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(58) in board.whiteBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1084,6 +1150,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 58, Constants.MOVE_BITSHOP_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1091,6 +1158,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(58) in board.whiteBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1116,6 +1184,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 58, Constants.MOVE_BITSHOP_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1123,6 +1192,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(58) in board.whiteBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1148,6 +1218,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 58, Constants.MOVE_BITSHOP_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1155,6 +1226,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(58) in board.whiteBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1180,6 +1252,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 58, Constants.MOVE_BITSHOP_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1187,6 +1260,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(58) in board.whiteBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1212,6 +1286,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 60, Constants.MOVE_BITSHOP_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1219,6 +1294,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(60) in board.whiteBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1244,6 +1320,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 60, Constants.MOVE_BITSHOP_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1251,6 +1328,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(60) in board.whiteBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1276,6 +1354,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 60, Constants.MOVE_BITSHOP_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1283,6 +1362,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(60) in board.whiteBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1308,6 +1388,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 60, Constants.MOVE_BITSHOP_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1315,6 +1396,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(60) in board.whiteBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1340,6 +1422,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 60, Constants.MOVE_BITSHOP_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1347,6 +1430,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(60) in board.whiteBitshopsIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1372,6 +1456,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 58, Constants.MOVE_ROOK_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1379,6 +1464,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(58) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1404,6 +1490,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 58, Constants.MOVE_ROOK_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1411,6 +1498,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(58) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1436,6 +1524,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 58, Constants.MOVE_ROOK_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1443,6 +1532,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(58) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1468,6 +1558,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 58, Constants.MOVE_ROOK_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1475,6 +1566,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(58) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1500,6 +1592,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 58, Constants.MOVE_ROOK_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1507,6 +1600,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(58) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1532,6 +1626,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 60, Constants.MOVE_ROOK_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1539,6 +1634,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(60) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1564,6 +1660,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 60, Constants.MOVE_ROOK_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1571,6 +1668,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(60) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1596,6 +1694,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 60, Constants.MOVE_ROOK_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1603,6 +1702,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(60) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1628,6 +1728,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 60, Constants.MOVE_ROOK_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1635,6 +1736,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(60) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1660,6 +1762,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 60, Constants.MOVE_ROOK_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1667,6 +1770,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(60) in board.whiteRooksIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1692,6 +1796,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 58, Constants.MOVE_QUEEN_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1699,6 +1804,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(58) in board.whiteQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1724,6 +1830,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 58, Constants.MOVE_QUEEN_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1731,6 +1838,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(58) in board.whiteQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1756,6 +1864,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 58, Constants.MOVE_QUEEN_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1763,6 +1872,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(58) in board.whiteQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1788,6 +1898,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 58, Constants.MOVE_QUEEN_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1795,6 +1906,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(58) in board.whiteQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1820,6 +1932,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 58, Constants.MOVE_QUEEN_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1827,6 +1940,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(58) in board.whiteQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1852,6 +1966,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 60, Constants.MOVE_QUEEN_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1859,6 +1974,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(60) in board.whiteQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1884,6 +2000,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 60, Constants.MOVE_QUEEN_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1891,6 +2008,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(60) in board.whiteQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1916,6 +2034,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 60, Constants.MOVE_QUEEN_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1923,6 +2042,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(60) in board.whiteQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1948,6 +2068,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 60, Constants.MOVE_QUEEN_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1955,6 +2076,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(60) in board.whiteQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1980,6 +2102,7 @@ class WhitePawnTest(unittest.TestCase):
         move = Generator.getPromotionMoveByIndexes(board, Constants.WHITE, 51, 60, Constants.MOVE_QUEEN_PROMO_CAPTURE)
         
         board.executeMove(move)
+        board.checkConsistence()
 
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1987,6 +2110,7 @@ class WhitePawnTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(60) in board.whiteQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2

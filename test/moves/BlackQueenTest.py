@@ -26,6 +26,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 36)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -33,6 +34,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(36) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -56,6 +58,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 36)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -63,6 +66,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(36) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -88,6 +92,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 36)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -95,6 +100,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(36) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -120,6 +126,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 36)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -127,6 +134,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(36) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -152,6 +160,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 36)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -159,6 +168,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(36) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -184,6 +194,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 36)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -191,6 +202,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(36) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -216,6 +228,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 36)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -223,6 +236,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(36) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -245,6 +259,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 18)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -252,6 +267,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(18) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -275,6 +291,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 18)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -282,6 +299,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(18) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -307,6 +325,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 18)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -314,6 +333,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(18) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -339,6 +359,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 18)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -346,6 +367,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(18) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -371,6 +393,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 18)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -378,6 +401,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(18) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -403,6 +427,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 18)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -410,6 +435,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(18) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -435,6 +461,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 18)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -442,6 +469,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(18) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -464,6 +492,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 20)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -471,6 +500,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(20) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -494,6 +524,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 20)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -501,6 +532,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(20) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -526,6 +558,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 20)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -533,6 +566,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(20) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -558,6 +592,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 20)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -565,6 +600,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(20) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -590,6 +626,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 20)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -597,6 +634,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(20) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -622,6 +660,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 20)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -629,6 +668,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(20) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -654,6 +694,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 20)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -661,6 +702,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(20) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -683,6 +725,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 34)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -690,6 +733,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(34) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -713,6 +757,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 34)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -720,6 +765,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(34) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -745,6 +791,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 34)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -752,6 +799,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(34) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -777,6 +825,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 34)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -784,6 +833,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(34) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -809,6 +859,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 34)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -816,6 +867,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(34) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -841,6 +893,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 34)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -848,6 +901,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(34) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -873,6 +927,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 34)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -880,6 +935,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(34) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -902,6 +958,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 28)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -909,6 +966,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(28) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -932,6 +990,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 28)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -939,6 +998,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(28) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -964,6 +1024,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 28)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -971,6 +1032,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(28) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -996,6 +1058,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 28)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1003,6 +1066,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(28) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1028,6 +1092,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 28)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1035,6 +1100,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(28) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1060,6 +1126,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 28)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1067,6 +1134,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(28) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1092,6 +1160,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 28)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1099,6 +1168,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(28) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1121,6 +1191,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 26)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1128,6 +1199,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(26) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -1151,6 +1223,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 26)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1158,6 +1231,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(26) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1183,6 +1257,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 26)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1190,6 +1265,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(26) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1215,6 +1291,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 26)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1222,6 +1299,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(26) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1247,6 +1325,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 26)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1254,6 +1333,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(26) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1279,6 +1359,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 26)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1286,6 +1367,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(26) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1311,6 +1393,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 26)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1318,6 +1401,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(26) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1340,6 +1424,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 19)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1347,6 +1432,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -1370,6 +1456,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 19)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1377,6 +1464,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1402,6 +1490,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 19)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1409,6 +1498,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1434,6 +1524,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 19)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1441,6 +1532,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1466,6 +1558,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 19)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1473,6 +1566,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1498,6 +1592,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 19)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1505,6 +1600,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1530,6 +1626,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 19)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1537,6 +1634,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(19) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1559,6 +1657,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 35)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1566,6 +1665,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 1
@@ -1589,6 +1689,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 35)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1596,6 +1697,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1621,6 +1723,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 35)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1628,6 +1731,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1653,6 +1757,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 35)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1660,6 +1765,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1685,6 +1791,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 35)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1692,6 +1799,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1717,6 +1825,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 35)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1724,6 +1833,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2
@@ -1749,6 +1859,7 @@ class WhiteQueenTest(unittest.TestCase):
         move = Generator.getMoveByIndexes(board, Constants.BLACK, 27, 35)
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.moveSize == 1
         assert board.getNumOfPieces() == 1
@@ -1756,6 +1867,7 @@ class WhiteQueenTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(35) in board.blackQueenIndexes
         
         board.rollbackLastMove()
+        board.checkConsistence()
         
         assert board.moveSize == 0
         assert board.getNumOfPieces() == 2

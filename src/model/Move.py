@@ -35,6 +35,8 @@ def createTypeMap():
     _typeMap[3] = mpz(3)
     _typeMap[4] = mpz(4)
     _typeMap[5] = mpz(5)
+    _typeMap[6] = mpz(6)
+    _typeMap[7] = mpz(7)
     _typeMap[8] = mpz(8)
     _typeMap[9] = mpz(9)
     _typeMap[10] = mpz(10)

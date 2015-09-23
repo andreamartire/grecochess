@@ -27,6 +27,7 @@ class BitshopTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(33) in board.blackPawnsIndexes
         
         board.executeMove(move)
+        board.checkConsistence()
          
         assert board.getNumOfPieces() == 1
         assert len(board.whiteBitshopsIndexes) == 1
@@ -35,6 +36,7 @@ class BitshopTest(unittest.TestCase):
         assert Utils.getCellBitArrayById(33) not in board.blackPawnsIndexes
          
         board.rollbackLastMove()
+        board.checkConsistence()
          
         assert board.getNumOfPieces() == 2
         assert len(board.whiteBitshopsIndexes) == 1
