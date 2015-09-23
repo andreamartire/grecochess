@@ -963,7 +963,7 @@ class QuadBitBoard(object):
                     self.whiteBitshopsIndexes.pop(move.end, None)
                     self.whitePawnsIndexes[move.start] = 1
                 self.nbk    = self.nbk ^ move.end 
-                self.pbq    = self.pbq ^ move.start
+                self.pbq    = self.pbq ^ (move.end |move.start)
                 
                 #add captured piece                 
                 self.addCapturedPiece(move)

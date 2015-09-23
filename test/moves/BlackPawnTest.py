@@ -1267,7 +1267,9 @@ class BlackPawnTest(unittest.TestCase):
         assert len(board.blackBitshopsIndexes) == 1
         assert Utils.getCellBitArrayById(2) in board.blackBitshopsIndexes
         
+        board.showBoard(4)
         board.rollbackLastMove()
+        board.showBoard(4)
         board.checkConsistence()
         
         assert board.moveSize == 0
