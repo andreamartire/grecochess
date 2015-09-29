@@ -13,7 +13,6 @@ class AlphaBeta(object):
     
     @staticmethod
     def calculateSolution(board, currPlayer, deep):
-        print "AlphaBetaDecision"
         v = AlphaBeta.maxValue(board, currPlayer, deep, -999, 999)
         
         for move in Generator.getAllPseudoLegalMoves(board, currPlayer, True):

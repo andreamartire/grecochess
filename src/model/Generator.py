@@ -15,6 +15,9 @@ from model.MoveCache import MoveCache
 
 class Generator(object):
     
+    cacheReuseCounter = 0
+    cacheAddCounter = 0
+    
     @staticmethod
     def getMoveByIndexes(bb, color, startCell, endCell):
             
@@ -41,8 +44,12 @@ class Generator(object):
     def getAllPseudoLegalMoves(bb, color, checkCastles=True):            
         #check if exists in move cache
         allMoves = MoveCache.get(color, bb.getHash())
+        
         if(allMoves != None):
+            Generator.cacheReuseCounter += 1
             return allMoves
+        
+        Generator.cacheAddCounter += 1
         
         bb.busyCells = bb.rqk | bb.pbq | bb.nbk
         bb.emptyCells = ~bb.busyCells
@@ -375,9 +382,11 @@ class Generator(object):
         j = start + 1
     
         while j <= end:
+            #killer move priority
             if array[j].type < pivot.type:
                 array[j], array[i] = array[i], array[j]
                 i += 1
+            #TODO Ahead move priority. Need piece colour
             j += 1
     
         array[start], array[i - 1] = array[i - 1], array[start]

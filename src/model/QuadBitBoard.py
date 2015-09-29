@@ -13,6 +13,9 @@ class QuadBitBoard(object):
     def __init__(self):
         self.busyCells = mpz(0)
     
+        self.moveCounterExecution = 0
+        self.moveCounterRollback = 0
+        
         self.moveHistory = []
         self.moveSize = 0
         
@@ -614,10 +617,9 @@ class QuadBitBoard(object):
         return
     
     def executeMove(self, move):  
+        self.moveCounterExecution += 1
         
-        assert move != None
-        
-        print "  "*self.moveSize + "->" + str(move)
+        #print "  "*self.moveSize + "->" + str(move)
             
         #reset double push column
         self.doublePushColumn = EnPassant.noDoublePushColumn
@@ -806,6 +808,7 @@ class QuadBitBoard(object):
         return
     
     def rollbackLastMove(self):
+        self.moveCounterRollback += 1
         
         if(self.moveSize > 0):
             self.sideToMove = Utils.toggle(self.sideToMove)
@@ -821,7 +824,7 @@ class QuadBitBoard(object):
                     #set double push column
                     self.doublePushColumn = EnPassant.columnByStartPosition[previousMove.start]
             
-            print "  "*self.moveSize + "<-" + str(move)
+            #print "  "*self.moveSize + "<-" + str(move)
                     
             if(move.type == Constants.MOVE_QUIET):
                 #quiet move

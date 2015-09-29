@@ -36,7 +36,7 @@ class MoveCache(object):
     @staticmethod
     def cleanUnusefulMoves(bb):   
         print "Before. WhiteCache: " + str(len(whiteCache)) + " BlackCache: " + str(len(blackCache))    
-        #remove moves relative to boards with less pieces
+        #remove moves relative to boards with more pieces
         for i in range(bb.getNumOfPieces()+1, 33):
             for hashCode in cleaningMap[i]:
                 whiteCache.pop(hashCode, None)

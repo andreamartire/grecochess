@@ -147,3 +147,24 @@ def toggle(currPlayer):
     if(currPlayer == Constants.WHITE):
         return Constants.BLACK
     return Constants.WHITE
+
+def cellIndexByCellName(cellName):
+    base = ord('0')
+    cellName = cellName.upper()
+    if(cellName[0] == 'A'):
+        return (ord(cellName[1])-base-1)*8
+    if(cellName[0] == 'B'):
+        return 1 + (ord(cellName[1])-base-1)*8
+    if(cellName[0] == 'C'):
+        return 2 + (ord(cellName[1])-base-1)*8
+    if(cellName[0] == 'D'):
+        return 3 + (ord(cellName[1])-base-1)*8
+    if(cellName[0] == 'E'):
+        return 4 + (ord(cellName[1])-base-1)*8
+    if(cellName[0] == 'F'):
+        return 5 + (ord(cellName[1])-base-1)*8
+    if(cellName[0] == 'G'):
+        return 6 + (ord(cellName[1])-base-1)*8
+    if(cellName[0] == 'H'):
+        return 7 + (ord(cellName[1])-base-1)*8
+    return None

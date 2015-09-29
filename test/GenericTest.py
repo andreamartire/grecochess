@@ -16,7 +16,6 @@ class GenericTest(unittest.TestCase):
     
     def testHistorySize(self):
         board = QuadBitBoard.QuadBitBoard()
-        board.showBoard(3)
          
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 12, 28)
          
@@ -27,7 +26,6 @@ class GenericTest(unittest.TestCase):
     
     def testAlphaBeta(self):
         board = QuadBitBoard.QuadBitBoard()
-        board.showBoard(3)
         
         move = Generator.getMoveByIndexes(board, Constants.WHITE, 15, 31)
         board.executeMove(move)
@@ -46,3 +44,15 @@ class GenericTest(unittest.TestCase):
         board.checkConsistence()
          
         assert board.getNumOfPieces() == 32
+
+    def testCellIndexByName(self):
+        board = QuadBitBoard.QuadBitBoard()
+        board.showBoard(2)
+        
+        assert Utils.cellIndexByCellName("A1") == 0
+        assert Utils.cellIndexByCellName("D4") == 27
+        assert Utils.cellIndexByCellName("H8") == 63
+        assert Utils.cellIndexByCellName("B2") == 9
+        assert Utils.cellIndexByCellName("F3") == 21
+        assert Utils.cellIndexByCellName("G6") == 46
+        assert Utils.cellIndexByCellName("C7") == 50
